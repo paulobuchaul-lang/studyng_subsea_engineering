@@ -25,23 +25,23 @@ Decisões Pendentes exigem resposta do Paulo. Decisões Vigentes só mudam com n
 **Motivo:** O Drive não serve sites; caminhos relativos, JS e navegação entre páginas não funcionam. Foi a causa raiz do problema "CSS não funcionou". Ver DIAGNOSTICO_V3.md, seção 2.
 **Consequência:** localStorage passa a funcionar normalmente; a ponte via window.name é removida. O repositório vira fonte de verdade do código. Guia operacional em GUIA_PUBLICACAO.md.
 
-## D-004a · 06/09/2026 · PENDENTE (decisão do Paulo)
-**Opções:**
+## D-004a · 06/09/2026, confirmada em 07/09/2026 · Vigente
+**Decisão:** Opção (A) — GitHub Pages em repositório público (`paulobuchaul-lang/studyng_subsea_engineering`).
+**Opções consideradas:**
 (A) GitHub Pages em repositório público. Gratuito, simples, URL estável. O conteúdo fica acessível a qualquer pessoa com o link (não indexado por padrão se não for divulgado, mas público).
 (B) Repositório privado no GitHub + Cloudflare Pages + Cloudflare Access (login por e-mail). Gratuito nos limites atuais; protege por login; exige duas contas.
-**Recomendação:** (A) se o conteúdo permanecer estritamente educacional e público, como hoje. (B) se você ou a Rafaela preferirem que o nome dela e o material não fiquem expostos. O conteúdo não pode conter, em nenhum caso, informação confidencial Petrobras ou contratual.
-**Atenção:** limites e recursos gratuitos desses serviços mudam; conferir na data da implantação.
-**Nota da Sessão 1:** o repositório `paulobuchaul-lang/studyng_subsea_engineering` já existe no GitHub, o que na prática encaminha para a opção (A). Falta confirmar com o Paulo se a visibilidade deve ser pública e ativar GitHub Pages em Settings → Pages.
+**Motivo:** o repositório já existia público nessa conta; manter a opção A evita reconfigurar visibilidade e credenciais. O conteúdo não pode conter, em nenhum caso, informação confidencial Petrobras ou contratual.
+**Consequência:** falta apenas a ação manual do Paulo em Settings → Pages (Deploy from a branch → main → / root) para o site entrar no ar; não há ferramenta que ative isso remotamente. Passo a passo em GUIA_PUBLICACAO.md seção 4.
 
-## D-005 · 06/09/2026 · PENDENTE (decisão do Paulo)
-**Decisão proposta:** Adotar pipeline "conteúdo como dados, shell como código". Cada capítulo vive em um arquivo Markdown com seções nomeadas (express, conceitos, ciclo de vida, painel PM, quiz, prompts, referências). Glossário, prompts, biblioteca visual e índice de busca vivem em JSON. Um script Python (executado pelo Claude na sessão, não pelo Paulo) gera as 33+ páginas HTML a partir de templates.
+## D-005 · 06/09/2026, aprovada em 07/09/2026 · Vigente
+**Decisão:** Adotar pipeline "conteúdo como dados, shell como código". Cada capítulo vive em um arquivo Markdown com seções nomeadas (express, conceitos, ciclo de vida, painel PM, quiz, prompts, referências). Glossário, prompts, biblioteca visual e índice de busca vivem em JSON. Um script Python (executado pelo Claude na sessão, não pelo Paulo) gera as 33+ páginas HTML a partir de templates.
 **Motivo:** Hoje o shell (menu, header, footer, scripts) está copiado em 33 arquivos. Qualquer mudança de layout exige regenerar tudo, e regenerar tudo por LLM é a principal fonte de regressão de conteúdo. Com dados separados, evoluir um capítulo não toca nos outros, e o shell muda em um único lugar.
 **Custo:** menor do que o estimado inicialmente: o `assets/data.js` da V3 já contém glossário (126 termos), prompts (28) e aliases (38) em JSON estruturado. Só o corpo dos 24 capítulos precisa ser extraído do HTML, o que é scriptável. Estimativa: meia sessão. Depois disso, cada sessão fica mais barata e mais segura.
 **Alternativa:** manter HTML manual como na V3. Menor custo inicial, maior custo e risco a cada evolução.
-**Recomendação:** adotar. O Paulo já opera ferramentas Python e o script fica versionado no repositório.
+**Consequência:** `src/build.py` e os templates em `src/templates/` só podem ser escritos com segurança depois que os 47 arquivos originais da V3 forem reenviados, para que o parser seja desenhado contra a estrutura real dos blocos (inclusive os irregulares citados em DIAGNOSTICO_V3.md) em vez de uma suposição. Ver B-028.
 
-## D-006 · 06/09/2026 · PENDENTE (decisão do Paulo)
-**Decisão proposta:** Direção de design descrita em DESIGN_SYSTEM_V4.md (paleta oceânica com acento coral, tipografia Inter + Sora, ícones SVG, navegação por abas no mobile e barra lateral no desktop, camadas de profundidade como controle segmentado, progresso como medidor de profundidade).
+## D-006 · 06/09/2026, aprovada em 07/09/2026 · Vigente
+**Decisão:** Direção de design descrita em DESIGN_SYSTEM_V4.md (paleta oceânica com acento coral, tipografia Inter + Sora, ícones SVG, navegação por abas no mobile e barra lateral no desktop, camadas de profundidade como controle segmentado, progresso como medidor de profundidade) aprovada para virar protótipo.
 **Validação:** Sprint 2 entrega protótipo navegável (Home + capítulo 17 + glossário) para aprovação antes do rollout aos demais capítulos.
 
 ## D-007 · 06/09/2026 · Vigente
@@ -77,6 +77,7 @@ Decisões Pendentes exigem resposta do Paulo. Decisões Vigentes só mudam com n
 **Consequência:** o Sprint 1 não precisa reproduzir a V3; extrai o conteúdo para dados e começa o shell V4 do zero. A regra "não regredir" (seção 25) passa a valer para conteúdo e funções, não para forma.
 
 ## D-014 · 07/09/2026 · Vigente
-**Decisão:** A organização inicial do repositório GitHub (Sessão 1) segue apenas com o que independe de decisões pendentes: estrutura de pastas, cópia da governança em `/governanca/`, `.nojekyll`. Não se cria `src/build.py` nem se migra conteúdo da V3 enquanto D-005 estiver pendente e enquanto os arquivos originais da V3 não forem reenviados.
-**Motivo:** Construir um pipeline ou migrar conteúdo antes da decisão do Paulo (D-005) arriscaria retrabalho, e o zip completo da V3 (47 arquivos) recebido na Sessão 0 não estava disponível nesta sessão — apenas os 9 documentos de governança.
-**Consequência:** `/src/content/`, `/src/data/` e `/src/templates/` existem como esqueleto vazio com README explicando a dependência. Ver ESTADO_ATUAL.md, seção "O que ficou bloqueado".
+**Decisão:** A organização inicial do repositório GitHub (Sessão 1) seguiu apenas com o que independia das decisões então pendentes: estrutura de pastas, cópia da governança em `/governanca/`, `.nojekyll`. Não se criou `src/build.py` nem se migrou conteúdo da V3 na primeira parte da sessão.
+**Motivo:** Construir um pipeline ou migrar conteúdo antes da decisão do Paulo (D-005) arriscaria retrabalho; o zip completo da V3 (47 arquivos) recebido na Sessão 0 não estava disponível nesta sessão — apenas os 9 documentos de governança.
+**Atualização (mesma sessão):** D-004a, D-005 e D-006 foram decididas pelo Paulo logo em seguida (ver acima), o que desbloqueia o pipeline. `src/build.py` e os templates continuam não escritos, agora só porque os 47 arquivos da V3 ainda não foram reenviados — não mais por decisão pendente. Ver B-028.
+**Consequência:** `/src/content/`, `/src/data/` e `/src/templates/` existem como esqueleto vazio com README explicando a dependência restante. Ver ESTADO_ATUAL.md, seção "O que ficou bloqueado".

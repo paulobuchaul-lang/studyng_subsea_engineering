@@ -33,5 +33,5 @@ Itens promovidos a sprint saem daqui e entram no ROADMAP; itens concluídos vão
 | B-025 | P4 | tecnologia emergente | Revisar classificação de maturidade (all-electric, TCP, resident ROV, digital twin) a cada 6 meses | ARQUITETURA seção 13 | recorrente |
 | B-026 | P2 | didática | Reavaliar a ementa de 24 capítulos e sua ordem contra o escopo do CLAUDE.md seção 5 e as seis fases; decidir se há capítulos a fundir, dividir ou criar | D-013 | Sprint 2 |
 | B-027 | P2 | técnico | Extração dos capítulos V3 para Markdown estruturado; revisão manual dos blocos irregulares | D-013 | Sprint 1 |
-| B-028 | P1 | técnico | Reenviar o zip completo da V3 (47 arquivos: HTML, assets/data.js, styles.css, app.js, imagens) ao repositório de trabalho; a Sessão 1 só recebeu os 9 documentos de governança e não pôde extrair conteúdo | Sessão 1 | Sprint 1 |
-| B-029 | P1 | técnico | Ativar GitHub Pages em Settings → Pages do repositório e confirmar visibilidade (depende de D-004a) | Sessão 1 | Sprint 1 |
+| B-028 | P1 | técnico | Reenviar o zip completo da V3 (47 arquivos: HTML, assets/data.js, styles.css, app.js, imagens) ao repositório de trabalho; a Sessão 1 só recebeu os 9 documentos de governança e não pôde extrair conteúdo. Bloqueia também a escrita de src/build.py (D-005 já aprovada) | Sessão 1 | Sprint 1 |
+| B-029 | P1 | técnico | Ativar GitHub Pages em Settings → Pages do repositório (D-004a decidida: público). Ação manual do Paulo; nenhuma ferramenta remota faz isso | Sessão 1 | Sprint 1 |
