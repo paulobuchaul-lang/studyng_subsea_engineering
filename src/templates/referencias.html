@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hub-shell">
+  <h1>Referências</h1>
+  <p class="hub-intro">Todas as fontes citadas nos 24 capítulos ("Aprofundamento — Deep dive"), reunidas aqui para consulta central. Cada item mostra a categoria da fonte e de qual(is) capítulo(s) vem, conforme o critério de diferenciação de natureza da fonte do CLAUDE.md seção 8 (norma, Petrobras, acadêmico, indústria, comercial, emergente, didática).</p>
+
+  {% for grupo in grupos %}
+  <div class="ref-group">
+    <h2 class="ref-group-title">{{ grupo.categoria }}</h2>
+    <ul class="ref-list">
+      {% for item in grupo.itens %}
+      <li class="ref-item">
+        <a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.titulo }}</a>
+        <span class="ref-source">
+          {% for c in item.capitulos %}<a class="ref-chapter-link" href="capitulos/{{ c.id }}.html">cap. {{ "%02d"|format(c.n) }}</a>{% if not loop.last %}, {% endif %}{% endfor %}
+        </span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+
+  {% if not grupos %}
+  <p class="hub-placeholder-note">Nenhuma referência encontrada — verifique a extração.</p>
+  {% endif %}
+</section>
+{% endblock %}

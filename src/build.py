@@ -162,6 +162,38 @@ def parse_quiz(quiz_section_text: str):
     return questions
 
 
+REFERENCIA_LINHA_RE = re.compile(r"^- \[([^\]]+)\] \[([^\]]+)\]\(([^)]+)\)\s*$", re.M)
+
+
+def extrair_referencias(parsed_chapters):
+    """Varre a secao 'Aprofundamento' de cada capitulo (formato real e
+    consistente nos 24 .md: "- [categoria] [Titulo](URL)") e agrupa por
+    categoria, deduplicando por URL e citando todos os capitulos que citam
+    a mesma fonte. Nao inventa nem reescreve nenhuma referencia — so
+    reorganiza o que ja existe no conteudo extraido para consulta central."""
+    by_url = {}
+    for front, sections in parsed_chapters:
+        secao = sections.get('Aprofundamento (candidato a camada "Deep dive")', "")
+        for categoria, titulo, url in REFERENCIA_LINHA_RE.findall(secao):
+            entry = by_url.setdefault(
+                url, {"categoria": categoria.strip(), "titulo": titulo.strip(), "url": url.strip(), "capitulos": []}
+            )
+            cap_ref = {"id": front["id"], "n": front["n"], "title": front["title"]}
+            if cap_ref not in entry["capitulos"]:
+                entry["capitulos"].append(cap_ref)
+
+    grupos = {}
+    for entry in by_url.values():
+        grupos.setdefault(entry["categoria"], []).append(entry)
+    for categoria in grupos:
+        grupos[categoria].sort(key=lambda e: e["titulo"].lower())
+
+    return [
+        {"categoria": categoria, "itens": grupos[categoria]}
+        for categoria in sorted(grupos.keys(), key=lambda c: c.lower())
+    ]
+
+
 def build_term_regex(glossario):
     terms = sorted({g["term"] for g in glossario if g.get("term")}, key=len, reverse=True)
     escaped = [re.escape(t) for t in terms]
@@ -199,6 +231,10 @@ def main():
     glossario = load_json("glossario.json")
     prompts = load_json("prompts.json")
     aliases = load_json("aliases.json")
+    biblioteca = load_json("biblioteca.json")
+
+    for i, p in enumerate(prompts):
+        p["id"] = f"prompt-{i}"
 
     term_re, term_map = build_term_regex(glossario)
     glossario_json_inline = json.dumps(glossario, ensure_ascii=False)
@@ -215,6 +251,17 @@ def main():
 
     chapters_meta.sort(key=lambda c: c["n"])
     total_chapters = len(chapters_meta)
+    referencias_agrupadas = extrair_referencias(parsed_chapters)
+
+    search_index_json = json.dumps(
+        {
+            "chapters": [{"id": c["id"], "n": c["n"], "title": c["title"], "subtitle": c["subtitle"]} for c in chapters_meta],
+            "glossario": [{"id": g["id"], "term": g["term"], "full": g.get("full", "")} for g in glossario],
+            "prompts": [{"id": p["id"], "title": p["title"], "category": p["category"]} for p in prompts],
+            "aliases": aliases,
+        },
+        ensure_ascii=False,
+    )
 
     CAPITULOS_OUT.mkdir(parents=True, exist_ok=True)
     capitulo_tpl = env.get_template("capitulo.html")
@@ -330,28 +377,78 @@ def main():
     )
     print("OK prompts.html")
 
-    # Placeholders (conteudo completo e Sprint 3/7/8)
-    placeholder_tpl = env.get_template("hub_placeholder.html")
-    placeholders = [
-        ("treinamento.html", "Treinamento", "Sprint 3"),
-        ("biblioteca.html", "Biblioteca Visual", "Sprint 7 (licenciamento de imagens)"),
-        ("progresso.html", "Progresso", "Sprint 8 (gamificação)"),
-        ("referencias.html", "Referências", "Sprint 3"),
-        ("search.html", "Buscar", "Sprint 3 (índice de busca com aliases)"),
-    ]
-    for filename, title, destino in placeholders:
-        (OUT_DIR / filename).write_text(
-            placeholder_tpl.render(
-                page_title=title,
-                asset_prefix="",
-                chapter_id=None,
-                glossario_json=glossario_json_inline,
-                sprint_destino=destino,
-                chapters=chapters_meta,
-            ),
-            encoding="utf-8",
-        )
-        print(f"OK {filename}")
+    # Treinamento
+    treinamento_tpl = env.get_template("treinamento.html")
+    (OUT_DIR / "treinamento.html").write_text(
+        treinamento_tpl.render(
+            page_title="Treinamento",
+            asset_prefix="",
+            chapter_id=None,
+            glossario_json=glossario_json_inline,
+            chapters=chapters_meta,
+        ),
+        encoding="utf-8",
+    )
+    print("OK treinamento.html")
+
+    # Referencias
+    referencias_tpl = env.get_template("referencias.html")
+    (OUT_DIR / "referencias.html").write_text(
+        referencias_tpl.render(
+            page_title="Referências",
+            asset_prefix="",
+            chapter_id=None,
+            glossario_json=glossario_json_inline,
+            chapters=chapters_meta,
+            grupos=referencias_agrupadas,
+        ),
+        encoding="utf-8",
+    )
+    print("OK referencias.html")
+
+    # Biblioteca Visual (estrutura; imagens no Sprint 7 — D-007/B-009)
+    biblioteca_tpl = env.get_template("biblioteca.html")
+    (OUT_DIR / "biblioteca.html").write_text(
+        biblioteca_tpl.render(
+            page_title="Biblioteca Visual",
+            asset_prefix="",
+            chapter_id=None,
+            glossario_json=glossario_json_inline,
+            chapters=chapters_meta,
+            itens=biblioteca,
+        ),
+        encoding="utf-8",
+    )
+    print("OK biblioteca.html")
+
+    # Progresso
+    progresso_tpl = env.get_template("progresso.html")
+    (OUT_DIR / "progresso.html").write_text(
+        progresso_tpl.render(
+            page_title="Progresso",
+            asset_prefix="",
+            chapter_id=None,
+            glossario_json=glossario_json_inline,
+            chapters=chapters_meta,
+        ),
+        encoding="utf-8",
+    )
+    print("OK progresso.html")
+
+    # Busca
+    search_tpl = env.get_template("search.html")
+    (OUT_DIR / "search.html").write_text(
+        search_tpl.render(
+            page_title="Buscar",
+            asset_prefix="",
+            chapter_id=None,
+            glossario_json=glossario_json_inline,
+            chapters=chapters_meta,
+            search_index_json=search_index_json,
+        ),
+        encoding="utf-8",
+    )
+    print("OK search.html")
 
     print(f"\nBuild concluido: {total_chapters} capitulos + 9 hubs.")
 

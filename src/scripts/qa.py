@@ -78,9 +78,16 @@ def check_required_blocks(path: Path, text: str, errors: list):
         errors.append(f"{path.relative_to(ROOT)}: nenhuma pergunta de quiz encontrada")
 
 
+SCRIPT_BLOCK_RE = re.compile(r"<script\b[^>]*>.*?</script>", re.S | re.I)
+
+
 def check_local_links(all_files: dict, errors: list):
     for path, text in all_files.items():
-        hrefs = re.findall(r'href="([^"]+)"', text)
+        # remove blocos <script>: JS que monta HTML via concatenacao de string
+        # pode conter literais como 'href="capitulos/' que nao sao atributos
+        # href reais e geram falso positivo aqui.
+        text_sem_script = SCRIPT_BLOCK_RE.sub("", text)
+        hrefs = re.findall(r'href="([^"]+)"', text_sem_script)
         for href in hrefs:
             if href.startswith(("http://", "https://", "#", "mailto:", "javascript:", "data:")):
                 continue

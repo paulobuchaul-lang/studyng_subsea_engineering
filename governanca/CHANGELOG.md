@@ -4,7 +4,19 @@ Formato: versão · data · escopo · itens. Ordem: mais recente primeiro.
 
 ## [V4.0] — em desenvolvimento
 **Escopo:** hospedagem como site estático, redesign completo da UX, pipeline de conteúdo, biblioteca visual licenciada, quiz com raciocínio, gamificação por profundidade.
-**Sprint atual:** 1 e 2 concluídos. Sprint 3 (hubs reais) a iniciar.
+**Sprint atual:** 1, 2 e 3 concluídos. Sprint 4 (capítulos 01 a 08 no novo shell, com rubrica de excelência) a iniciar.
+
+### Sessão 6 — 07/09/2026 — Sprint 3 concluído: hubs reais, busca e exportar/importar progresso
+- Os 5 hubs que eram placeholder desde o Sprint 1 (Treinamento, Busca, Biblioteca Visual, Progresso, Referências) ganharam implementação real; `hub_placeholder.html` removido por não ter mais uso.
+- **Referências:** nova função em `src/build.py` extrai a seção "Aprofundamento" dos 24 `.md` (formato já consistente: item de lista com a categoria entre colchetes, o título entre colchetes e o link logo em seguida entre parênteses), agrupa por categoria e deduplica por URL citando todos os capítulos que citam a mesma fonte — 54 referências reais reunidas, nenhuma inventada.
+- **Busca:** índice combinando capítulos, glossário, prompts e `aliases.json`, injetado inline como `window.SUBSEA_SEARCH_INDEX`. Resultado direto e determinístico quando a busca normalizada bate com uma alias (seção 21 do CLAUDE.md); critério de aceite do ROADMAP testado literalmente: buscar "pull in" e apertar Enter abre o capítulo 17.
+- **Biblioteca Visual:** estrutura e filtro funcionando sobre `biblioteca.json` (ainda vazio por decisão, D-007); estado vazio explica que os dados reais chegam no Sprint 7, sem fingir que a função já está completa.
+- **Progresso:** lista os 24 capítulos com estado real de conclusão (reaproveitando a lógica já existente de `.chapter-card`/`data-chapter-link`), resumo "X de 24" e exportar/importar progresso em JSON (B-011) — testado com round-trip completo (exportar, limpar localStorage, importar, conferir que o estado volta).
+- **Treinamento:** conteúdo novo explicando os recursos da plataforma (dois modos de uso, camadas, glossário, painel PM, prompts, progresso, busca) na voz direta com a Rafaela.
+- `assets/app.js` ganhou `initProgressPage()` (resumo, medidor de profundidade da página de Progresso, exportar/importar). `prompts.html` ganhou `id` por prompt-card para permitir link direto a partir da busca.
+- **Bug real encontrado e corrigido durante o próprio teste:** `src/scripts/qa.py` reportava um link local quebrado em `search.html` que não existia de verdade — o checador lia `href="..."` no arquivo inteiro, inclusive dentro do `<script>` que monta HTML por concatenação de string. Corrigido removendo blocos `<script>` antes de checar links (B-041).
+- `src/scripts/test_e2e.py` cresceu de 35 para 48 checagens (referências carregam, biblioteca mostra estado vazio, progresso mostra contagem, busca determinística, exportar/importar com round-trip real) — todas passando após corrigir uma corrida de tempo no próprio teste (o `reload()` do import é assíncrono, dentro do `FileReader.onload`).
+- B-026 (mapeamento capítulo→fase) permanece em aberto, deliberadamente não resolvido aqui: é decisão de currículo que cabe junto da reescrita de conteúdo dos Sprints 4 a 6, não plumbing de hub.
 
 ### Sessão 5 — 07/09/2026 — Sprint 2 concluído: design system aplicado a todo o site
 - DESIGN_SYSTEM_V4.md aplicado às 33 páginas de uma vez (24 capítulos + 9 hubs), não só à amostra de 3 páginas que o ROADMAP original previa — decisão D-023, possível porque a arquitetura de templates do Sprint 1 torna o custo de aplicar a tudo igual ao de aplicar a uma amostra.

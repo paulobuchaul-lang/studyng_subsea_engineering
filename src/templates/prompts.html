@@ -4,7 +4,7 @@
   <h1>Biblioteca de Prompts</h1>
   <p class="hub-intro">{{ prompts|length }} prompts profissionais prontos para uso. Edite os campos [PREENCHA] antes de copiar.</p>
   {% for p in prompts %}
-  <article class="prompt-card">
+  <article class="prompt-card" id="{{ p.id }}">
     <p class="prompt-category">{{ p.category }}</p>
     <h2>{{ p.title }}</h2>
     <pre class="prompt-text">{{ p.text }}</pre>

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hub-shell">
+  <h1>Buscar</h1>
+  <p class="hub-intro">Busque por capítulo, termo do glossário, prompt, equipamento, sigla ou operação. Termos comuns como "pull in", "winch" ou "guincho" abrem direto o capítulo certo.</p>
+  <input type="search" id="search-input" class="glossario-filter" placeholder="Buscar... (ex.: pull in, ROV, flow assurance)" autofocus>
+
+  <div id="search-direct" class="search-direct" hidden>
+    <span class="label">Resultado direto</span>
+    <a id="search-direct-link" class="card situation-card" href="#"></a>
+  </div>
+
+  <div id="search-results"></div>
+  <p id="search-empty" class="hub-placeholder-note" hidden>Nenhum resultado. Tente outro termo ou confira o <a href="glossario.html">glossário</a>.</p>
+</section>
+<script>window.SUBSEA_SEARCH_INDEX = {{ search_index_json | safe }};</script>
+<script>
+(function () {
+  var index = window.SUBSEA_SEARCH_INDEX || { chapters: [], glossario: [], prompts: [], aliases: {} };
+  var input = document.getElementById("search-input");
+  var directBox = document.getElementById("search-direct");
+  var directLink = document.getElementById("search-direct-link");
+  var resultsBox = document.getElementById("search-results");
+  var emptyMsg = document.getElementById("search-empty");
+  if (!input) return;
+
+  function normalize(s) {
+    return (s || "").toString().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").trim();
+  }
+
+  function chapterById(id) {
+    for (var i = 0; i < index.chapters.length; i++) {
+      if (index.chapters[i].id === id) return index.chapters[i];
+    }
+    return null;
+  }
+
+  function renderGroup(title, items, renderItem) {
+    if (items.length === 0) return "";
+    var html = '<div class="search-group"><h2 class="search-group-title">' + title + "</h2><ul class=\"search-group-list\">";
+    items.forEach(function (item) { html += "<li>" + renderItem(item) + "</li>"; });
+    return html + "</ul></div>";
+  }
+
+  function search(rawQuery) {
+    var q = normalize(rawQuery);
+    directBox.hidden = true;
+    resultsBox.innerHTML = "";
+    emptyMsg.hidden = true;
+
+    if (!q) return;
+
+    var aliasChapterId = index.aliases[q];
+    if (aliasChapterId) {
+      var chapter = chapterById(aliasChapterId);
+      if (chapter) {
+        directLink.href = "capitulos/" + chapter.id + ".html";
+        directLink.innerHTML = '<span class="icon" data-icon="proximo"></span><strong>' + chapter.title + "</strong><small>Abrir capítulo " + chapter.n + "</small>";
+        directBox.hidden = false;
+      }
+    }
+
+    var chapterMatches = index.chapters.filter(function (c) {
+      return normalize(c.title).indexOf(q) !== -1 || normalize(c.subtitle).indexOf(q) !== -1;
+    });
+    var glossarioMatches = index.glossario.filter(function (g) {
+      return normalize(g.term).indexOf(q) !== -1 || normalize(g.full).indexOf(q) !== -1;
+    });
+    var promptMatches = index.prompts.filter(function (p) {
+      return normalize(p.title).indexOf(q) !== -1 || normalize(p.category).indexOf(q) !== -1;
+    });
+
+    var html = "";
+    html += renderGroup("Capítulos", chapterMatches, function (c) {
+      return '<a href="capitulos/' + c.id + '.html">' + c.title + "</a> <small>" + c.subtitle + "</small>";
+    });
+    html += renderGroup("Termos do glossário", glossarioMatches, function (g) {
+      return '<a href="glossario.html#' + g.id + '">' + g.term + (g.full ? " (" + g.full + ")" : "") + "</a>";
+    });
+    html += renderGroup("Prompts", promptMatches, function (p) {
+      return '<a href="prompts.html#' + p.id + '">' + p.title + "</a> <small>" + p.category + "</small>";
+    });
+    resultsBox.innerHTML = html;
+
+    var semNenhumResultado = directBox.hidden && chapterMatches.length === 0 && glossarioMatches.length === 0 && promptMatches.length === 0;
+    emptyMsg.hidden = !semNenhumResultado;
+  }
+
+  input.addEventListener("input", function () { search(input.value); });
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && !directBox.hidden) {
+      e.preventDefault();
+      window.location.href = directLink.getAttribute("href");
+    }
+  });
+
+  var params = new URLSearchParams(window.location.search);
+  var initial = params.get("q");
+  if (initial) {
+    input.value = initial;
+    search(initial);
+  }
+})();
+</script>
+{% endblock %}

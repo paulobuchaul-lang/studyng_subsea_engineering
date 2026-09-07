@@ -23,6 +23,7 @@ Saída: 0 se tudo passou, 1 se alguma checagem falhou.
 import http.server
 import socketserver
 import sys
+import tempfile
 import threading
 import time
 from pathlib import Path
@@ -173,6 +174,68 @@ def run_checks_for_viewport(browser, viewport_name, viewport, chapter_id="m17"):
         check(f"[{viewport_name}] alternancia de tema aplica data-theme", theme_attr == "dark", theme_attr)
         bg_color = page.evaluate("getComputedStyle(document.body).backgroundColor")
         check(f"[{viewport_name}] fundo muda no tema escuro", "18, 27, 43" in bg_color or "11, 27, 43" in bg_color, bg_color)
+
+    # --- Sprint 3: hubs reais (busca, referencias, biblioteca, progresso) ---
+    page.goto(f"http://localhost:{PORT}/search.html")
+    page.wait_for_load_state("networkidle")
+    page.fill("#search-input", "pull in")
+    direct_visible = page.is_visible("#search-direct")
+    direct_href = page.locator("#search-direct-link").get_attribute("href") if direct_visible else ""
+    check(
+        f"[{viewport_name}] busca 'pull in' encontra resultado direto para o capitulo 17 (criterio de aceite do Sprint 3)",
+        direct_visible and "m17.html" in (direct_href or ""),
+        direct_href,
+    )
+    page.click("#search-input")
+    page.press("#search-input", "Enter")
+    page.wait_for_load_state("networkidle")
+    check(f"[{viewport_name}] Enter na busca abre o capitulo 17", "m17.html" in page.url, page.url)
+
+    page.goto(f"http://localhost:{PORT}/referencias.html")
+    page.wait_for_load_state("networkidle")
+    ref_items = page.locator(".ref-item").count()
+    check(f"[{viewport_name}] Referencias lista itens extraidos dos capitulos", ref_items > 20, f"{ref_items} itens")
+
+    page.goto(f"http://localhost:{PORT}/biblioteca.html")
+    page.wait_for_load_state("networkidle")
+    biblioteca_empty_visible = page.is_visible(".biblioteca-empty")
+    check(f"[{viewport_name}] Biblioteca Visual mostra estado vazio claro (dados chegam no Sprint 7)", biblioteca_empty_visible)
+
+    page.goto(f"http://localhost:{PORT}/progresso.html")
+    page.wait_for_load_state("networkidle")
+    resumo_text = page.locator("#progresso-resumo").inner_text()
+    check(f"[{viewport_name}] Progresso mostra resumo com contagem", "24" in resumo_text, resumo_text)
+
+    if viewport_name == "desktop":
+        # export/import: exporta, limpa localStorage, importa de volta, confere que o progresso retorna
+        with page.expect_download() as download_info:
+            page.click("#export-progress-btn")
+        download = download_info.value
+        export_path = str(Path(tempfile.gettempdir()) / "subsea_progress_export_test.json")
+        download.save_as(export_path)
+
+        page.evaluate("localStorage.clear()")
+        page.reload()
+        page.wait_for_load_state("networkidle")
+        resumo_zerado = page.locator("#progresso-resumo").inner_text()
+
+        page.set_input_files("#import-progress-input", export_path)
+        page.wait_for_timeout(500)  # leitura do arquivo (FileReader) e reload() sao assincronos
+        page.wait_for_load_state("networkidle")
+        resumo_restaurado = page.locator("#progresso-resumo").inner_text()
+        check(
+            f"[{viewport_name}] exportar/importar progresso restaura o estado (B-011)",
+            "0 de 24" in resumo_zerado and resumo_restaurado == resumo_text,
+            f"zerado='{resumo_zerado}' restaurado='{resumo_restaurado}' original='{resumo_text}'",
+        )
+        try:
+            Path(export_path).unlink()
+        except OSError:
+            pass
+
+    page.goto(f"http://localhost:{PORT}/treinamento.html")
+    page.wait_for_load_state("networkidle")
+    check(f"[{viewport_name}] Treinamento carrega sem erro JS", len(console_errors) == 0, str(console_errors))
 
     page.close()
 

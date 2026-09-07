@@ -466,6 +466,69 @@
   }
 
   /* =========================================================================
+     11. PAGINA DE PROGRESSO: resumo + exportar/importar JSON (B-011)
+     ========================================================================= */
+  var EXPORT_KEYS = [PROGRESS_KEY, LAST_CHAPTER_KEY, LAYER_PREF_KEY, THEME_KEY];
+
+  function initProgressPage() {
+    var resumo = document.getElementById("progresso-resumo");
+    var track = document.getElementById("progressoDepthTrack");
+    var label = document.getElementById("progressoDepthLabel");
+    var exportBtn = document.getElementById("export-progress-btn");
+    var importInput = document.getElementById("import-progress-input");
+    if (!resumo && !exportBtn && !importInput) return;
+
+    var totalChapters = document.querySelectorAll(".chapter-list .chapter-card[data-chapter-link]").length;
+    var doneCount = getProgressList().length;
+
+    if (resumo) {
+      resumo.textContent = totalChapters
+        ? doneCount + " de " + totalChapters + " capítulos concluídos neste navegador."
+        : "Nenhum capítulo carregado.";
+    }
+    if (track) renderDepthMeter(track, label, doneCount, totalChapters);
+
+    if (exportBtn) {
+      exportBtn.addEventListener("click", function () {
+        var data = {};
+        EXPORT_KEYS.forEach(function (key) {
+          var value = safeGet(key);
+          if (value !== null) data[key] = value;
+        });
+        var blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = "subsea-rafaela-progresso.json";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+    }
+
+    if (importInput) {
+      importInput.addEventListener("change", function () {
+        var file = importInput.files && importInput.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function () {
+          try {
+            var data = JSON.parse(String(reader.result));
+            EXPORT_KEYS.forEach(function (key) {
+              if (typeof data[key] === "string") safeSet(key, data[key]);
+            });
+            window.location.reload();
+          } catch (e) {
+            window.alert("Arquivo inválido. Exporte de novo a partir de Progresso e tente importar esse arquivo.");
+          }
+        };
+        reader.readAsText(file);
+      });
+    }
+  }
+
+  /* =========================================================================
      Inicializacao
      ========================================================================= */
   function init() {
@@ -482,6 +545,7 @@
     initContinue();
     initRailSections();
     initChapterSheet();
+    initProgressPage();
   }
 
   if (document.readyState === "loading") {

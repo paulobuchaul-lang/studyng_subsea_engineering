@@ -895,6 +895,86 @@ button {
   color: var(--ink-2);
 }
 
+/* Sprint 3: Busca */
+.search-direct { margin-bottom: var(--sp-5); }
+.search-direct .label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+  margin-bottom: var(--sp-2);
+}
+.search-group { margin-bottom: var(--sp-5); }
+.search-group-title { font-size: 18px; margin-bottom: var(--sp-2); }
+.search-group-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-2); }
+.search-group-list li {
+  padding: var(--sp-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+.search-group-list a { font-weight: 600; }
+.search-group-list small { display: block; color: var(--ink-2); margin-top: 2px; }
+
+/* Sprint 3: Referencias */
+.ref-group { margin-bottom: var(--sp-5); }
+.ref-group-title { font-size: 18px; text-transform: capitalize; margin-bottom: var(--sp-2); }
+.ref-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-2); }
+.ref-item {
+  padding: var(--sp-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--sp-2);
+}
+.ref-source { font-size: 13px; color: var(--ink-2); white-space: nowrap; }
+.ref-chapter-link { color: var(--ink-2); text-decoration: underline; }
+
+/* Sprint 3: Biblioteca Visual */
+.biblioteca-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--sp-4);
+}
+.biblioteca-categoria {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: var(--sp-1);
+}
+.biblioteca-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  text-align: center;
+  padding: var(--sp-8) var(--sp-4);
+  background: var(--surface-2);
+  border-radius: var(--radius-md);
+  color: var(--ink-2);
+}
+.biblioteca-empty .icon { width: 32px; height: 32px; color: var(--ink-2); }
+.biblioteca-empty p { max-width: 52ch; }
+
+/* Sprint 3: Progresso */
+.progresso-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-bottom: var(--sp-2); }
+.chapter-card-check {
+  display: none;
+  margin-left: auto;
+  align-self: center;
+  width: 20px;
+  height: 20px;
+  color: var(--ok);
+  flex-shrink: 0;
+}
+.chapter-card.done .chapter-card-check { display: block; }
+
 /* -------------------------------------------------------------------------
    8. Acessibilidade e motion
    ------------------------------------------------------------------------- */

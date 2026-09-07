@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hub-shell">
+  <h1>Como usar a plataforma</h1>
+  <p class="hub-intro">Esta página explica os recursos da plataforma, não engenharia submarina. Leia uma vez e volte quando precisar lembrar como algo funciona.</p>
+
+  <div class="home-section">
+    <h2>Dois jeitos de usar</h2>
+    <p>Você não precisa escolher entre estudar em ordem ou consultar um assunto pontual — os dois funcionam ao mesmo tempo, sempre.</p>
+    <p><strong>Modo Formação:</strong> siga a Trilha na Home, capítulo a capítulo, na ordem da Ementa. Bom para quando você quer construir a base inteira.</p>
+    <p><strong>Modo Consulta Imediata:</strong> se amanhã você tem uma reunião sobre pull-in e nunca leu o capítulo 17, abra ele direto pela <a href="search.html">busca</a> ou pela seção "Hoje eu preciso..." da Home. Cada capítulo tem um bloco "Se você precisa entender isto agora" logo no início, com o mínimo necessário para não chegar perdida.</p>
+  </div>
+
+  <div class="home-section">
+    <h2>Camadas de profundidade</h2>
+    <p>No topo de cada capítulo há um controle com quatro opções: <strong>5 minutos</strong>, <strong>Gerente de Projetos</strong>, <strong>Técnica</strong> e <strong>Deep dive</strong>. Escolher uma filtra o que aparece na tela — você nunca precisa rolar por um texto inteiro para achar a parte que importa para você agora.</p>
+    <p>A plataforma lembra sua última escolha de camada quando você abre outro capítulo. "Ver tudo" sempre está disponível se você quiser o conteúdo completo.</p>
+  </div>
+
+  <div class="home-section">
+    <h2>Termos técnicos e glossário</h2>
+    <p>Toda palavra sublinhada é um termo do glossário. Toque ou clique nela para abrir a definição sem sair da página; "Ver no glossário" leva à entrada completa, e voltar te traz de volta ao ponto exato de onde você saiu.</p>
+    <p>Se um termo em inglês te parecer estranho ou fora do dia a dia, é sinal — nem todo termo em inglês do material tem uso real em reunião, e isso está em revisão contínua (ver <a href="referencias.html">Referências</a> para as fontes por trás de cada capítulo).</p>
+  </div>
+
+  <div class="home-section">
+    <h2>Painel PM</h2>
+    <p>Em cada capítulo, o Painel PM tem três abas: <strong>Atenção</strong> (o que costuma dar errado), <strong>Perguntas</strong> (o que perguntar numa reunião sobre o tema) e <strong>Documentos</strong> (o que vale a pena abrir antes de decidir algo). É o resumo orientado à sua função, não à engenharia em si.</p>
+  </div>
+
+  <div class="home-section">
+    <h2>Prompts e assistente LLM</h2>
+    <p>A <a href="prompts.html">Biblioteca de Prompts</a> reúne prompts prontos para tarefas do seu dia a dia — preparar reunião, analisar um documento, montar uma ata. Copie, preencha os campos marcados e cole numa LLM de sua confiança. Cada capítulo também tem sua própria seção de prompts relacionados ao tema.</p>
+  </div>
+
+  <div class="home-section">
+    <h2>Progresso</h2>
+    <p>Marcar um capítulo como estudado fica salvo neste navegador. A página <a href="progresso.html">Progresso</a> mostra quantos capítulos você já viu e deixa exportar esse progresso como um arquivo, para levar para outro celular ou notebook e importar lá — hoje não há sincronização automática entre dispositivos.</p>
+  </div>
+
+  <div class="home-section">
+    <h2>Busca</h2>
+    <p>A <a href="search.html">busca</a> entende sinônimos e siglas comuns: digitar "winch", "guincho" ou "pull in" leva ao mesmo capítulo. Ela também busca por termo do glossário e por prompt, não só por capítulo.</p>
+  </div>
+</section>
+{% endblock %}
