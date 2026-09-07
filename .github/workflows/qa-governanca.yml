@@ -1,0 +1,80 @@
+name: QA da governança
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+
+jobs:
+  qa-governanca:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verificar documentos de governança obrigatórios
+        run: |
+          set -e
+          faltando=0
+          for f in CLAUDE.md ESTADO_ATUAL.md ROADMAP_V4.md DECISOES.md BACKLOG.md CHANGELOG.md DESIGN_SYSTEM_V4.md GUIA_PUBLICACAO.md DIAGNOSTICO_V3.md AUDITORIA_CONTEUDO_DIDATICA_V4.md; do
+            if [ ! -f "governanca/$f" ]; then
+              echo "::error::Documento de governança obrigatório ausente: governanca/$f"
+              faltando=1
+            fi
+          done
+          exit $faltando
+
+      - name: Verificar links internos quebrados em governanca/*.md
+        run: |
+          python3 - <<'PYEOF'
+          import re, sys, pathlib
+
+          base = pathlib.Path("governanca")
+          link_re = re.compile(r'\]\(([^)]+)\)')
+          broken = []
+
+          for md in sorted(base.glob("*.md")):
+              text = md.read_text(encoding="utf-8")
+              for target in link_re.findall(text):
+                  target = target.split(" ", 1)[0].strip()
+                  if target.startswith(("http://", "https://", "#", "mailto:")):
+                      continue
+                  target_path = (md.parent / target.split("#", 1)[0]).resolve()
+                  if not target_path.exists():
+                      broken.append(f"{md}: link quebrado -> {target}")
+
+          if broken:
+              print("::error::Links internos quebrados encontrados na governança:")
+              for b in broken:
+                  print("::error::" + b)
+              sys.exit(1)
+          print("OK: nenhum link interno quebrado em governanca/*.md")
+          PYEOF
+
+      - name: Checar se mudanças de conteúdo/código atualizaram a governança
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          if [ -z "$BASE_SHA" ] || [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            echo "Sem base para comparar (primeiro push da branch ou histórico raso). Pulando checagem."
+            exit 0
+          fi
+
+          CHANGED=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" || true)
+          echo "Arquivos alterados neste push/PR:"
+          echo "$CHANGED"
+
+          TOCOU_CONTEUDO=$(echo "$CHANGED" | grep -E '^(src/|capitulos/|assets/)' || true)
+          TOCOU_GOVERNANCA=$(echo "$CHANGED" | grep -E '^governanca/(CHANGELOG|ESTADO_ATUAL)\.md$' || true)
+
+          if [ -n "$TOCOU_CONTEUDO" ] && [ -z "$TOCOU_GOVERNANCA" ]; then
+            echo "::error::Este push/PR altera conteúdo ou código (src/, capitulos/ ou assets/) sem atualizar governanca/CHANGELOG.md nem governanca/ESTADO_ATUAL.md. Pelo protocolo do projeto (governanca/CLAUDE.md, Parte 0), toda mudança de produto exige a governança atualizada na mesma entrega."
+            exit 1
+          fi
+
+          echo "OK: governança consistente com as mudanças deste push/PR."
