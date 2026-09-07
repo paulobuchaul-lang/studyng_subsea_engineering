@@ -9,18 +9,25 @@ Estimativa de sessões é indicativa. Sprints de conteúdo podem se dividir em d
 ## Sprint 0 — Governança · CONCLUÍDO em 06/09/2026
 Saída: diagnóstico, kit de governança, roadmap, direção de design, guia de publicação.
 
-## Sprint 1 — Fundação técnica e extração de conteúdo
-**Entrada:** D-004a e D-005 decididas. (Zip da V3 já recebido.)
+## Sprint 1 — Auditoria de conteúdo + fundação técnica
+**Entrada:** D-004a e D-005 decididas (ambas vigentes). Zip completo da V3 recebido (Sessão 2).
+
+### Parte A — Auditoria de conteúdo, didática e UX de aprendizagem (D-015)
+Executada antes de qualquer extração técnica, por decisão explícita do Paulo: conteúdo e didática são a base do produto e precisam estar em excelente nível antes de ganhar shell novo.
+1. Leitura e avaliação crítica dos 24 capítulos, do glossário (126 termos), dos prompts (28) e das referências, contra os critérios do CLAUDE.md (camadas, ciclo de vida, foco em PM, tecnologia emergente, Petrobras/Brasil, rigor de fonte).
+2. Resultado registrado em `AUDITORIA_CONTEUDO_DIDATICA_V4.md`: o que está em nível bom (preservar), o que é raso ou mecânico (corrigir), e uma rubrica objetiva de "excelente nível" por capítulo.
+3. Itens novos abertos no BACKLOG a partir dos achados (ver B-030 a B-034).
+**Saída:** AUDITORIA_CONTEUDO_DIDATICA_V4.md. **Concluída em 07/09/2026 (Sessão 2).**
+
+### Parte B — Fundação técnica e extração de conteúdo
 **Faz:**
 1. Inventário automatizado da V3 (páginas, blocos por capítulo, termos, quizzes, prompts, links, imagens) salvo como `INVENTARIO_V3.json`, marcando o que foi extraído limpo e o que exige revisão.
 2. Estrutura do repositório: `/` (site publicado), `/src/content/` (capítulos em Markdown com seções nomeadas), `/src/data/` (glossario.json, prompts.json, aliases.json, biblioteca.json), `/src/templates/`, `/src/build.py`, `/governanca/` (cópia dos .md), `.nojekyll`, `README.md`.
-3. Extração do conteúdo da V3 para o formato de dados. Glossário, prompts e aliases vêm prontos do `data.js`; capítulos são extraídos do HTML por bloco (express, corpo, PM, quiz, prompts, referências). Texto técnico não é alterado neste sprint; apenas reorganizado.
+3. Extração do conteúdo da V3 para o formato de dados. Glossário, prompts e aliases vêm prontos do `data.js`; capítulos são extraídos do HTML por bloco (express, corpo, PM, quiz, prompts, referências). **Diferença em relação ao plano original: a extração não é mais cópia neutra — já nasce sinalizada com os pontos que a auditoria (Parte A) marcou para reescrita nos Sprints 4 a 6 (camadas rasas, "why" genérico do glossário, distratores fracos, ausência de data de verificação em fatos datados).**
 4. Esqueleto do shell V4 (sem design final): template de capítulo e de hub que já obedece à estrutura da seção 6 da arquitetura e às camadas `data-layer`. Build gera as 33 páginas em versão "sem estilo bonito, com estrutura certa".
 5. Script de QA: links locais, IDs duplicados, blocos obrigatórios por capítulo, `<img>` externo, overflow.
 **Saída:** zip do repositório inicial (src + site gerado) e INVENTARIO_V3.json.
 **Aceite:** build roda sem erro; 24 capítulos gerados com todos os blocos obrigatórios; QA zero falhas; Paulo abre 3 capítulos na URL e confirma que nenhum texto técnico se perdeu em relação à V3 (comparação por amostragem).
-**Pré-condição paralela (do Paulo, independente do Claude):** publicar a V3 como está no repositório para provar que celular e notebook funcionam com hospedagem HTTP. Se funcionar, o diagnóstico está confirmado; se não, o Sprint 1 começa investigando.
-**Se D-005 for recusada:** o sprint entrega apenas o inventário, o script de QA e o esqueleto de shell aplicado manualmente a Home + capítulo 17, e o custo de regeneração permanece nos sprints seguintes.
 
 ## Sprint 2 — Design system e protótipo
 **Entrada:** Sprint 1 aceito; D-006 decidida.
@@ -33,14 +40,14 @@ Saída: diagnóstico, kit de governança, roadmap, direção de design, guia de 
 **Aceite:** todos os hubs navegáveis nos dois dispositivos; busca "pull in" abre capítulo 17; exportar/importar funciona entre celular e notebook.
 
 ## Sprint 4 — Capítulos 01 a 08 no novo shell
-**Faz:** migração com camadas de profundidade navegáveis, painel PM em abas, quiz revisado (D-008), "Para onde isso está indo" onde aplicável, termos com popover. Sem alterar o sentido do conteúdo técnico; melhorias de conteúdo entram como itens explícitos no CHANGELOG.
-**Aceite:** QA automatizado (links, IDs, JS) + leitura de amostra pelo Paulo em 2 capítulos.
+**Faz:** migração com camadas de profundidade navegáveis, painel PM em abas, quiz revisado (D-008), "Para onde isso está indo" onde aplicável, termos com popover. Sem alterar o sentido do conteúdo técnico; melhorias de conteúdo entram como itens explícitos no CHANGELOG. **Cada capítulo migrado passa pela rubrica de AUDITORIA_CONTEUDO_DIDATICA_V4.md seção 4 (camadas com conteúdo próprio, quiz sem distrator trivial/binário, "why" de glossário específico, fatos datados com data de verificação).**
+**Aceite:** QA automatizado (links, IDs, JS) + rubrica de excelência cumprida + leitura de amostra pelo Paulo em 2 capítulos.
 
 ## Sprint 5 — Capítulos 09 a 16
-Mesmo padrão. Inclui reauditoria dos diagramas de riser, flexível, controle, flow assurance, lay systems, marine operations e load path.
+Mesmo padrão do Sprint 4, rubrica de excelência incluída. Inclui reauditoria dos diagramas de riser, flexível, controle, flow assurance, lay systems, marine operations e load path.
 
 ## Sprint 6 — Capítulos 17 a 24
-Mesmo padrão. Inclui Pull-In (já prototipado), IMR, decommissioning, tecnologias emergentes, interfaces, FAT/SIT/SAT.
+Mesmo padrão do Sprint 4, rubrica de excelência incluída. Inclui Pull-In (já usado como referência de qualidade na auditoria, mas com quiz a reescrever), IMR (capítulo 19, o de melhor nível na auditoria — modelo a replicar), decommissioning, tecnologias emergentes (capítulo 22, também modelo), interfaces, FAT/SIT/SAT.
 
 ## Sprint 7 — Biblioteca Visual licenciada
 **Faz:** pesquisa de imagens com licença verificável (Wikimedia Commons, Flickr CC, agências governamentais, Petrobras quando os termos permitirem); cópia local com crédito; cartões de fonte para o restante; diagramas SVG próprios onde não houver foto; distribuição nos capítulos (FOTO → O QUE OBSERVAR → DIAGRAMA → IMPLICAÇÃO). Registro de licença e data por item.

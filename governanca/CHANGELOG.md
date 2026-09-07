@@ -4,7 +4,15 @@ Formato: versão · data · escopo · itens. Ordem: mais recente primeiro.
 
 ## [V4.0] — em desenvolvimento
 **Escopo:** hospedagem como site estático, redesign completo da UX, pipeline de conteúdo, biblioteca visual licenciada, quiz com raciocínio, gamificação por profundidade.
-**Sprint atual:** 1 (ver ROADMAP_V4.md).
+**Sprint atual:** 1, Parte A concluída (ver ROADMAP_V4.md).
+
+### Sessão 2 — 07/09/2026 — Zip completo da V3 recebido + auditoria de conteúdo, didática e UX de aprendizagem
+- GitHub Pages ativado pelo Paulo (B-029 concluído).
+- Zip completo da V3 (43 arquivos: index + 8 hubs + 24 capítulos + assets/data.js, styles.css, app.js + documentação) recebido e totalmente inspecionado, incluindo leitura integral de 5 capítulos representativos e varredura estrutural dos 24 (B-028 concluído).
+- A pedido do Paulo, inserida uma fase de auditoria de conteúdo/didática/UX/gamificação como Parte A do Sprint 1, antes de qualquer extração técnica (D-015). Resultado em `governanca/AUDITORIA_CONTEUDO_DIDATICA_V4.md`.
+- Achados centrais: capítulos rasos demais para sustentar 4 camadas reais de profundidade (534-1202 palavras cada, sem marcação `data-layer` no HTML); campo "why" do glossário idêntico nos 126 termos; quiz do capítulo 17 ainda com distratores triviais e do capítulo 19 com pergunta binária fraca; fatos datados de contratos/casos Brasil sem data de verificação registrada. Capítulos 19 (IMR) e 22 (tecnologias emergentes) identificados como o padrão de qualidade a replicar.
+- B-030 a B-034 abertos no backlog a partir da auditoria; rubrica de "excelente nível" por capítulo definida e incorporada como critério de aceite dos Sprints 4 a 6.
+- Extração técnica (Parte B do Sprint 1) ainda não iniciada nesta sessão — aguardando fechamento da conversa sobre volume-alvo por capítulo e timing da verificação factual (D-016 a D-018, a confirmar).
 
 ### Sessão 1 — 07/09/2026 — Organização inicial do repositório GitHub + decisões D-004a/D-005/D-006
 - Repositório `paulobuchaul-lang/studyng_subsea_engineering` estruturado: pasta `/governanca/` recebeu cópia dos 9 documentos de governança (CLAUDE.md, ESTADO_ATUAL.md, ROADMAP_V4.md, DECISOES.md, BACKLOG.md, CHANGELOG.md, DESIGN_SYSTEM_V4.md, GUIA_PUBLICACAO.md, DIAGNOSTICO_V3.md).
