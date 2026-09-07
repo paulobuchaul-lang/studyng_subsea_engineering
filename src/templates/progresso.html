@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hub-shell">
+  <h1>Progresso</h1>
+  <p class="hub-intro" id="progresso-resumo">Carregando progresso salvo neste navegador...</p>
+
+  <div class="depth-meter" style="margin-bottom: 24px;">
+    <div class="depth-meter-track" id="progressoDepthTrack">
+      <div class="depth-meter-zone"></div><div class="depth-meter-zone"></div><div class="depth-meter-zone"></div>
+      <div class="depth-meter-zone"></div><div class="depth-meter-zone"></div><div class="depth-meter-zone"></div>
+    </div>
+    <div class="depth-meter-label" id="progressoDepthLabel"></div>
+  </div>
+
+  <div class="progresso-actions">
+    <button class="btn secondary" id="export-progress-btn"><span class="icon" data-icon="exportar"></span>Exportar progresso (JSON)</button>
+    <label class="btn secondary" for="import-progress-input" style="cursor:pointer;">
+      <span class="icon" data-icon="importar"></span>Importar progresso
+    </label>
+    <input type="file" id="import-progress-input" accept="application/json" hidden>
+  </div>
+  <p class="text-small">Exportar salva um arquivo no seu dispositivo. Importar nesse mesmo arquivo em outro celular ou notebook traz o progresso junto — hoje não há sincronização automática entre dispositivos (B-022).</p>
+
+  <div class="chapter-list" style="margin-top: 24px;">
+    {% for c in chapters %}
+    <a class="chapter-card" href="capitulos/{{ c.id }}.html" data-chapter-link="{{ c.id }}">
+      <span class="chapter-card-no">{{ "%02d"|format(c.n) }}</span>
+      <span class="chapter-card-body">
+        <span class="chapter-card-title">{{ c.title }}</span>
+        <span class="chapter-card-subtitle">{{ c.subtitle }}</span>
+      </span>
+      <span class="icon chapter-card-check" data-icon="concluido"></span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

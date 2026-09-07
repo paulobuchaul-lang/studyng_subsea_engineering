@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hub-shell">
+  <h1>Biblioteca Visual</h1>
+  <p class="hub-intro">Consulta rápida por equipamento, sistema, operação, empresa, tecnologia ou tipo de instalação (CLAUDE.md seção 16). Estrutura pronta desde o Sprint 3; as imagens licenciadas entram no Sprint 7 (D-007/B-009) — até lá, nenhuma foto de terceiros é embutida sem licença confirmada.</p>
+
+  {% if itens %}
+  <input type="search" id="biblioteca-filter" class="glossario-filter" placeholder="Filtrar por categoria, equipamento, empresa...">
+  <div class="biblioteca-grid" id="biblioteca-grid">
+    {% for item in itens %}
+    <article class="card biblioteca-item" data-search="{{ (item.titulo ~ ' ' ~ item.categoria)|lower }}">
+      <p class="biblioteca-categoria">{{ item.categoria }}</p>
+      <h2>{{ item.titulo }}</h2>
+      <p>{{ item.o_que_observar }}</p>
+      <p class="text-small">{{ item.por_que_importa }}</p>
+      {% if item.capitulo_relacionado %}<a href="capitulos/{{ item.capitulo_relacionado }}.html">Ver no capítulo →</a>{% endif %}
+    </article>
+    {% endfor %}
+  </div>
+  <script>
+  (function(){
+    var input = document.getElementById('biblioteca-filter');
+    var items = document.querySelectorAll('.biblioteca-item');
+    if (!input) return;
+    input.addEventListener('input', function(){
+      var q = input.value.trim().toLowerCase();
+      items.forEach(function(el){ el.hidden = !!q && el.dataset.search.indexOf(q) === -1; });
+    });
+  })();
+  </script>
+  {% else %}
+  <div class="biblioteca-empty">
+    <span class="icon" data-icon="foto"></span>
+    <p>Ainda sem itens. A estrutura de filtro e o schema de dados (<code>src/data/biblioteca.json</code>) já estão prontos; o que falta é a pesquisa de imagens com licença verificável, prevista para o Sprint 7. Até lá, cada capítulo mostra um "cartão de fonte" com crédito e link em vez de foto embutida, conforme D-007.</p>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}
