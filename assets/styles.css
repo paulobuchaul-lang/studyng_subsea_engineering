@@ -1,0 +1,500 @@
+/* =========================================================================
+   Plataforma Subsea Rafaela — estilos base (Sprint 1)
+   -------------------------------------------------------------------------
+   Isto NAO e o design system final. E o minimo funcional para o conteudo
+   ser legivel e testavel: fundo claro, texto de bom contraste, largura de
+   leitura confortavel, tipografia de sistema, sem emoji/icone externo.
+   O design completo (tokens de cor, Inter/Sora, camadas de profundidade
+   visuais, etc.) esta especificado em governanca/DESIGN_SYSTEM_V4.md e
+   sera implementado no Sprint 2.
+   ========================================================================= */
+
+:root {
+  /* Paleta provisoria, inspirada de longe no tom sobrio do DESIGN_SYSTEM_V4
+     (um unico acento de cor), mas simplificada — nao sao os tokens finais. */
+  --bg: #f5f8fa;
+  --surface: #ffffff;
+  --surface-2: #eaf1f5;
+  --ink: #0f2233;
+  --ink-2: #4a6172;
+  --line: #d5e0e7;
+  --primary: #0e7c86;
+  --primary-ink: #ffffff;
+  --ok: #2e9e6b;
+  --ok-bg: #e6f5ee;
+  --danger: #d64545;
+  --danger-bg: #fbebeb;
+  --focus: #0e7c86;
+  --shadow: 0 8px 24px rgba(15, 34, 51, 0.16);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1b2b;
+    --surface: #12263a;
+    --surface-2: #183349;
+    --ink: #e8f1f6;
+    --ink-2: #a9bfcc;
+    --line: #244761;
+    --primary: #3fb3bd;
+    --primary-ink: #05161c;
+    --ok: #4cc08a;
+    --ok-bg: #163326;
+    --danger: #f07070;
+    --danger-bg: #3a1f1f;
+    --focus: #3fb3bd;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0b1b2b;
+  --surface: #12263a;
+  --surface-2: #183349;
+  --ink: #e8f1f6;
+  --ink-2: #a9bfcc;
+  --line: #244761;
+  --primary: #3fb3bd;
+  --primary-ink: #05161c;
+  --ok: #4cc08a;
+  --ok-bg: #163326;
+  --danger: #f07070;
+  --danger-bg: #3a1f1f;
+  --focus: #3fb3bd;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--primary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* -------------------------------------------------------------------------
+   Cabecalho e navegacao
+   ------------------------------------------------------------------------- */
+
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 16px;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding: 8px 4px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.site-nav a.current {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+/* -------------------------------------------------------------------------
+   Conteudo principal
+   ------------------------------------------------------------------------- */
+
+.site-main {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+/* Paginas de listagem (Home, Ementa, Biblioteca, etc.) podem ocupar uma
+   largura maior para acomodar grades de cartoes. */
+.site-main.wide {
+  max-width: 960px;
+}
+
+.site-main h1 {
+  font-size: 28px;
+  line-height: 1.15;
+  margin: 0 0 8px;
+}
+
+.site-main h2 {
+  font-size: 22px;
+  line-height: 1.25;
+  margin: 32px 0 12px;
+}
+
+.site-main h3 {
+  font-size: 18px;
+  line-height: 1.3;
+  margin: 24px 0 8px;
+}
+
+.site-main p {
+  margin: 0 0 16px;
+}
+
+.site-main ul,
+.site-main ol {
+  padding-left: 1.25em;
+  margin: 0 0 16px;
+}
+
+.site-footer {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  padding: 24px 16px;
+  color: var(--ink-2);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------
+   Controle de camadas de profundidade
+   ------------------------------------------------------------------------- */
+
+.layer-control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 24px;
+  padding: 12px;
+  background: var(--surface-2);
+  border-radius: 12px;
+}
+
+.layer-btn {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  min-height: 40px;
+}
+
+.layer-btn:hover {
+  border-color: var(--primary);
+}
+
+.layer-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-ink);
+}
+
+.chapter-section {
+  margin: 0 0 32px;
+}
+
+/* -------------------------------------------------------------------------
+   Termos do glossario
+   ------------------------------------------------------------------------- */
+
+.term {
+  text-decoration: underline dotted var(--primary);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.term:hover,
+.term:focus-visible {
+  background: var(--surface-2);
+  border-radius: 3px;
+}
+
+.term-popover {
+  position: fixed;
+  z-index: 1000;
+  max-width: 320px;
+  width: calc(100vw - 32px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+.term-popover[hidden] {
+  display: none;
+}
+
+.term-title {
+  margin: 0 0 4px;
+  font-size: 18px;
+  color: var(--ink);
+}
+
+.term-full {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--ink-2);
+  font-style: italic;
+}
+
+.term-def {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
+.term-why {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.term-more {
+  display: inline-block;
+  margin-right: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.term-close {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
+   Quiz
+   ------------------------------------------------------------------------- */
+
+.quiz-question {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 0 0 24px;
+}
+
+.quiz-prompt {
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quiz-option {
+  appearance: none;
+  text-align: left;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.quiz-option:hover:not(:disabled) {
+  border-color: var(--primary);
+}
+
+.quiz-option:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.quiz-option.correct {
+  background: var(--ok-bg);
+  border-color: var(--ok);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.quiz-option.incorrect {
+  background: var(--danger-bg);
+  border-color: var(--danger);
+  color: var(--ink);
+}
+
+.quiz-feedback {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  font-size: 14px;
+}
+
+.quiz-feedback[hidden] {
+  display: none;
+}
+
+/* -------------------------------------------------------------------------
+   Progresso
+   ------------------------------------------------------------------------- */
+
+.mark-done {
+  appearance: none;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: var(--primary-ink);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  min-height: 44px;
+  margin: 24px 0;
+}
+
+.mark-done:hover {
+  opacity: 0.9;
+}
+
+.mark-done.done {
+  background: var(--ok-bg);
+  border-color: var(--ok);
+  color: var(--ink);
+}
+
+/* -------------------------------------------------------------------------
+   Cartoes de capitulo (Home, Ementa)
+   ------------------------------------------------------------------------- */
+
+.chapter-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 0 0 32px;
+}
+
+.chapter-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  color: var(--ink);
+  text-decoration: none;
+  position: relative;
+}
+
+.chapter-card:hover,
+.chapter-card:focus-visible {
+  border-color: var(--primary);
+}
+
+.chapter-card.done {
+  border-color: var(--ok);
+  border-width: 2px;
+}
+
+.chapter-card.done::after {
+  content: "\2713";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: var(--ok);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* -------------------------------------------------------------------------
+   Responsivo — sem overflow horizontal em 360px
+   ------------------------------------------------------------------------- */
+
+@media (max-width: 480px) {
+  .site-main {
+    padding: 16px 16px 48px;
+  }
+
+  .layer-control {
+    gap: 6px;
+  }
+
+  .layer-btn {
+    flex: 1 1 auto;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .term-popover {
+    left: 16px !important;
+    right: 16px;
+    width: calc(100vw - 32px);
+  }
+}
+
+/* Tabelas do corpo do capitulo podem ser mais largas que a coluna de leitura
+   (ex: tabelas com 3 colunas tecnicas). Em vez de deixar a tabela estourar a
+   largura da tela (overflow horizontal na pagina inteira), o scroll fica
+   contido dentro da propria tabela. */
+.chapter-section table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+  border-collapse: collapse;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chapter-section th,
+.chapter-section td {
+  border: 1px solid var(--line, #d5e0e7);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}

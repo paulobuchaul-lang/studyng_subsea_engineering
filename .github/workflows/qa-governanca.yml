@@ -78,3 +78,23 @@ jobs:
           fi
 
           echo "OK: governança consistente com as mudanças deste push/PR."
+
+  qa-tecnico:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependências
+        run: pip install -r src/requirements.txt
+
+      - name: Build do site
+        run: python3 src/build.py
+
+      - name: QA do site gerado (links, IDs, blocos obrigatórios, img externo)
+        run: python3 src/scripts/qa.py

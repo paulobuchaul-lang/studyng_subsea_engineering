@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hub-shell">
+  <h1>{{ page_title }}</h1>
+  {% if intro %}<p class="hub-intro">{{ intro }}</p>{% endif %}
+  <div class="chapter-list">
+    {% for c in chapters %}
+    <a class="chapter-card" href="capitulos/{{ c.id }}.html" data-chapter-link="{{ c.id }}">
+      <span class="chapter-card-no">{{ "%02d"|format(c.n) }}</span>
+      <span class="chapter-card-body">
+        <span class="chapter-card-title">{{ c.title }}</span>
+        <span class="chapter-card-subtitle">{{ c.subtitle }}</span>
+      </span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

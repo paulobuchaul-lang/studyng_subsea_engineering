@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+<article class="chapter-shell">
+  <div class="chapter-head">
+    <span class="chapter-no">{{ "%02d"|format(n) }}</span>
+    <span class="chapter-level">{{ level }}</span>
+    <button class="mark-done" data-chapter="{{ chapter_id }}">Marcar como estudado</button>
+  </div>
+  <h1>{{ title }}</h1>
+  <p class="chapter-subtitle">{{ subtitle }}</p>
+
+  <div class="layer-control">
+    <button class="layer-btn" data-layer-btn="5min">5 minutos</button>
+    <button class="layer-btn" data-layer-btn="gerente">Gerente</button>
+    <button class="layer-btn" data-layer-btn="tecnica">Técnica</button>
+    <button class="layer-btn" data-layer-btn="deepdive">Deep dive</button>
+    <button class="layer-btn" data-layer-btn="all">Ver tudo</button>
+  </div>
+
+  <section class="chapter-section" data-layer="5min">
+    <h2>Se você precisa entender isto agora</h2>
+    {{ express_html | safe }}
+  </section>
+
+  <section class="chapter-section" data-layer="gerente tecnica">
+    <h2>Corpo técnico</h2>
+    {{ corpo_html | safe }}
+  </section>
+
+  <section class="chapter-section pm-panel" data-layer="gerente tecnica deepdive">
+    <h2>Painel PM</h2>
+    <div class="pm-box pm-attn">
+      <h3>Pontos de atenção</h3>
+      {{ pm_attn_html | safe }}
+    </div>
+    <div class="pm-box pm-ask">
+      <h3>Perguntas que você deve fazer</h3>
+      {{ pm_ask_html | safe }}
+    </div>
+    <div class="pm-box pm-docs">
+      <h3>Documentos que valem abrir</h3>
+      {{ pm_docs_html | safe }}
+    </div>
+  </section>
+
+  <section class="chapter-section redflags" data-layer="gerente tecnica deepdive">
+    <h2>Red flags</h2>
+    {{ redflags_html | safe }}
+  </section>
+
+  <section class="chapter-section llm-helper">
+    <h2>Assistente LLM</h2>
+    {{ llm_html | safe }}
+  </section>
+
+  <section class="chapter-section mini-quiz">
+    <h2>Mini quiz</h2>
+    <p class="quiz-note">Erros não tiram pontos. O objetivo é reforçar a lógica.</p>
+    {% for q in quiz_questions %}
+    <div class="quiz-question" data-qid="{{ q.qid }}" data-answer="{{ q.answer_idx }}" data-feedback="{{ q.feedback }}">
+      <p class="quiz-prompt">{{ q.prompt }}</p>
+      <div class="quiz-options">
+        {% for idx, text in q.options %}
+        <button class="quiz-option" data-choice="{{ idx }}">{{ text }}</button>
+        {% endfor %}
+      </div>
+      <div class="quiz-feedback" hidden></div>
+    </div>
+    {% endfor %}
+  </section>
+
+  <section class="chapter-section deep-dive" data-layer="deepdive">
+    <h2>Aprofundamento</h2>
+    {{ aprofundamento_html | safe }}
+  </section>
+
+  <nav class="chapter-nav-bottom">
+    {% if prev_chapter %}<a class="nav-prev" href="{{ prev_chapter.id }}.html">← {{ prev_chapter.title }}</a>{% endif %}
+    <span class="chapter-position">Capítulo {{ n }} de {{ total_chapters }}</span>
+    {% if next_chapter %}<a class="nav-next" href="{{ next_chapter.id }}.html">{{ next_chapter.title }} →</a>{% endif %}
+  </nav>
+</article>
+{% endblock %}

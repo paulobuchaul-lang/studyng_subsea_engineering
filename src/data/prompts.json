@@ -1,0 +1,170 @@
+[
+  {
+    "title": "Preparar reunião técnica",
+    "category": "Reuniões e fornecedores",
+    "text": "Reuniões e fornecedores Preparar reunião técnica Edite os campos entre colchetes e copie. Você é meu chief of staff técnico para uma reunião offshore/subsea. Sou Rafaela, gerente de projetos, e não especialista da disciplina.\n\nCONTEXTO DA REUNIÃO: [PREENCHA]\nPARTICIPANTES/EMPRESAS: [PREENCHA]\nOBJETIVO/DECISÃO ESPERADA: [PREENCHA]\nDOCUMENTOS OU NOTAS: [COLE/ANEXE]\n\nPrepare: 1) objetivo em uma frase; 2) pauta orientada a decisão; 3) pré-leituras; 4) 10 perguntas técnicas e 5 perguntas de projeto; 5) riscos/interfaces que devo testar; 6) decisões e evidências que preciso sair com; 7) sinais de que a discussão está desviando; 8) modelo de ata com decisão, ação, owner e data. Copiar prompt",
+    "href": "prompts.html#preparar-reuniao-t-cnica"
+  },
+  {
+    "title": "Analisar especificação/SOW",
+    "category": "Documentos e engenharia",
+    "text": "Documentos e engenharia Analisar especificação/SOW Edite os campos entre colchetes e copie. Atue como engenheiro de sistemas submarinos + gerente de contratos. Analise o documento anexado sob a ótica de execução de projeto offshore.\n\nMEU OBJETIVO: [PREENCHA]\n\nExtraia e organize: escopo; exclusões; entregáveis; interfaces; dados de entrada; requisitos de projeto/fabricação/teste/instalação; responsabilidades cliente/contratada; critérios de aceite; documentação; prazos/gates; ambiguidades; conflitos internos; requisitos sem evidência de verificação; riscos de mudança/claim; perguntas/RFIs necessárias. Cite página/seção para cada ponto. Não invente obrigação que não esteja no documento. Copiar prompt",
+    "href": "prompts.html#analisar-especificacao-sow"
+  },
+  {
+    "title": "Analisar desenho GA / interface drawing",
+    "category": "Documentos e engenharia",
+    "text": "Documentos e engenharia Analisar desenho GA / interface drawing Edite os campos entre colchetes e copie. Sou gerente de projetos offshore. Analise o desenho anexado para me ensinar a lê-lo e identificar impactos de projeto.\n\nTEMA/EQUIPAMENTO: [PREENCHA]\nDÚVIDA ESPECÍFICA: [PREENCHA]\n\nExplique: função do desenho; vistas/datum/coordenadas; interfaces; dimensões/tolerâncias críticas; pesos/CoG; lifting/handling; access/maintenance; connection points; loads/reactions quando indicados; itens que dependem de outro fornecedor; revisões/notas relevantes; red flags; 10 perguntas a fazer ao projetista. Cite callouts/notas/zonas do desenho. Copiar prompt",
+    "href": "prompts.html#analisar-desenho-ga-interface-drawing"
+  },
+  {
+    "title": "Revisar installation procedure",
+    "category": "Documentos e engenharia",
+    "text": "Documentos e engenharia Revisar installation procedure Edite os campos entre colchetes e copie. Atue como installation engineer sênior e PM. Analise o procedure/method statement anexado.\n\nOPERAÇÃO: [PREENCHA]\n\nReconstrua a operação como estados: condição inicial → step → carga/risco → hold point → critério de sucesso → estado seguro/contingência. Identifique equipment spread, rigging/load path, vessel/ROV/survey, weather limits, SIMOPS, point of no return, interfaces e dependências. Verifique se cada limite parece ter base em análise/documento. Liste gaps, perguntas e readiness checklist. Cite página/seção. Copiar prompt",
+    "href": "prompts.html#revisar-installation-procedure"
+  },
+  {
+    "title": "Preparar FAT / SIT / SAT",
+    "category": "Documentos e engenharia",
+    "text": "Documentos e engenharia Preparar FAT / SIT / SAT Edite os campos entre colchetes e copie. Ajude-me a preparar um witness/review de FAT, SIT ou SAT.\n\nEQUIPAMENTO/SISTEMA: [PREENCHA]\nTIPO DE TESTE: [FAT/SIT/SAT]\nDOCUMENTOS: [ANEXE]\n\nMonte uma matriz requisito → test step → acceptance criterion → instrumento/evidência → responsável → resultado. Aponte interfaces que este teste não consegue provar e devem ser verificadas depois. Gere perguntas, red flags, itens de punch e critérios para não aceitar um resultado ambíguo. Copiar prompt",
+    "href": "prompts.html#preparar-fat-sit-sat"
+  },
+  {
+    "title": "Revisar cronograma técnico",
+    "category": "Planejamento e risco",
+    "text": "Planejamento e risco Revisar cronograma técnico Edite os campos entre colchetes e copie. Atue como planner + engenheiro de sistemas submarinos. Analise o cronograma/atividades abaixo.\n\nESCOPO: [PREENCHA]\nDADOS: [COLE/ANEXE]\n\nProcure lógica técnica ausente: design inputs, interface freezes, vendor data, fabrication, qualification, FAT/SIT, mobilization, offshore readiness, installation, pre-commissioning, commissioning e handover. Identifique predecessores escondidos, long-lead items, atividades com duração incompatível com método offshore, gates sem evidência e riscos de vessel standby. Proponha estrutura lógica melhor e perguntas para validar com engenharia. Copiar prompt",
+    "href": "prompts.html#revisar-cronograma-t-cnico"
+  },
+  {
+    "title": "Analisar risco / pre-mortem",
+    "category": "Planejamento e risco",
+    "text": "Planejamento e risco Analisar risco / pre-mortem Edite os campos entre colchetes e copie. Faça um pre-mortem do meu projeto offshore: imagine que daqui a 6 meses tivemos atraso/custo extra relevante.\n\nESCOPO/FASE ATUAL: [PREENCHA]\nTOP RISCOS JÁ CONHECIDOS: [PREENCHA]\n\nListe modos plausíveis de falha técnica/organizacional, sinais precoces, causa raiz provável, impacto, prevenção, contingency e owner sugerido. Dê prioridade a interfaces entre fornecedores, maturity de engenharia, vessel/tooling readiness, weather/SIMOPS, testes e mudanças de escopo. Copiar prompt",
+    "href": "prompts.html#analisar-risco-pre-mortem"
+  },
+  {
+    "title": "Analisar contrato para execução",
+    "category": "Contratos e comercial",
+    "text": "Contratos e comercial Analisar contrato para execução Edite os campos entre colchetes e copie. Atue como gerente de projetos + especialista contratual, sem substituir aconselhamento jurídico. Analise o contrato anexado pela ótica de quem precisa executar o escopo offshore.\n\nOBJETIVO: [PREENCHA]\n\nMapeie obrigações, deliverables, owner, datas, dependências do cliente, acceptance, change mechanism, notice requirements, responsabilidade por dados/interfaces, mobilization/demobilization, standby, weather, vessel, testes, documentação, warranty, LD/penalties quando existirem. Separe texto expresso de interpretação e cite cláusulas. Copiar prompt",
+    "href": "prompts.html#analisar-contrato-para-execucao"
+  },
+  {
+    "title": "Gerar perguntas para fornecedor",
+    "category": "Reuniões e fornecedores",
+    "text": "Reuniões e fornecedores Gerar perguntas para fornecedor Edite os campos entre colchetes e copie. Vou conversar com um fornecedor sobre [EQUIPAMENTO/SERVIÇO]. Sou gerente de projetos e preciso testar maturidade técnica e executabilidade.\n\nCONTEXTO: [PREENCHA]\n\nGere perguntas em blocos: design basis; interfaces; loads/capacity; fabricação/QA; qualification; FAT/SIT/SAT; installation; tooling/spares; commissioning; IMR; decommissioning; schedule/long-lead; assumptions/exclusions; evidence. Para cada pergunta, diga o que uma boa resposta deveria conter e qual red flag observar. Copiar prompt",
+    "href": "prompts.html#gerar-perguntas-para-fornecedor"
+  },
+  {
+    "title": "Analisar relatório diário offshore",
+    "category": "Execução offshore",
+    "text": "Execução offshore Analisar relatório diário offshore Edite os campos entre colchetes e copie. Analise o Daily Progress Report / DPR abaixo como gerente de campanha offshore.\n\n[COLE/ANEXE O DPR]\n\nResuma: atividades executadas; avanço real; NPT/standby e causa; condições metocean; equipment/vessel/ROV status; desvios do procedure; riscos para próximas 24/72h; decisões pendentes; materiais/spares; ações/owners. Diferencie fato reportado, inferência e ponto que precisa de confirmação. Copiar prompt",
+    "href": "prompts.html#analisar-relatorio-diario-offshore"
+  },
+  {
+    "title": "Preparar decision paper executivo",
+    "category": "Comunicação executiva",
+    "text": "Comunicação executiva Preparar decision paper executivo Edite os campos entre colchetes e copie. Transforme os dados abaixo em um decision paper executivo de projeto offshore.\n\nDECISÃO NECESSÁRIA: [PREENCHA]\nOPÇÕES/DADOS: [COLE]\n\nEstruture: decisão solicitada; contexto; opções; critérios; trade-offs técnicos/prazo/custo/risco; interfaces; recomendação; consequências de não decidir; próximos passos; anexos/evidências. Mantenha precisão técnica, mas escreva para executivo não especialista. Copiar prompt",
+    "href": "prompts.html#preparar-decision-paper-executivo"
+  },
+  {
+    "title": "Descomissionamento / retirada",
+    "category": "IMR e decommissioning",
+    "text": "IMR e decommissioning Descomissionamento / retirada Edite os campos entre colchetes e copie. Atue como subsea decommissioning engineer + PM. Quero analisar a retirada de [EQUIPAMENTO/LINHA].\n\nCONDIÇÃO/HISTÓRICO CONHECIDO: [PREENCHA]\nDOCUMENTOS: [ANEXE]\n\nEstruture: condição real/inventário; isolamento/cleaning; disconnect; temporary state; recovery method; load path; integrity concerns; vessel/ROV/tooling; weather/SIMOPS; contingencies; destination/reuse/recycle/disposal; evidências/regulatório; interfaces e perguntas críticas. Não assuma que a capacidade original ainda é válida. Copiar prompt",
+    "href": "prompts.html#descomissionamento-retirada"
+  },
+  {
+    "title": "Transformar notas em ata executiva",
+    "category": "Reuniões e fornecedores",
+    "text": "Reuniões e fornecedores Transformar notas em ata executiva Edite os campos entre colchetes e copie. Sou Rafaela, gerente de projetos offshore. Transforme as notas abaixo em ata objetiva e rastreável.\n\nNOTAS: [COLE]\n\nSepare: contexto; decisões; ações; owner; prazo; dependências; riscos; TQs/RFIs; documentos a revisar; pontos sem consenso. Não invente decisão ausente. Ao final, gere um bloco “o que preciso cobrar antes da próxima reunião”. Copiar prompt",
+    "href": "prompts.html#transformar-notas-em-ata-executiva"
+  },
+  {
+    "title": "Preparar gate / design review",
+    "category": "Reuniões e fornecedores",
+    "text": "Reuniões e fornecedores Preparar gate / design review Edite os campos entre colchetes e copie. Prepare-me para um gate/design review subsea. FASE/GATE: [PREENCHA]. ESCOPO: [PREENCHA]. DOCUMENTOS: [ANEXE]. Monte checklist de maturidade por design inputs, interfaces, analyses, drawings, qualification, procurement, fabrication, test, installation, commissioning, IMR e decommissioning. Identifique evidências faltantes, decisões irreversíveis e perguntas que podem impedir aprovação prematura. Copiar prompt",
+    "href": "prompts.html#preparar-gate-design-review"
+  },
+  {
+    "title": "Analisar datasheet de equipamento",
+    "category": "Documentos e engenharia",
+    "text": "Documentos e engenharia Analisar datasheet de equipamento Edite os campos entre colchetes e copie. Analise o datasheet anexado como subsea equipment engineer + PM. EQUIPAMENTO: [PREENCHA]. Explique função, design conditions, capacities, materials, interfaces, weights/CoG, utilities/control, environmental limits, testing, preservation, installation/handling, maintenance e gaps/TBD. Compare requirements x vendor offer se ambos estiverem anexados. Cite campo/página. Copiar prompt",
+    "href": "prompts.html#analisar-datasheet-de-equipamento"
+  },
+  {
+    "title": "Analisar P&ID / diagrama de processo",
+    "category": "Documentos e engenharia",
+    "text": "Documentos e engenharia Analisar P&ID / diagrama de processo Edite os campos entre colchetes e copie. Ensine-me a ler o P&ID anexado para o escopo [PREENCHA]. Identifique boundaries, lines/services, valves, instruments, isolation/bleed/drain, control loops, tie-ins, test/flush paths e interfaces com subsea/topside. Marque dúvidas, inconsistências e perguntas de PM. Não inferir tag/function sem legenda/evidência. Copiar prompt",
+    "href": "prompts.html#analisar-p-id-diagrama-de-processo"
+  },
+  {
+    "title": "Analisar calculation note",
+    "category": "Documentos e engenharia",
+    "text": "Documentos e engenharia Analisar calculation note Edite os campos entre colchetes e copie. Analise a calculation note anexada sem refazer cálculo de forma cega. TEMA: [PREENCHA]. Extraia objective, code/standard/edition, inputs, assumptions, load cases, combinations, boundary conditions, model limitations, acceptance criteria, utilization/margins, sensitivity, conclusions e dependencies. Diga quais inputs vêm de outros fornecedores e quais mudanças invalidariam a análise. Cite páginas. Copiar prompt",
+    "href": "prompts.html#analisar-calculation-note"
+  },
+  {
+    "title": "Comparar revisões de documento",
+    "category": "Documentos e engenharia",
+    "text": "Documentos e engenharia Comparar revisões de documento Edite os campos entre colchetes e copie. Compare REV A e REV B anexadas. Identifique mudanças técnicas, não apenas textuais. Para cada mudança: página/trecho; requirement/interface afetada; impacto em design/procurement/fabrication/test/installation/commissioning; documentos downstream a revisar; owner sugerido; necessidade de TQ/MOC/retest. Termine com matriz de impacto. Copiar prompt",
+    "href": "prompts.html#comparar-revis-es-de-documento"
+  },
+  {
+    "title": "Gerar TQ / RFI tecnicamente forte",
+    "category": "Documentos e engenharia",
+    "text": "Documentos e engenharia Gerar TQ / RFI tecnicamente forte Edite os campos entre colchetes e copie. Ajude-me a redigir uma TQ/RFI objetiva. CONTEXTO: [PREENCHA]. EVIDÊNCIA/DOCUMENTO: [PREENCHA/ANEXE]. DÚVIDA: [PREENCHA]. Estruture: referência exata; condição observada; requisito/interface afetada; pergunta sem induzir resposta; data necessária; impacto se não resolvido; anexos. Se houver várias interpretações, liste-as sem escolher sem evidência. Copiar prompt",
+    "href": "prompts.html#gerar-tq-rfi-tecnicamente-forte"
+  },
+  {
+    "title": "Construir / revisar Interface Register",
+    "category": "Planejamento e risco",
+    "text": "Planejamento e risco Construir / revisar Interface Register Edite os campos entre colchetes e copie. Com base nos documentos/notas anexados, construa ou critique um Interface Register. Para cada interface: sistema A/B; descrição; input/output; owner sender/receiver; documento; revisão; necessidade/data; status; assumption/TBD; acceptance/verification; risco; próximo passo. Priorize interfaces que bloqueiam procurement, fabrication, SIT, mobilization ou offshore. Copiar prompt",
+    "href": "prompts.html#construir-revisar-interface-register"
+  },
+  {
+    "title": "Analisar mudança / MOC",
+    "category": "Contratos e comercial",
+    "text": "Contratos e comercial Analisar mudança / MOC Edite os campos entre colchetes e copie. Analise a mudança proposta [PREENCHA] como PM subsea. Base anterior: [PREENCHA]. Nova condição: [PREENCHA]. Mapeie causas, requisitos afetados, disciplinas/interfaces, documentos/configuração, qualification/retest, procurement, fabrication, vessel/mobilization, schedule/cost, contract/change mechanism, risks e decisão requerida. Separe impacto confirmado de hipótese. Copiar prompt",
+    "href": "prompts.html#analisar-mudanca-moc"
+  },
+  {
+    "title": "Offshore readiness review",
+    "category": "Execução offshore",
+    "text": "Execução offshore Offshore readiness review Edite os campos entre colchetes e copie. Faça uma Offshore Readiness Review para [OPERAÇÃO]. Use os documentos anexados. Verifique engenharia aprovada, procedure/analysis/drawings, MWS/approvals quando aplicável, vessel/DP/ROV/survey, tooling/rigging/spares, materials/consumables, test/calibration, people/competence, permits/SIMOPS, metocean/window, logistics, comms, contingency/recovery, hold points e closeout. Classifique Ready / Conditional / Not Ready com evidência. Copiar prompt",
+    "href": "prompts.html#offshore-readiness-review"
+  },
+  {
+    "title": "Analisar SIMOPS",
+    "category": "Execução offshore",
+    "text": "Execução offshore Analisar SIMOPS Edite os campos entre colchetes e copie. Analise SIMOPS para as atividades [LISTE]. Construa matriz atividade × atividade com interferência física, DP/heading, crane/lifts, ROV, pressure/energy, personnel, comms, exclusion zones, emergency response e schedule. Identifique incompatibilidades, condições de coexistência, stop criteria e authority. Não trate “coordenação por rádio” como mitigação suficiente quando houver conflito físico. Copiar prompt",
+    "href": "prompts.html#analisar-simops"
+  },
+  {
+    "title": "Montar estratégia de IMR",
+    "category": "IMR e decommissioning",
+    "text": "IMR e decommissioning Montar estratégia de IMR Edite os campos entre colchetes e copie. Monte uma estratégia preliminar de IMR para [ATIVO]. CONTEXTO/THREATS: [PREENCHA]. Estruture threat → degradation mechanism → observable indicator → inspection/monitoring method → coverage/sensitivity → interval trigger → assessment criterion → mitigation/repair → tooling/vessel/spares → record/as-built. Diferencie o que depende de specialist integrity assessment. Copiar prompt",
+    "href": "prompts.html#montar-estrat-gia-de-imr"
+  },
+  {
+    "title": "Analisar finding / anomalia de inspeção",
+    "category": "IMR e decommissioning",
+    "text": "IMR e decommissioning Analisar finding / anomalia de inspeção Edite os campos entre colchetes e copie. Analise o finding/anomalia anexado sem concluir integridade sem evidência. ATIVO: [PREENCHA]. Extraia localização, dimensão/severidade, método e qualidade de inspeção, baseline/comparação, mecanismo plausível, dados faltantes, critérios aplicáveis, immediate safeguards, necessidade de engineering assessment, opções monitor/repair/replace e perguntas para integrity engineer. Copiar prompt",
+    "href": "prompts.html#analisar-finding-anomalia-de-inspecao"
+  },
+  {
+    "title": "Planejar intervenção submarina",
+    "category": "IMR e decommissioning",
+    "text": "IMR e decommissioning Planejar intervenção submarina Edite os campos entre colchetes e copie. Planeje conceitualmente uma intervenção em [EQUIPAMENTO]. OBJETIVO: [PREENCHA]. Reconstrua access/isolation, ROV/diver/tooling, running/retrieval tool, lift/load path, vessel/DP/survey, disconnect/reconnect, seals/consumables/spares, tests, temporary safe states, recovery contingency e post-intervention verification. Gere readiness checklist e TQs. Copiar prompt",
+    "href": "prompts.html#planejar-intervencao-submarina"
+  },
+  {
+    "title": "Extrair lessons learned acionáveis",
+    "category": "Comunicação executiva",
+    "text": "Comunicação executiva Extrair lessons learned acionáveis Edite os campos entre colchetes e copie. A partir dos relatórios/atas abaixo, extraia lessons learned que mudem comportamento futuro. Para cada lição: evento/evidência; causa; condição que permitiu; impacto; ação de prevenção; fase futura onde inserir; owner; artefato/processo a atualizar; indicador de adoção. Evite frases genéricas como “melhorar comunicação”. Copiar prompt",
+    "href": "prompts.html#extrair-lessons-learned-acionaveis"
+  },
+  {
+    "title": "Escalonar risco para executivo",
+    "category": "Comunicação executiva",
+    "text": "Comunicação executiva Escalonar risco para executivo Edite os campos entre colchetes e copie. Transforme o risco técnico abaixo em comunicação executiva sem perder precisão. RISCO: [PREENCHA]. Estruture: fato atual; causa; impacto provável em prazo/custo/segurança/produção; probabilidade/uncertainty; data de decisão; opções; recomendação; downside de não decidir; suporte técnico; owner. Separe fato, estimativa e hipótese. Copiar prompt",
+    "href": "prompts.html#escalonar-risco-para-executivo"
+  }
+]

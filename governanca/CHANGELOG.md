@@ -4,7 +4,17 @@ Formato: versão · data · escopo · itens. Ordem: mais recente primeiro.
 
 ## [V4.0] — em desenvolvimento
 **Escopo:** hospedagem como site estático, redesign completo da UX, pipeline de conteúdo, biblioteca visual licenciada, quiz com raciocínio, gamificação por profundidade.
-**Sprint atual:** 1, Parte A concluída (ver ROADMAP_V4.md).
+**Sprint atual:** 1 concluído (Partes A e B). Sprint 2 (design system) é o próximo.
+
+### Sessão 3 — 07/09/2026 — Sprint 1 Parte B: fundação técnica e primeiro site real
+- Trabalho paralelizado com 3 agentes em background para acelerar: extração de `assets/data.js` para `src/data/*.json` (glossário 126 termos, prompts 28, aliases 38, `biblioteca.json` vazio com schema documentado), geração de `INVENTARIO_V3.json` (33 páginas catalogadas: blocos presentes, IDs, links locais/externos, imagens), e o CSS/JS mínimo funcional (`assets/styles.css`, `assets/app.js`) a partir de um contrato de classes/atributos `data-*` que eu especifiquei. Enquanto isso, escrevi o núcleo acoplado (extrator de capítulos, templates, build.py) para não gerar retrabalho de integração entre as partes.
+- `src/scripts/extrair_capitulos.py`: extrai os 24 capítulos do HTML original (usando as classes CSS semânticas reais da V3 — `.express`, `.pm-box`, `.mini-quiz`, `.quiz-option[data-choice]`, `.resources`, etc. — não heurística de texto) para `src/content/mNN.md`, com front-matter YAML e seções nomeadas, marcando com comentários `REESCREVER(...)`/`DIAGRAMA-INTERATIVO-ORIGINAL`/`IMAGEM-HOTLINK-ORIGINAL` os pontos que a auditoria da Sessão 2 já tinha identificado. Corrigidos 3 bugs de extração durante o teste (duplicação no callout PM, ordem errada no FAQ colapsável, texto grudado no cartão de foto) antes de rodar nos 24 capítulos.
+- `src/build.py`: gera as 33 páginas HTML (24 capítulos + 9 hubs) a partir de `src/content/` e `src/data/`, usando Jinja2. Marca automaticamente todo termo do glossário presente no texto de cada capítulo como termo clicável — sem o teto de 18 ocorrências por página que a V3 tinha (B-035, D-019).
+- `src/scripts/qa.py`: QA automatizado — links locais, IDs duplicados dentro da mesma página, blocos obrigatórios por capítulo, `<img>` externo (zero encontrado), HTML parseável, e uma checagem heurística de cobertura de glossário (167 siglas candidatas sem entrada, cataloga para B-031). Zero erros bloqueantes na primeira rodada completa.
+- `src/scripts/test_e2e.py`: teste real num Chromium headless (Playwright) em desktop e mobile — 20/20 checagens passando (camadas de profundidade, quiz interativo, popover de termo, progresso persistente via localStorage, filtro do glossário, zero erro de JS, zero overflow horizontal). Esse teste encontrou e permitiu corrigir um bug real antes do commit: tabelas Markdown sem `overflow-x: auto` estourando a largura em 390px — corrigido em `assets/styles.css`.
+- CI (`qa-governanca.yml`) ganhou um segundo job, `qa-tecnico`, que roda `src/build.py` e `src/scripts/qa.py` a cada push/PR agora que existe site de verdade para testar.
+- Fidelidade de conteúdo verificada por contagem de palavras (m01: 952 vs. 844 palavras originais; m17: 1293 vs. 1146) — o extraído tem mais, não menos, porque preserva URLs completas e metadados de diagrama/foto que o texto achatado da V3 omitia.
+- Sprint 1 (ambas as partes) concluído. Próximo: Sprint 2 (design system e protótipo), que precisa da direção visual completa de DESIGN_SYSTEM_V4.md aplicada sobre este esqueleto funcional.
 
 ### Sessão 2 — 07/09/2026 — Zip completo da V3 recebido + auditoria de conteúdo, didática e UX de aprendizagem
 - GitHub Pages ativado pelo Paulo (B-029 concluído).

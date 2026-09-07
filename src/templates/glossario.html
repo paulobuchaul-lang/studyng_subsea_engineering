@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hub-shell">
+  <h1>Glossário</h1>
+  <p class="hub-intro">{{ glossario|length }} termos técnicos. Use Ctrl+F ou a busca do navegador para localizar rapidamente.</p>
+  <input type="search" id="glossario-filter" class="glossario-filter" placeholder="Filtrar termos...">
+  <dl class="glossario-list" id="glossario-list">
+    {% for g in glossario %}
+    <div class="glossario-item" id="{{ g.id }}" data-term="{{ g.term|lower }}">
+      <dt>{{ g.term }}{% if g.full %} <span class="glossario-full">({{ g.full }})</span>{% endif %} <span class="glossario-category">{{ g.category }}</span></dt>
+      <dd>{{ g.definition }}</dd>
+      {% if g.why %}<dd class="glossario-why">{{ g.why }}</dd>{% endif %}
+    </div>
+    {% endfor %}
+  </dl>
+</section>
+<script>
+(function(){
+  var input = document.getElementById('glossario-filter');
+  var items = document.querySelectorAll('.glossario-item');
+  if (!input) return;
+  input.addEventListener('input', function(){
+    var q = input.value.trim().toLowerCase();
+    items.forEach(function(el){
+      var match = !q || el.dataset.term.indexOf(q) !== -1 || el.textContent.toLowerCase().indexOf(q) !== -1;
+      el.hidden = !match;
+    });
+  });
+})();
+</script>
+{% endblock %}
