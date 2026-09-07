@@ -78,6 +78,7 @@ Proposta de rubrica por capítulo, para orientar a extração/reescrita nos Spri
 | Critério | Insuficiente (V3 atual, típico) | Excelente (padrão V4) |
 |---|---|---|
 | Camadas | Um texto corrido único | 4 blocos com conteúdo próprio: 5 min (≈150 palavras), Gerente (≈300), Técnica (≈400), Deep dive (referências + 1 caso aplicado) |
+| Fragmentação dentro da camada (D-022) | Bloco monolítico de 300-400 palavras num parágrafo só | Cada camada quebrada em sub-blocos curtos com heading próprio (2-4 parágrafos de até ~80 palavras cada, ou listas/tabelas quando fizer mais sentido que prosa) — nunca uma parede de texto única, mesmo dentro da camada certa |
 | Quiz | 3 perguntas, distratores às vezes triviais ou binários | 3 a 4 perguntas, todos os distratores como concepção equivocada plausível, feedback individual por opção (D-008) |
 | Glossário (termos do capítulo) | "Why" genérico | "Why" específico ao papel do termo naquele capítulo/projeto |
 | Fatos datados/Brasil | Sem data de verificação | Toda alegação de contrato, valor ou caso nomeado leva "verificado em [data]" |
