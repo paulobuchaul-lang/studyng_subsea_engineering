@@ -1,19 +1,76 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="hub-shell home-shell">
-  <h1>Plataforma Subsea Rafaela</h1>
-  <p class="hub-intro">Engenharia submarina aplicada à gestão de projetos offshore. Versão em desenvolvimento (V4.0, Sprint 1) — este esqueleto ainda não tem o design final (Sprint 2) nem a gamificação (Sprint 8).</p>
-  <h2>Capítulos</h2>
-  <div class="chapter-list">
-    {% for c in chapters %}
-    <a class="chapter-card" href="capitulos/{{ c.id }}.html" data-chapter-link="{{ c.id }}">
-      <span class="chapter-card-no">{{ "%02d"|format(c.n) }}</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">{{ c.title }}</span>
-        <span class="chapter-card-subtitle">{{ c.subtitle }}</span>
+  <div class="home-greeting">
+    <h1>Bem-vinda de volta</h1>
+    <p class="hub-intro">Engenharia submarina aplicada à gestão de projetos offshore. Protótipo do Sprint 2 — design aplicado, conteúdo ainda em extração/reescrita (Sprints 4 a 6).</p>
+  </div>
+
+  <div class="home-section" id="continueSection" hidden>
+    <h2>Continuar</h2>
+    <a class="card continue-card" id="continueCard" href="#">
+      <span class="icon" data-icon="proximo"></span>
+      <span>
+        <strong id="continueTitle"></strong><br>
+        <small>Continuar de onde parou</small>
       </span>
     </a>
-    {% endfor %}
+  </div>
+
+  <div class="home-section">
+    <h2>Hoje eu preciso...</h2>
+    <div class="situations-grid">
+      <a class="card situation-card" href="search.html">
+        <span class="icon" data-icon="pergunta"></span>
+        <strong>Entender um tema para uma reunião</strong>
+        <small>Buscar por assunto, equipamento ou sigla</small>
+      </a>
+      <a class="card situation-card" href="capitulos/m05.html">
+        <span class="icon" data-icon="diagrama"></span>
+        <strong>Entender um equipamento</strong>
+        <small>Poço submarino, wellhead e árvore de natal</small>
+      </a>
+      <a class="card situation-card" href="prompts.html">
+        <span class="icon" data-icon="documento"></span>
+        <strong>Analisar um documento</strong>
+        <small>Prompts prontos para especificação, contrato, drawing</small>
+      </a>
+      <a class="card situation-card" href="capitulos/m17.html">
+        <span class="icon" data-icon="etapa"></span>
+        <strong>Acompanhar uma operação</strong>
+        <small>Pull-in de risers: sistema, sequência e interfaces</small>
+      </a>
+      <a class="card situation-card" href="capitulos/m19.html">
+        <span class="icon" data-icon="atencao"></span>
+        <strong>Tratar IMR / intervenção</strong>
+        <small>Inspeção, manutenção, intervenção, reparo</small>
+      </a>
+      <a class="card situation-card" href="capitulos/m21.html">
+        <span class="icon" data-icon="exportar"></span>
+        <strong>Retirada / descomissionamento</strong>
+        <small>Desinstalação e descomissionamento de sistemas</small>
+      </a>
+    </div>
+  </div>
+
+  <div class="home-section">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
+      <h2>Trilha</h2>
+      <a href="ementa.html" class="text-small">Ver ementa completa →</a>
+    </div>
+    <p class="text-small">O agrupamento em seis fases nomeadas ainda depende de decisão de conteúdo (BACKLOG B-026); por ora o medidor mostra progresso geral.</p>
+    <div class="depth-meter" style="margin-bottom: 16px;">
+      <div class="depth-meter-track" id="homeDepthTrack">
+        <div class="depth-meter-zone"></div><div class="depth-meter-zone"></div><div class="depth-meter-zone"></div>
+        <div class="depth-meter-zone"></div><div class="depth-meter-zone"></div><div class="depth-meter-zone"></div>
+      </div>
+      <div class="depth-meter-label" id="homeDepthLabel"></div>
+    </div>
+    <div class="trail-map">
+      {% for c in chapters %}
+      <a class="trail-point" href="capitulos/{{ c.id }}.html" data-chapter-link="{{ c.id }}" title="{{ c.title }}">{{ "%02d"|format(c.n) }}</a>
+      {% endfor %}
+    </div>
   </div>
 </section>
 {% endblock %}

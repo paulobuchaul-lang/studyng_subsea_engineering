@@ -26,7 +26,8 @@ TEMPLATES_DIR = ROOT / "src" / "templates"
 OUT_DIR = ROOT
 CAPITULOS_OUT = OUT_DIR / "capitulos"
 
-REESCREVER_COMMENT_RE = re.compile(
+REESCREVER_ONLY_RE = re.compile(r"<!--\s*REESCREVER.*?-->", re.S)
+ANY_DEV_COMMENT_RE = re.compile(
     r"<!--\s*(REESCREVER|DIAGRAMA-INTERATIVO-ORIGINAL|IMAGEM-HOTLINK-ORIGINAL).*?-->",
     re.S,
 )
@@ -37,14 +38,76 @@ def load_json(name):
 
 
 def strip_dev_comments(text: str) -> str:
-    return REESCREVER_COMMENT_RE.sub("", text)
+    """Remove todo comentario de dev. Usado em blocos (quiz, painel PM) que
+    nao passam pelas funcoes de estilizacao de diagrama/foto."""
+    return ANY_DEV_COMMENT_RE.sub("", text)
 
 
-def md_to_html(text: str) -> str:
-    text = strip_dev_comments(text).strip()
+def md_to_html(text: str, keep_diagram_and_photo_comments: bool = False) -> str:
+    """Converte markdown para HTML. Por padrao remove todos os comentarios de
+    dev antes de converter. Quando `keep_diagram_and_photo_comments=True`
+    (usado no corpo tecnico), remove so os REESCREVER aqui — os comentarios
+    DIAGRAMA-INTERATIVO-ORIGINAL sao tratados depois por
+    estilizar_notas_de_diagrama, que precisa do comentario intacto; um
+    cleanup final remove qualquer sobra nao capturada."""
+    if keep_diagram_and_photo_comments:
+        text = REESCREVER_ONLY_RE.sub("", text).strip()
+    else:
+        text = strip_dev_comments(text).strip()
     if not text:
         return ""
     return md_lib.markdown(text, extensions=["tables"])
+
+
+SOURCE_CARD_RE = re.compile(
+    r"<p><strong>Cartão de foto/fonte — ([^<]+)</strong>\s*"
+    r"O que observar: (.*?)\s*"
+    r"Fonte oficial: (.*?)</p>",
+    re.S,
+)
+
+
+def estilizar_cartoes_de_fonte(html: str) -> str:
+    """Envolve os cartoes de foto/fonte (D-007) num <div class="source-card">
+    com icone, em vez de deixar como paragrafo de texto corrido em negrito."""
+
+    def repl(m):
+        titulo, observar, fonte_link = m.groups()
+        return (
+            '<div class="source-card">'
+            '<div class="source-label"><span class="icon" data-icon="foto"></span> Cartão de fonte (D-007) — sem imagem embutida, hotlink não confiável</div>'
+            f"<h3>{titulo}</h3>"
+            f"<p><strong>O que observar:</strong> {observar}</p>"
+            f"<p><strong>Fonte oficial:</strong> {fonte_link}</p>"
+            "</div>"
+        )
+
+    return SOURCE_CARD_RE.sub(repl, html)
+
+
+DIAGRAM_COMMENT_RE = re.compile(
+    r'<!--\s*DIAGRAMA-INTERATIVO-ORIGINAL:\s*"([^"]*)"\.\s*Por que existe:\s*(.*?)\s*Etapas:\s*(.*?)\.\s*Este diagrama.*?-->',
+    re.S,
+)
+
+
+def estilizar_notas_de_diagrama(html: str) -> str:
+    """Transforma o comentario de dev sobre diagrama interativo omitido num
+    bloco visual (frame de diagrama, versao textual), em vez de so apagar a
+    informacao. A recriacao real do SVG interativo e trabalho de Sprint 4-6."""
+
+    def repl(m):
+        titulo, motivo, etapas = m.groups()
+        return (
+            '<div class="diagram-note">'
+            '<div class="source-label"><span class="icon" data-icon="diagrama"></span> Diagrama interativo da V3 (a recriar nos Sprints 4-6)</div>'
+            f"<strong>{titulo}</strong><br>"
+            f"Por que existe: {motivo}<br>"
+            f"Etapas: {etapas}."
+            "</div>"
+        )
+
+    return DIAGRAM_COMMENT_RE.sub(repl, html)
 
 
 def parse_chapter_md(path: Path):
@@ -161,11 +224,14 @@ def main():
         express_html = marcar_termos_no_html(
             md_to_html(sections.get('Express (candidato a camada "5 minutos")', "")), term_re, term_map
         )
-        corpo_html = marcar_termos_no_html(
-            md_to_html(sections.get('Corpo técnico (candidato a camadas "Gerente de Projetos" e "Técnica")', "")),
-            term_re,
-            term_map,
+        corpo_html_raw = md_to_html(
+            sections.get('Corpo técnico (candidato a camadas "Gerente de Projetos" e "Técnica")', ""),
+            keep_diagram_and_photo_comments=True,
         )
+        corpo_html_raw = estilizar_cartoes_de_fonte(corpo_html_raw)
+        corpo_html_raw = estilizar_notas_de_diagrama(corpo_html_raw)
+        corpo_html_raw = ANY_DEV_COMMENT_RE.sub("", corpo_html_raw)  # sobra nao capturada, se houver
+        corpo_html = marcar_termos_no_html(corpo_html_raw, term_re, term_map)
         pm_attn_html, pm_ask_html, pm_docs_html = parse_pm_panel(sections.get("Painel PM", ""))
         pm_attn_html = marcar_termos_no_html(pm_attn_html, term_re, term_map)
         pm_ask_html = marcar_termos_no_html(pm_ask_html, term_re, term_map)
@@ -199,6 +265,7 @@ def main():
             prev_chapter=prev_chapter,
             next_chapter=next_chapter,
             total_chapters=total_chapters,
+            chapters=chapters_meta,
         )
         (CAPITULOS_OUT / f"{chapter_id}.html").write_text(html_out, encoding="utf-8")
         print(f"OK capitulos/{chapter_id}.html")
@@ -242,6 +309,7 @@ def main():
             chapter_id=None,
             glossario_json=glossario_json_inline,
             glossario=glossario_ordenado,
+            chapters=chapters_meta,
         ),
         encoding="utf-8",
     )
@@ -256,6 +324,7 @@ def main():
             chapter_id=None,
             glossario_json=glossario_json_inline,
             prompts=prompts,
+            chapters=chapters_meta,
         ),
         encoding="utf-8",
     )
@@ -278,6 +347,7 @@ def main():
                 chapter_id=None,
                 glossario_json=glossario_json_inline,
                 sprint_destino=destino,
+                chapters=chapters_meta,
             ),
             encoding="utf-8",
         )

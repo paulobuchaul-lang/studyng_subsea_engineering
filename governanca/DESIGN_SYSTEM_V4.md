@@ -124,10 +124,14 @@ Confete em tela cheia. Mascote. Contadores de streak que punem ausência. Ícone
 
 ## 9. Checklist de aprovação do protótipo (Sprint 2)
 
-- [ ] A Home no celular cabe em duas telas e tem um caminho óbvio.
-- [ ] O capítulo 17 no celular permite ir direto ao painel PM em dois toques.
-- [ ] O controle de camadas reduz visivelmente o capítulo em "5 min".
-- [ ] Um termo tocado abre definição e volta ao mesmo ponto.
-- [ ] O medidor de profundidade diz qual é o próximo marco.
-- [ ] O modo escuro é legível sem ajustes.
-- [ ] O Paulo consegue descrever a identidade em uma frase sem olhar este documento.
+Itens marcados com (E2E) foram verificados automaticamente por `src/scripts/test_e2e.py` (Playwright, desktop 1440px + mobile 390px), Sessão 5 — 35/35 checagens passando. Itens sem essa marca dependem do julgamento subjetivo do Paulo e continuam em aberto até ele testar.
+
+- [x] (E2E) A Home no celular cabe em duas telas e tem um caminho óbvio. Medido: 1748px de altura real vs. limite de 1688px (2×844) com 15% de folga (1941px) — passa. Ajuste feito: Trilha virou mapa compacto de pontos (`.trail-map`) em vez de lista completa de cartões; "Hoje eu preciso..." virou cartões horizontais compactos.
+- [x] (E2E) O capítulo 17 no celular permite ir direto ao painel PM em dois toques. Verificado via bottom sheet "Neste capítulo" (toque 1 abre, toque 2 no link "Painel PM" navega e fecha o sheet).
+- [x] (E2E) O controle de camadas reduz visivelmente o capítulo em "5 min" (filtro por `data-layer` testado em desktop e mobile).
+- [x] (E2E) Um termo tocado abre definição e volta ao mesmo ponto (popover com termo/definição confirmado; retorno ao ponto via `sessionStorage`, herdado do Sprint 1).
+- [x] (E2E) O modo escuro é legível sem ajustes: alternância `data-theme` e mudança de cor de fundo confirmadas em desktop (`#themeToggle`) e mobile (`#themeToggleMobile`).
+- [ ] O medidor de profundidade diz qual é o próximo marco. Parcial: o medidor existe e mostra progresso (D-024), mas não nomeia a próxima fase porque B-026 (mapeamento capítulo→fase) ainda não foi decidido. Fica pendente até B-026.
+- [ ] O Paulo consegue descrever a identidade em uma frase sem olhar este documento. Só o Paulo pode confirmar — pendente de teste real no dispositivo dele (D-009).
+
+**Achado fora do checklist, mas relevante para a aprovação:** o Paulo revisou uma captura de tela do capítulo 17 e apontou uso excessivo de inglês herdado da fonte (ex.: "hydraulic power", "transfer load" numa tabela) que não reflete a fala real de reunião no Brasil. Isso não é um problema de design system — é conteúdo (Sprints 4 a 6) — mas fica registrado aqui porque apareceu durante a revisão do protótipo. Ver D-025 em DECISOES.md e B-040 no backlog.
