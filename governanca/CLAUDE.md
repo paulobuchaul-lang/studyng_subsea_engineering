@@ -62,14 +62,15 @@ O site é público (D-004a, opção A) ou protegido por login (opção B). Em qu
 
 A V3 e sua documentação (ARQUITETURA_MESTRE_V3, MATRIZ, QA, AUDITORIA) são insumo histórico, não fonte de verdade (D-013). Em divergência entre V3 e este CLAUDE.md, prevalece este documento. Aproveitar o conteúdo técnico da V3 sempre que tiver valor; descartar forma, shell e código sem necessidade de justificativa individual. O que não pode regredir é conteúdo e função, listados em DIAGNOSTICO_V3.md seção 6.
 
-0.10 GARANTIA DE ATUALIZAÇÃO CONTÍNUA (D-020)
+0.10 GARANTIA DE ATUALIZAÇÃO CONTÍNUA (D-020, D-021)
 
-A disciplina de manter ESTADO_ATUAL, CHANGELOG, BACKLOG e DECISOES atualizados (seções 0.6 e 24) não depende só de lembrança humana ou do Claude: o repositório tem mecanismos automáticos que travam isso.
+A disciplina de manter ESTADO_ATUAL, CHANGELOG, BACKLOG e DECISOES atualizados (seções 0.6 e 24) não depende só de lembrança humana: o repositório tem automação, e o Claude assume o fluxo técnico completo para que o Paulo não precise executar nada manualmente.
 
 - `.github/workflows/qa-governanca.yml` roda em todo push e pull request, em qualquer branch. Falha o build se: (a) faltar algum dos dez documentos obrigatórios de `/governanca/`; (b) houver link interno quebrado entre os arquivos de governança; (c) o push/PR alterar `src/`, `capitulos/` ou `assets/` sem também alterar `governanca/CHANGELOG.md` ou `governanca/ESTADO_ATUAL.md` no mesmo push. Isso torna "esquecer de atualizar a governança" um build vermelho, não um lapso silencioso.
 - `.github/PULL_REQUEST_TEMPLATE.md` traz o checklist de governança (CHANGELOG, ESTADO_ATUAL, DECISOES, BACKLOG, rubrica de conteúdo quando aplicável) direto na descrição de todo PR aberto.
-- Branch protection na branch `main` (Settings → Branches, ação manual do Paulo, documentada em GUIA_PUBLICACAO.md) deve exigir que o check `qa-governanca` passe antes de qualquer merge. Sem isso ativado, o CI roda e sinaliza, mas não impede o merge.
-- Toda sessão de trabalho no repositório, sessão do Claude ou upload manual do Paulo, deve deixar o CI verde antes de considerar a entrega concluída. CI vermelho é sinal de governança desatualizada, não de erro cosmético a ignorar.
+- **Nenhuma trava manual no GitHub é exigida do Paulo** (D-021): sem branch protection, sem PR que ele precise clicar em merge. Sempre que o Claude trabalha no repositório, ele mesmo cria a branch, commita, abre o PR, confere se `qa-governanca` passou e mergeia para a `main`. Nunca mergeia com o check vermelho — corrige antes.
+- Em vez de uma auditoria agendada à parte, toda sessão do Claude que mexe no repositório fecha com uma checagem de consistência (governança refletindo o que foi feito, backlog sem item esquecido, sem link externo obviamente quebrado quando aplicável) antes de reportar a entrega como concluída — ver GUIA_PUBLICACAO.md seção 5a.
+- Se o Paulo subir algo manualmente fora de uma sessão (upload direto na `main`), o CI roda do mesmo jeito e sinaliza na aba Actions; a checagem de consistência da sessão seguinte do Claude cobre qualquer lacuna que isso deixe.
 
 ===============================================================
 PARTE 1 — REQUISITOS PERMANENTES (seções 1 a 30, texto original do Paulo)
