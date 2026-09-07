@@ -52,7 +52,24 @@ Menção nominal a "Petrobras" aparece em 7 dos 24 capítulos (m04, m09, m15, m1
 
 ### 3.7 Sobre a MATRIZ_ACEITE_V3
 
-A matriz original marca como ✅ itens que este documento mostra frágeis com o material em mãos — "Fotos reais ✅" quando são hotlinks quebrados, "Tooltip/popover contextual ✅" sem nenhuma marcação no HTML que sustente popover real, "Camadas" implícitas em "Gerente/Técnica" que não existem como blocos. Isso confirma o que DIAGNOSTICO_V3.md seção 3.5 já registrava sobre a matriz ter sido preenchida por autoavaliação, não por teste funcional. Ela continua sendo um documento histórico de referência, não uma fonte de verdade sobre o estado real do conteúdo.
+A matriz original marca como ✅ itens que partes deste documento mostraram frágeis com o material em mãos — "Fotos reais ✅" quando são hotlinks quebrados, "Camadas" implícitas em "Gerente/Técnica" que não existem como blocos. Isso confirma o que DIAGNOSTICO_V3.md seção 3.5 já registrava sobre a matriz ter sido preenchida por autoavaliação, não por teste funcional completo. Ela continua sendo um documento histórico de referência, não uma fonte de verdade sobre o estado real do conteúdo. Uma ressalva importante aparece na seção 3.8 abaixo: nem todo ✅ da matriz estava errado.
+
+### 3.8 Cobertura do glossário e critério de uso de termos em inglês — achado adicional, a pedido do Paulo
+
+**Correção a um achado anterior deste documento:** a primeira versão desta auditoria, seguindo a suspeita do DIAGNOSTICO_V3.md, afirmava que não havia evidência de popover de termo funcional. Isso estava errado, e a MATRIZ_ACEITE_V3 estava certa neste ponto específico. `assets/app.js` implementa o popover: ao carregar um capítulo, um `TreeWalker` varre o texto, casa contra um regex construído a partir dos termos do glossário e envolve as ocorrências em `<span class="term" data-term="...">` clicável/hover, abrindo um popover com termo, nome completo, definição, "por que importa" e link "Ver no glossário" com retorno ao ponto exato (`sessionStorage`). A mecânica descrita na seção 13 do CLAUDE.md existe e funciona.
+
+Mas tem duas falhas estruturais que o achado do Paulo expôs:
+
+1. **Cobertura limitada aos termos já cadastrados.** O regex só reconhece os termos que já estão nos 126 do glossário. Qualquer termo técnico em inglês usado no corpo do texto que não tenha entrada correspondente nunca vira clicável — fica como texto comum, sem explicação disponível em nenhuma das duas formas (popover ou página completa).
+2. **Truncamento silencioso em 18 termos por capítulo.** O código limita explicitamente a 18 o número de ocorrências marcadas como clicáveis por página (`if(count>=18)return`). Um capítulo denso em jargão (m17, m19, m21 — os mais técnicos) atinge esse teto e passa a ter termos não-clicáveis mesmo quando estão cadastrados no glossário, sem qualquer aviso ao usuário ou ao autor de conteúdo.
+
+**Medição real da lacuna de cobertura.** Cruzando os termos técnicos em inglês efetivamente lidos nos 5 capítulos analisados na íntegra (m01, m05, m17, m19, m22) contra os 126 termos do glossário: de 60 termos amostrados (hold point, acceptance criteria, tubing hanger, running tool, as-built, baseline survey, condition monitoring, digital twin, integrity management, governing load case, entre outros), **53 não têm entrada no glossário** — só 7 (top angle, hang-off, bellmouth, line pull, choke, work-class ROV, load path) estão cadastrados. Essa é uma amostra de 5 dos 24 capítulos; a lacuna real no conjunto completo é provavelmente maior, não menor, porque os capítulos mais técnicos (SPS, SURF, risers, materiais, geotecnia) ainda não foram lidos na íntegra.
+
+**Critério editorial proposto (a aplicar a partir da migração de cada capítulo):**
+
+- Regra de cobertura: nenhum capítulo é considerado migrado/aceito enquanto tiver um termo técnico não-trivial (sigla ou termo em inglês fora do vocabulário comum do dia a dia em português) sem entrada correspondente no glossário. Isso passa a ser parte do script de QA (Sprint 1B) e do critério de aceite por capítulo (Sprints 4 a 6), junto com a rubrica da seção 4.
+- Critério de manter em inglês vs. traduzir: mantém-se em inglês quando é o termo padrão usado em contratos, normas e reuniões reais do setor (ex.: "bend stiffener", "hang-off", "as-built") e a tradução geraria estranheza ou desalinhamento com o vocabulário que a Rafaela vai de fato ouvir; traduz-se ou usa-se o termo em português quando existe equivalente natural e corrente (ex.: "poço", não forçar "well"). Em qualquer um dos dois casos, a entrada do glossário é obrigatória se o termo não for de uso comum fora da indústria.
+- Correção técnica necessária no popover da V4: remover o teto fixo de 18 ocorrências (ou torná-lo por termo único, não por ocorrência — marcar todo termo distinto presente no glossário, não as primeiras 18 menções) e gerar, no build, um relatório de "termos citados sem entrada de glossário" por capítulo, para que a lacuna nunca mais fique invisível.
 
 ## 4. O que "excelente nível" significa, em termos verificáveis
 
@@ -68,8 +85,13 @@ Proposta de rubrica por capítulo, para orientar a extração/reescrita nos Spri
 
 ## 5. Onde isso entra no roadmap
 
-Ver D-015 em DECISOES.md e a revisão de ROADMAP_V4.md: esta auditoria passa a ser a Parte A do Sprint 1, executada antes da extração mecânica (Parte B). A extração de conteúdo (D-005) deixa de ser uma cópia de texto para formato de dados e passa a ser cópia + reescrita guiada por esta rubrica, capítulo a capítulo, nos Sprints 4 a 6 — sem isso, o Sprint 1 entregaria uma estrutura de dados tecnicamente correta carregando o mesmo problema de profundidade que já existe hoje.
+Ver D-015 em DECISOES.md e a revisão de ROADMAP_V4.md: esta auditoria passa a ser a Parte A do Sprint 1, executada antes da extração mecânica (Parte B). A extração de conteúdo (D-005) deixa de ser uma cópia de texto para formato de dados e passa a ser cópia + reescrita guiada por esta rubrica, capítulo a capítulo, nos Sprints 4 a 6 — sem isso, o Sprint 1 entregaria uma estrutura de dados tecnicamente correta carregando o mesmo problema de profundidade que já existe hoje. A cobertura de glossário (seção 3.8) entra como verificação automatizada no script de QA do Sprint 1B e como parte da reescrita incremental de glossário por capítulo (D-018).
 
-## 6. Decisões que pedem sua entrada
+## 6. Decisões tomadas nesta sessão
 
-Registradas como perguntas ao Paulo nesta sessão (ver conversa e DECISOES.md D-016 a D-018 quando respondidas): volume-alvo por capítulo (custo de redação vs. tempo de estudo da Rafaela), se a verificação factual dos casos Brasil deve rodar antes da V4.0 ou pode entrar como V4.1, e se o glossário completo (126 termos) deve ser reescrito de uma vez ou de forma incremental por capítulo migrado.
+- **D-016 — Volume por capítulo:** profundidade completa nas camadas Técnica e Deep dive, não um resumo com mais um parágrafo.
+- **D-017 — Verificação factual dos casos Brasil:** entra em V4.1, depois do release da V4.0, não bloqueia o Sprint atual.
+- **D-018 — Reescrita do glossário:** incremental, por capítulo migrado (Sprints 4 a 6), e passa a incluir também fechar a cobertura de termos técnicos usados naquele capítulo (seção 3.8), não só reescrever o "why" das entradas já existentes.
+- **D-019 — Critério de uso de termos em inglês e cobertura obrigatória de glossário:** ver seção 3.8. Regra vigente a partir desta sessão.
+
+Ver texto completo de cada decisão em DECISOES.md.

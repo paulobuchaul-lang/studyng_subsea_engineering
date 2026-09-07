@@ -25,13 +25,13 @@ Executada antes de qualquer extração técnica, por decisão explícita do Paul
 2. Estrutura do repositório: `/` (site publicado), `/src/content/` (capítulos em Markdown com seções nomeadas), `/src/data/` (glossario.json, prompts.json, aliases.json, biblioteca.json), `/src/templates/`, `/src/build.py`, `/governanca/` (cópia dos .md), `.nojekyll`, `README.md`.
 3. Extração do conteúdo da V3 para o formato de dados. Glossário, prompts e aliases vêm prontos do `data.js`; capítulos são extraídos do HTML por bloco (express, corpo, PM, quiz, prompts, referências). **Diferença em relação ao plano original: a extração não é mais cópia neutra — já nasce sinalizada com os pontos que a auditoria (Parte A) marcou para reescrita nos Sprints 4 a 6 (camadas rasas, "why" genérico do glossário, distratores fracos, ausência de data de verificação em fatos datados).**
 4. Esqueleto do shell V4 (sem design final): template de capítulo e de hub que já obedece à estrutura da seção 6 da arquitetura e às camadas `data-layer`. Build gera as 33 páginas em versão "sem estilo bonito, com estrutura certa".
-5. Script de QA: links locais, IDs duplicados, blocos obrigatórios por capítulo, `<img>` externo, overflow.
+5. Script de QA: links locais, IDs duplicados, blocos obrigatórios por capítulo, `<img>` externo, overflow, e **cobertura de glossário por capítulo** (todo termo técnico não-trivial usado no texto tem entrada correspondente no glossário — D-019, B-035).
 **Saída:** zip do repositório inicial (src + site gerado) e INVENTARIO_V3.json.
 **Aceite:** build roda sem erro; 24 capítulos gerados com todos os blocos obrigatórios; QA zero falhas; Paulo abre 3 capítulos na URL e confirma que nenhum texto técnico se perdeu em relação à V3 (comparação por amostragem).
 
 ## Sprint 2 — Design system e protótipo
 **Entrada:** Sprint 1 aceito; D-006 decidida.
-**Faz:** tokens CSS (cores, tipografia, espaçamento, raio, sombra, motion); componentes base (header, tab bar mobile, sidebar desktop, cartão, botão, chip de termo, popover/bottom sheet, quiz, medidor de profundidade, badge, toast, frame de diagrama, cartão de prompt, cartão de foto/fonte); ícones SVG; light/dark; reduced-motion. Aplica ao protótipo: Home nova + capítulo 17 novo + glossário novo. Consolida ARQUITETURA_MESTRE_V4.md.
+**Faz:** tokens CSS (cores, tipografia, espaçamento, raio, sombra, motion); componentes base (header, tab bar mobile, sidebar desktop, cartão, botão, chip de termo, popover/bottom sheet, quiz, medidor de profundidade, badge, toast, frame de diagrama, cartão de prompt, cartão de foto/fonte); ícones SVG; light/dark; reduced-motion. **O chip de termo reimplementa a lógica de `assets/app.js` sem o teto de 18 ocorrências por página (B-035): marca todo termo distinto do glossário presente no texto.** Aplica ao protótipo: Home nova + capítulo 17 novo + glossário novo. Consolida ARQUITETURA_MESTRE_V4.md.
 **Saída:** protótipo publicado em `/v4-preview/` na mesma URL, sem tocar na V3.
 **Aceite:** Paulo (e Rafaela, se possível) aprovam a direção visual e a navegação no celular e notebook. Ajustes registrados no BACKLOG antes do Sprint 3.
 

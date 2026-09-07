@@ -87,3 +87,23 @@ Decisões Pendentes exigem resposta do Paulo. Decisões Vigentes só mudam com n
 **Motivo:** Pedido explícito do Paulo — conteúdo e forma de apresentação são a base do projeto e precisam estar em excelente nível antes de qualquer investimento em shell/design/publicação avançar. Alinhado ao critério de decisão da seção 27 do CLAUDE.md (aprendizagem antes de estética e sofisticação tecnológica).
 **Consequência:** AUDITORIA_CONTEUDO_DIDATICA_V4.md criado como novo documento de governança, com rubrica objetiva de "excelente nível" por capítulo. Sprints 4 a 6 (migração de capítulos) passam a ter essa rubrica como critério de aceite adicional, não só QA técnico. B-030 a B-034 abertos no backlog a partir dos achados.
 **Achados centrais da auditoria (resumo, ver documento completo):** capítulos com 534-1202 palavras não sustentam 4 camadas de profundidade reais; nenhum HTML tem marcação de camada; glossário tem "why" idêntico nos 126 termos; quiz do capítulo 17 ainda tem distratores triviais ("Nada", "Somente pintura do winch"); fatos datados de contratos/casos Brasil não têm data de verificação registrada.
+
+## D-016 · 07/09/2026 · Vigente
+**Decisão:** As camadas "Técnica" e "Deep dive" de cada capítulo recebem profundidade completa na reescrita (Sprints 4 a 6), não um resumo com um parágrafo a mais em relação à camada "5 minutos".
+**Motivo:** Resolver de uma vez o achado central da auditoria (AUDITORIA_CONTEUDO_DIDATICA_V4.md seção 3.1) em vez de deixar a fragilidade de profundidade para uma revisão futura.
+**Consequência:** Maior custo de redação por capítulo nos Sprints 4 a 6 (mais sessões por lote de 8 capítulos). B-030 atualizado com este padrão.
+
+## D-017 · 07/09/2026 · Vigente
+**Decisão:** A verificação factual com data registrada dos casos Brasil citados nos capítulos (contratos DOF, Oceaneering, Strohm, OneSubsea em Búzios — ver AUDITORIA_CONTEUDO_DIDATICA_V4.md seção 3.4) entra como item de V4.1, depois do release da V4.0, e não bloqueia os sprints atuais.
+**Motivo:** Os fatos já vêm com link real da fonte original; falta apenas a data de verificação ao lado do fato, o que é aceitável adiar para não atrasar a migração de conteúdo já em curso.
+**Consequência:** B-033 mantido como P1, mas com destino V4.1, não Sprint 1-9.
+
+## D-018 · 07/09/2026 · Vigente
+**Decisão:** A reescrita do glossário (126 termos, campo "why" genérico) é incremental, feita junto com a migração de cada lote de capítulos nos Sprints 4 a 6, e não uma sessão dedicada isolada.
+**Motivo:** Distribui o custo de redação sem bloquear o início da extração técnica (Parte B do Sprint 1) por uma tarefa de 126 itens.
+**Consequência:** O glossário só fica 100% reescrito ao final do Sprint 6. Atualizado por D-019: a reescrita incremental passa a incluir também fechar a cobertura de termos técnicos usados no capítulo, não só reescrever o "why" das entradas já existentes.
+
+## D-019 · 07/09/2026 · Vigente
+**Decisão:** A pedido do Paulo, fica estabelecido um critério editorial obrigatório para termos técnicos em inglês: (a) todo termo técnico não-trivial (sigla ou termo em inglês fora do vocabulário comum do dia a dia em português) usado no corpo de um capítulo precisa ter entrada correspondente no glossário antes de esse capítulo ser considerado migrado/aceito; (b) mantém-se o termo em inglês quando é o padrão da indústria/contratos e a tradução geraria estranheza (ex.: "bend stiffener", "as-built"), usa-se português quando há equivalente natural e corrente (ex.: "poço"); em ambos os casos a entrada de glossário é obrigatória sempre que o termo não for de uso comum fora da indústria.
+**Motivo:** Medição real (AUDITORIA_CONTEUDO_DIDATICA_V4.md seção 3.8) mostrou que 53 de 60 termos técnicos em inglês amostrados nos capítulos lidos não têm entrada no glossário, e que o popover automático de `assets/app.js` só reconhece termos já cadastrados, além de truncar em 18 ocorrências clicáveis por capítulo — ou seja, boa parte do jargão em inglês fica sem explicação em nenhuma das duas formas de glossário (página completa e popover contextual).
+**Consequência:** Script de QA do Sprint 1B (Parte B) passa a checar cobertura de glossário por capítulo. O build da V4 remove o teto fixo de 18 termos e passa a marcar todo termo distinto presente no glossário. B-035 aberto no backlog.

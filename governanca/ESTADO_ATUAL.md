@@ -18,7 +18,8 @@
 4. Decisão tomada (D-004 e D-004a): hospedar como site estático em GitHub Pages público. O Paulo já ativou o Pages em Settings.
 5. Decisão tomada (D-005): adotar o pipeline "conteúdo como dados + shell como código" (build por script). `src/build.py` e os templates serão escritos na Parte B do Sprint 1, já informados pela rubrica da auditoria.
 6. Decisão tomada (D-006): direção de design de DESIGN_SYSTEM_V4.md aprovada para virar protótipo no Sprint 2.
-7. Decisão tomada (D-015): antes de qualquer extração técnica, uma auditoria de conteúdo/didática/UX de aprendizagem/gamificação foi conduzida com o material completo da V3. Achados e rubrica de "excelente nível" em AUDITORIA_CONTEUDO_DIDATICA_V4.md; itens B-030 a B-034 abertos no backlog.
+7. Decisão tomada (D-015): antes de qualquer extração técnica, uma auditoria de conteúdo/didática/UX de aprendizagem/gamificação foi conduzida com o material completo da V3. Achados e rubrica de "excelente nível" em AUDITORIA_CONTEUDO_DIDATICA_V4.md; itens B-030 a B-034 abertos no backlog. Decisões de escopo confirmadas: D-016 (profundidade completa nas camadas), D-017 (verificação factual em V4.1), D-018 (glossário reescrito incremental por capítulo).
+7a. Decisão tomada (D-019, a pedido do Paulo): todo termo técnico não-trivial em inglês usado num capítulo precisa de entrada no glossário. Medição real mostrou 53 de 60 termos amostrados sem entrada. O popover de termo (a segunda forma do glossário, em "balão" sobre a palavra) existe e funciona hoje via `assets/app.js`, mas só reconhece termos cadastrados e trunca em 18 por capítulo — correção registrada em B-035.
 8. A Biblioteca Visual será refeita com estratégia de licenciamento (D-007): imagens hotlinkadas de fornecedores não carregam e serão substituídas por fontes licenciáveis ou cartões de fonte bem desenhados.
 9. A dinâmica de continuidade entre sessões passa a ser: ler ESTADO_ATUAL → buscar arquivos correntes no repositório → executar o sprint do ROADMAP → entregar release + governança atualizada. Protocolo em CLAUDE.md, Parte 0.
 10. A regra "adicionar ou melhorar sem regredir" vale para conteúdo e funções, não para forma (D-013), e agora também não para profundidade rasa: capítulos migrados precisam atender à rubrica da auditoria, não só preservar o texto que já existia.
@@ -32,13 +33,12 @@
 
 ## O que ficou pendente e por quê
 
-- **Extração técnica (Parte B do Sprint 1):** só começa depois que o Paulo confirmar 3 pontos de escopo que mudam o tamanho do trabalho de redação (volume-alvo por capítulo, timing da verificação factual dos casos Brasil, escopo da reescrita do glossário). Ver as perguntas feitas na conversa da Sessão 2 e D-016 a D-018 quando respondidas.
-- **URL do site publicado:** GitHub Pages foi ativado pelo Paulo, mas ainda não há conteúdo de produto na raiz do repositório (só a governança da Sessão 1). Isso só muda quando a Parte B do Sprint 1 gerar o site.
+- **Extração técnica (Parte B do Sprint 1):** todas as decisões de escopo que a bloqueavam já foram tomadas (D-016 a D-019). Começa na próxima sessão: inventário automatizado, estrutura de dados, `src/build.py` já desenhado contra a estrutura real do HTML e já incorporando o QA de cobertura de glossário (B-035).
+- **URL do site publicado:** GitHub Pages foi ativado pelo Paulo, mas ainda não há conteúdo de produto na raiz do repositório (só a governança). Isso só muda quando a Parte B do Sprint 1 gerar o site.
 
 ## O que o Paulo precisa fazer antes da próxima sessão
 
-- [ ] Responder as 3 perguntas de escopo da auditoria (volume por capítulo, timing da verificação factual, escopo da reescrita do glossário).
-- [ ] Quando o site tiver conteúdo real publicado, testar no celular e no notebook e registrar aqui (D-009).
+- [ ] Nada bloqueante. Quando o site tiver conteúdo real publicado, testar no celular e no notebook e registrar aqui (D-009).
 
 ## Riscos abertos
 
@@ -51,4 +51,4 @@
 |---|---|---|---|
 | 0 | 06/09/2026 | Diagnóstico da V3, kit de governança V4 (9 documentos), roadmap por sprints; zip da V3 recebido e inspecionado | Paulo publica a V3 para teste, decide D-004a/D-005/D-006; Sprint 1 |
 | 1 | 07/09/2026 | Repositório GitHub organizado: pasta `/governanca/` com os 9 .md, esqueleto `/src/`, `.nojekyll`, README raiz reescrito; D-004a, D-005 e D-006 decididas pelo Paulo (público, pipeline adotado, design aprovado) | Paulo reenvia zip completo da V3 e ativa GitHub Pages; próxima sessão escreve build.py e extrai conteúdo |
-| 2 | 07/09/2026 | Zip completo da V3 recebido e inspecionado por inteiro; GitHub Pages ativado pelo Paulo; auditoria de conteúdo/didática/UX/gamificação conduzida (AUDITORIA_CONTEUDO_DIDATICA_V4.md); D-015 registrada; B-030 a B-034 abertos | Paulo decide volume-alvo por capítulo, timing da verificação factual e escopo da reescrita do glossário; próxima sessão inicia Parte B do Sprint 1 (extração técnica) |
+| 2 | 07/09/2026 | Zip completo da V3 recebido e inspecionado por inteiro; GitHub Pages ativado pelo Paulo; auditoria de conteúdo/didática/UX/gamificação conduzida (AUDITORIA_CONTEUDO_DIDATICA_V4.md); D-015 a D-019 decididas (profundidade completa, verificação factual em V4.1, glossário incremental, critério de termos em inglês + cobertura obrigatória); B-030 a B-035 abertos | Próxima sessão inicia Parte B do Sprint 1: inventário, estrutura de dados, build.py e QA de cobertura de glossário |
