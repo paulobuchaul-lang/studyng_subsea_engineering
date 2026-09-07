@@ -82,7 +82,7 @@ Escala de espaço: 4, 8, 12, 16, 24, 32, 48, 64 px. Raio: 8 (chips, botões), 12
 
 **Cartão Express ("Se você precisa entender isto agora")**: fundo --surface-2, ícone de relâmpago, três frases, chips de pré-requisitos tocáveis. Sempre o primeiro bloco do capítulo.
 
-**Controle de camadas**: segmentado com quatro opções (5 min · Gerente · Técnica · Deep dive). Não navega para outra página: filtra a visibilidade dos blocos marcados com `data-layer`. Estado lembrado por capítulo. "Ver tudo" sempre disponível.
+**Controle de camadas**: segmentado com quatro opções (5 min · Gerente · Técnica · Deep dive). Não navega para outra página: filtra a visibilidade dos blocos marcados com `data-layer`. Estado lembrado por capítulo. "Ver tudo" sempre disponível. Chunking é a unidade de camada, não de página (D-022): dentro de cada camada, o conteúdo vem em sub-blocos curtos com heading próprio, nunca um parágrafo único de 300+ palavras — o componente de camada precisa suportar e espaçar visualmente vários sub-blocos, não só um bloco de texto corrido.
 
 **Painel PM**: abas (Atenção · Perguntas · Documentos · Red flags), cor --pm, ícones próprios. No mobile, abas rolam horizontalmente.
 

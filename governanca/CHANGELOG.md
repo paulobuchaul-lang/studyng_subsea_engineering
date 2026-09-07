@@ -4,7 +4,11 @@ Formato: versão · data · escopo · itens. Ordem: mais recente primeiro.
 
 ## [V4.0] — em desenvolvimento
 **Escopo:** hospedagem como site estático, redesign completo da UX, pipeline de conteúdo, biblioteca visual licenciada, quiz com raciocínio, gamificação por profundidade.
-**Sprint atual:** 1 concluído (Partes A e B). Sprint 2 (design system) é o próximo.
+**Sprint atual:** 1 concluído (Partes A e B). Sprint 2 (design system) em andamento.
+
+### Sessão 4 — 07/09/2026 — Diretriz de chunking (D-022)
+- A pedido do Paulo: páginas de capítulo não podem ser "gigantes" — o conteúdo precisa evoluir em partes curtas para não cansar nem assustar. Registrado D-022: a unidade de fragmentação é a camada de profundidade dentro da mesma página (nunca uma sequência obrigatória de páginas/telas), e dentro de cada camada o texto também precisa vir em sub-blocos curtos com heading próprio, não um parágrafo monolítico. Isso reconcilia o pedido com o Modo Consulta Imediata (CLAUDE.md seção 4), que exige resposta na mesma página sem navegação forçada.
+- Rubrica de excelência (AUDITORIA_CONTEUDO_DIDATICA_V4.md seção 4) e DESIGN_SYSTEM_V4.md (componente de controle de camadas) atualizados para exigir essa fragmentação como critério explícito nos Sprints 2 (componente) e 4-6 (redação).
 
 ### Sessão 3 — 07/09/2026 — Sprint 1 Parte B: fundação técnica e primeiro site real
 - Trabalho paralelizado com 3 agentes em background para acelerar: extração de `assets/data.js` para `src/data/*.json` (glossário 126 termos, prompts 28, aliases 38, `biblioteca.json` vazio com schema documentado), geração de `INVENTARIO_V3.json` (33 páginas catalogadas: blocos presentes, IDs, links locais/externos, imagens), e o CSS/JS mínimo funcional (`assets/styles.css`, `assets/app.js`) a partir de um contrato de classes/atributos `data-*` que eu especifiquei. Enquanto isso, escrevi o núcleo acoplado (extrator de capítulos, templates, build.py) para não gerar retrabalho de integração entre as partes.

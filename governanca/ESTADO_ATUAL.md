@@ -3,11 +3,11 @@
 > Este é o PRIMEIRO arquivo a ler em qualquer sessão. Ele responde "onde estamos, o que foi decidido, o que vem agora".
 > Atualizado ao FINAL de cada sessão. Se a data abaixo for antiga, desconfie e pergunte.
 
-**Última atualização:** 07/09/2026 (Sessão 3 — Sprint 1 concluído: fundação técnica, primeiro site real gerado, testado em navegador real e mergeado)
-**Versão publicada:** V4.0-sprint1, mergeada na `main`. Site com conteúdo real (24 capítulos + 9 hubs) pronto para ser publicado via GitHub Pages assim que o merge desta sessão for concluído.
+**Última atualização:** 07/09/2026 (Sessão 4 — diretriz de chunking D-022 registrada; Sprint 2 em andamento)
+**Versão publicada:** V4.0-sprint1, mergeada na `main`. Site com conteúdo real (24 capítulos + 9 hubs) publicado via GitHub Pages.
 **Versão em desenvolvimento:** V4.0 (redesign + hospedagem + pipeline de conteúdo)
 **Repositório:** https://github.com/paulobuchaul-lang/studyng_subsea_engineering
-**Sprint atual:** Sprint 1 CONCLUÍDO (Partes A e B). Próximo: Sprint 2 — design system e protótipo (ver ROADMAP_V4.md).
+**Sprint atual:** Sprint 2 — design system e protótipo, em andamento (ver ROADMAP_V4.md). D-022 (chunking por camada, não por página) incorporada como requisito do componente de camadas.
 
 ## Resumo em 10 linhas
 
