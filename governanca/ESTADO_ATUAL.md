@@ -3,7 +3,7 @@
 > Este é o PRIMEIRO arquivo a ler em qualquer sessão. Ele responde "onde estamos, o que foi decidido, o que vem agora".
 > Atualizado ao FINAL de cada sessão. Se a data abaixo for antiga, desconfie e pergunte.
 
-**Última atualização:** 07/09/2026 (Sessão 2 — zip completo da V3 recebido, auditoria de conteúdo/didática/UX/gamificação, e automação de governança via CI)
+**Última atualização:** 07/09/2026 (Sessão 2 — zip completo da V3 recebido, auditoria de conteúdo/didática/UX/gamificação, automação de governança via CI, e merge de todo o trabalho para a `main` via PR #1)
 **Versão publicada:** nenhuma ainda com conteúdo real. GitHub Pages foi ativado pelo Paulo, mas a raiz do repositório só tem a estrutura da Sessão 1 (governança + esqueleto vazio) — não há site de produto no ar.
 **Versão em desenvolvimento:** V4.0 (redesign + hospedagem + pipeline de conteúdo)
 **URL do site publicado:** GitHub Pages ativo (URL a confirmar/registrar na próxima sessão); ainda sem conteúdo de produto.
