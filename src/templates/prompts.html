@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hub-shell">
+  <h1>Biblioteca de Prompts</h1>
+  <p class="hub-intro">{{ prompts|length }} prompts profissionais prontos para uso. Edite os campos [PREENCHA] antes de copiar.</p>
+  {% for p in prompts %}
+  <article class="prompt-card">
+    <p class="prompt-category">{{ p.category }}</p>
+    <h2>{{ p.title }}</h2>
+    <pre class="prompt-text">{{ p.text }}</pre>
+    <button class="copy-prompt" data-prompt-index="{{ loop.index0 }}">Copiar prompt</button>
+  </article>
+  {% endfor %}
+</section>
+<script>
+(function(){
+  document.querySelectorAll('.copy-prompt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.previousElementSibling.textContent;
+      navigator.clipboard.writeText(text).then(function(){
+        var original = btn.textContent;
+        btn.textContent = 'Copiado!';
+        setTimeout(function(){ btn.textContent = original; }, 2000);
+      });
+    });
+  });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>{{ page_title }} | Plataforma Subsea Rafaela</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="{{ asset_prefix }}assets/styles.css">
+</head>
+<body{% if chapter_id %} data-chapter-id="{{ chapter_id }}"{% endif %}>
+<header class="site-header">
+  <a class="site-brand" href="{{ asset_prefix }}index.html">Plataforma Subsea Rafaela</a>
+  <nav class="site-nav">
+    <a href="{{ asset_prefix }}index.html">Home</a>
+    <a href="{{ asset_prefix }}ementa.html">Ementa</a>
+    <a href="{{ asset_prefix }}treinamento.html">Treinamento</a>
+    <a href="{{ asset_prefix }}glossario.html">Glossário</a>
+    <a href="{{ asset_prefix }}prompts.html">Prompts</a>
+    <a href="{{ asset_prefix }}biblioteca.html">Biblioteca</a>
+    <a href="{{ asset_prefix }}progresso.html">Progresso</a>
+    <a href="{{ asset_prefix }}referencias.html">Referências</a>
+    <a href="{{ asset_prefix }}search.html">Buscar</a>
+  </nav>
+</header>
+<main class="site-main">
+{% block content %}{% endblock %}
+</main>
+<footer class="site-footer">
+  <p>Conteúdo educacional, fontes públicas. Governança do projeto em <code>/governanca/</code>. V4.0 em desenvolvimento — esta é a fundação técnica do Sprint 1, sem o design final (Sprint 2).</p>
+</footer>
+<script>window.SUBSEA_GLOSSARIO = {{ glossario_json | safe }};</script>
+<script src="{{ asset_prefix }}assets/app.js"></script>
+</body>
+</html>

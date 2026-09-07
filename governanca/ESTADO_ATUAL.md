@@ -3,49 +3,49 @@
 > Este é o PRIMEIRO arquivo a ler em qualquer sessão. Ele responde "onde estamos, o que foi decidido, o que vem agora".
 > Atualizado ao FINAL de cada sessão. Se a data abaixo for antiga, desconfie e pergunte.
 
-**Última atualização:** 07/09/2026 (Sessão 2 — zip completo da V3 recebido, auditoria de conteúdo/didática/UX/gamificação, automação de governança via CI, e merge de todo o trabalho para a `main` via PR #1)
-**Versão publicada:** nenhuma ainda com conteúdo real. GitHub Pages foi ativado pelo Paulo, mas a raiz do repositório só tem a estrutura da Sessão 1 (governança + esqueleto vazio) — não há site de produto no ar.
+**Última atualização:** 07/09/2026 (Sessão 3 — Sprint 1 concluído: fundação técnica, primeiro site real gerado, testado em navegador real e mergeado)
+**Versão publicada:** V4.0-sprint1, mergeada na `main`. Site com conteúdo real (24 capítulos + 9 hubs) pronto para ser publicado via GitHub Pages assim que o merge desta sessão for concluído.
 **Versão em desenvolvimento:** V4.0 (redesign + hospedagem + pipeline de conteúdo)
-**URL do site publicado:** GitHub Pages ativo (URL a confirmar/registrar na próxima sessão); ainda sem conteúdo de produto.
 **Repositório:** https://github.com/paulobuchaul-lang/studyng_subsea_engineering
-**Sprint atual:** Sprint 1 — Parte A (Auditoria de conteúdo e didática) concluída. Parte B (fundação técnica e extração) ainda não iniciada — ver ROADMAP_V4.md.
+**Sprint atual:** Sprint 1 CONCLUÍDO (Partes A e B). Próximo: Sprint 2 — design system e protótipo (ver ROADMAP_V4.md).
 
 ## Resumo em 10 linhas
 
-1. A V3 tem 33 páginas HTML, 24 capítulos, 126 termos de glossário, 28 prompts profissionais e 72 questões de quiz. A voz, as perguntas de reunião e os red flags são fortes e devem ser preservados; a profundidade do corpo técnico e parte dos componentes de aprendizagem (glossário, quiz) são mais rasos do que o CLAUDE.md exige — ver AUDITORIA_CONTEUDO_DIDATICA_V4.md.
-2. A V3 nunca funcionou no celular nem no notebook da forma esperada porque foi aberta pelo Google Drive, que não serve sites estáticos (CSS/JS/links relativos não resolvem). Diagnóstico completo em DIAGNOSTICO_V3.md.
-3. O zip completo da V3 (43 arquivos) foi recebido e totalmente inspecionado na Sessão 2. Decisão D-013: a V3 é insumo, não fonte de verdade; aproveita-se o conteúdo (com a reescrita que a auditoria mapeou), descarta-se o shell.
-4. Decisão tomada (D-004 e D-004a): hospedar como site estático em GitHub Pages público. O Paulo já ativou o Pages em Settings.
-5. Decisão tomada (D-005): adotar o pipeline "conteúdo como dados + shell como código" (build por script). `src/build.py` e os templates serão escritos na Parte B do Sprint 1, já informados pela rubrica da auditoria.
-6. Decisão tomada (D-006): direção de design de DESIGN_SYSTEM_V4.md aprovada para virar protótipo no Sprint 2.
-7. Decisão tomada (D-015): antes de qualquer extração técnica, uma auditoria de conteúdo/didática/UX de aprendizagem/gamificação foi conduzida com o material completo da V3. Achados e rubrica de "excelente nível" em AUDITORIA_CONTEUDO_DIDATICA_V4.md; itens B-030 a B-034 abertos no backlog. Decisões de escopo confirmadas: D-016 (profundidade completa nas camadas), D-017 (verificação factual em V4.1), D-018 (glossário reescrito incremental por capítulo).
-7a. Decisão tomada (D-019, a pedido do Paulo): todo termo técnico não-trivial em inglês usado num capítulo precisa de entrada no glossário. Medição real mostrou 53 de 60 termos amostrados sem entrada. O popover de termo (a segunda forma do glossário, em "balão" sobre a palavra) existe e funciona hoje via `assets/app.js`, mas só reconhece termos cadastrados e trunca em 18 por capítulo — correção registrada em B-035.
-7b. Decisão tomada (D-020/D-021): a governança tem reforço automático via CI (`qa-governanca.yml`, testado com sucesso no GitHub real), mas nenhuma trava manual no GitHub é exigida do Paulo. O Claude assume sozinho o fluxo de branch, commit, PR, checagem do CI e merge para a `main`. A garantia de consistência é um hábito de fim de sessão do Claude, não uma trava técnica nem uma auditoria agendada à parte. Nada pendente do lado do Paulo (B-036 fechado sem ação).
-8. A Biblioteca Visual será refeita com estratégia de licenciamento (D-007): imagens hotlinkadas de fornecedores não carregam e serão substituídas por fontes licenciáveis ou cartões de fonte bem desenhados.
-9. A dinâmica de continuidade entre sessões passa a ser: ler ESTADO_ATUAL → buscar arquivos correntes no repositório → executar o sprint do ROADMAP → entregar release + governança atualizada. Protocolo em CLAUDE.md, Parte 0.
-10. A regra "adicionar ou melhorar sem regredir" vale para conteúdo e funções, não para forma (D-013), e agora também não para profundidade rasa: capítulos migrados precisam atender à rubrica da auditoria, não só preservar o texto que já existia.
+1. O Sprint 1 está fechado: a V3 foi auditada (Sessão 2) e depois extraída para o pipeline "conteúdo como dados" (Sessão 3) — 24 capítulos em Markdown, glossário/prompts/aliases em JSON, um `src/build.py` que gera as 33 páginas do site, um script de QA e um teste E2E em navegador real.
+2. O site gerado foi testado de verdade: `src/scripts/qa.py` (links, IDs, blocos obrigatórios, img externo — zero erros) e `src/scripts/test_e2e.py` num Chromium real via Playwright, em desktop e mobile (20/20 checagens: camadas de profundidade, quiz, popover de termo, progresso persistente, filtro de glossário, zero erro JS, zero overflow horizontal).
+3. O design ainda é um esqueleto funcional, não o DESIGN_SYSTEM_V4.md completo — isso é o Sprint 2, o próximo passo.
+4. Conteúdo técnico preservado sem perda (verificado por contagem de palavras); os pontos que a auditoria de conteúdo (AUDITORIA_CONTEUDO_DIDATICA_V4.md) marcou para reescrita (camadas rasas, glossário genérico, quiz com distratores fracos) estão sinalizados com comentários `REESCREVER(...)` dentro de cada `src/content/mNN.md`, para os Sprints 4 a 6.
+5. O popover de termo do glossário (D-019/B-035) foi corrigido: sem o teto de 18 ocorrências por página que a V3 tinha; todo termo do glossário presente no texto é marcado.
+6. O CI (`qa-governanca.yml`) agora tem dois jobs: `qa-governanca` (documentos, links internos, CHANGELOG/ESTADO_ATUAL atualizados) e `qa-tecnico` (roda o build e o QA do site a cada push/PR).
+7. O fluxo de branch → commit → PR → checar CI → merge continua sendo conduzido inteiramente pelo Claude (D-021); nenhuma ação manual do Paulo é necessária no GitHub.
+8. Decisões vigentes acumuladas: D-004 a D-021 (ver DECISOES.md para o texto completo de cada uma). Nenhuma decisão pendente no momento.
+9. O Paulo ainda não testou o site publicado num dispositivo real — isso é D-009 e só faz sentido depois que o GitHub Pages servir esta `main` atualizada.
+10. A Biblioteca Visual (Sprint 7), a verificação factual dos casos Brasil com data (V4.1, D-017) e a reescrita completa do glossário/camadas de profundidade (Sprints 4 a 6) continuam pendentes, sem bloquear o que já foi entregue.
 
-## O que a Sessão 2 entregou
+## O que a Sessão 3 entregou
 
-- Zip completo da V3 (43 arquivos) inspecionado por inteiro: 24 capítulos lidos por completo via `assets/data.js` (varredura estrutural) mais leitura integral de 5 capítulos representativos (m01, m05, m17, m19, m22), glossário (126 termos), prompts (28), documentação V3.
-- `AUDITORIA_CONTEUDO_DIDATICA_V4.md` criado: o que está em nível bom (voz, perguntas de reunião, red flags, prompts, capítulos 19 e 22 como padrão-ouro), o que é frágil (camadas rasas sem marcação real, glossário com "why" genérico repetido nos 126 termos, quiz com distratores triviais/binários ainda presentes, fatos datados sem data de verificação), e uma rubrica objetiva de "excelente nível" por capítulo.
-- Governança atualizada: D-015 registrada, B-030 a B-034 abertos, ROADMAP_V4.md com o Sprint 1 dividido em Parte A (auditoria, concluída) e Parte B (extração técnica, ainda não iniciada), Sprints 4 a 6 com a rubrica como critério de aceite adicional.
-- Extração técnica (Parte B) deliberadamente NÃO iniciada nesta sessão: começar a copiar o conteúdo para o formato de dados antes de fechar com o Paulo o volume-alvo por capítulo seria repetir o mesmo trabalho depois.
+- `src/scripts/extrair_capitulos.py`, `src/scripts/gerar_inventario.py`, `src/scripts/qa.py`, `src/scripts/test_e2e.py`.
+- `src/data/glossario.json` (126), `src/data/prompts.json` (28), `src/data/aliases.json` (38), `src/data/biblioteca.json` (vazio, com schema documentado).
+- `src/content/m01.md` a `m24.md`.
+- `src/templates/*.html` (base, capítulo, home, hub de lista, glossário, prompts, placeholder).
+- `src/build.py`, `src/requirements.txt`, `src/requirements-dev.txt`.
+- `assets/styles.css`, `assets/app.js` — CSS/JS funcionais (camadas, quiz, popover, progresso), sem o design final do Sprint 2.
+- Site gerado: `index.html`, `ementa.html`, `treinamento.html`, `glossario.html`, `prompts.html`, `biblioteca.html`, `progresso.html`, `referencias.html`, `search.html`, `capitulos/m01.html` a `m24.html`.
+- `INVENTARIO_V3.json`.
+- CI estendido com o job `qa-tecnico`.
+- Um bug real encontrado e corrigido pelo teste E2E: tabelas sem scroll horizontal próprio estourando a largura em mobile (390px).
 
-## O que ficou pendente e por quê
+## O que ainda falta (não bloqueia o que foi entregue)
 
-- **Extração técnica (Parte B do Sprint 1):** todas as decisões de escopo que a bloqueavam já foram tomadas (D-016 a D-019). Começa na próxima sessão: inventário automatizado, estrutura de dados, `src/build.py` já desenhado contra a estrutura real do HTML e já incorporando o QA de cobertura de glossário (B-035).
-- **URL do site publicado:** GitHub Pages foi ativado pelo Paulo, mas ainda não há conteúdo de produto na raiz do repositório (só a governança). Isso só muda quando a Parte B do Sprint 1 gerar o site.
-
-## O que o Paulo precisa fazer antes da próxima sessão
-
-- [ ] Nada. O fluxo de branch/PR/merge é conduzido pelo Claude (D-021); não há configuração pendente em Settings.
-- [ ] Quando o site tiver conteúdo real publicado, testar no celular e no notebook e registrar aqui (D-009).
+- **Teste em dispositivo real (D-009):** só faz sentido depois que este merge publicar via GitHub Pages. Ação do Paulo quando a URL estiver servindo o conteúdo novo.
+- **Sprint 2 (design system):** aplicar DESIGN_SYSTEM_V4.md de verdade sobre este esqueleto.
+- **Sprints 4 a 6:** reescrever camadas de profundidade, quiz e glossário conforme a rubrica da auditoria — os comentários `REESCREVER(...)` em cada `.md` apontam exatamente onde.
+- **Sprint 7:** Biblioteca Visual com imagens licenciadas (hoje todo hotlink virou "cartão de fonte" sem `<img>`, conforme D-007 — confirmado por QA, zero `<img>` externo).
 
 ## Riscos abertos
 
-- A extração dos capítulos do HTML para Markdown é scriptável, mas blocos com estrutura irregular podem exigir revisão manual. O Sprint 1 registra em INVENTARIO_V3.json o que foi extraído automaticamente e o que ficou marcado para revisão (pendente de receber os arquivos da V3).
-- Imagens de fornecedores: mesmo com nova estratégia, pode não haver foto licenciável para todo equipamento. Nesses casos o cartão de fonte substitui a foto, sem imagem quebrada.
+- A extração dos capítulos do HTML para Markdown é scriptável, mas blocos com estrutura irregular podem exigir revisão manual em capítulos ainda não lidos integralmente durante a auditoria (só 5 dos 24 foram lidos por completo). O QA técnico não substitui uma segunda leitura humana de amostra.
+- Imagens de fornecedores: mesmo com nova estratégia, pode não haver foto licenciável para todo equipamento. Nesses casos o cartão de fonte substitui a foto, sem imagem quebrada (já é o comportamento atual).
 
 ## Histórico de sessões
 
@@ -53,4 +53,5 @@
 |---|---|---|---|
 | 0 | 06/09/2026 | Diagnóstico da V3, kit de governança V4 (9 documentos), roadmap por sprints; zip da V3 recebido e inspecionado | Paulo publica a V3 para teste, decide D-004a/D-005/D-006; Sprint 1 |
 | 1 | 07/09/2026 | Repositório GitHub organizado: pasta `/governanca/` com os 9 .md, esqueleto `/src/`, `.nojekyll`, README raiz reescrito; D-004a, D-005 e D-006 decididas pelo Paulo (público, pipeline adotado, design aprovado) | Paulo reenvia zip completo da V3 e ativa GitHub Pages; próxima sessão escreve build.py e extrai conteúdo |
-| 2 | 07/09/2026 | Zip completo da V3 recebido e inspecionado por inteiro; GitHub Pages ativado pelo Paulo; auditoria de conteúdo/didática/UX/gamificação conduzida (AUDITORIA_CONTEUDO_DIDATICA_V4.md); D-015 a D-019 decididas; automação de governança via CI (D-020) e fluxo de branch/PR/merge assumido integralmente pelo Claude, sem ação manual do Paulo (D-021); B-030 a B-036 fechados ou abertos conforme aplicável | Próxima sessão inicia Parte B do Sprint 1: inventário, estrutura de dados, build.py e QA de cobertura de glossário |
+| 2 | 07/09/2026 | Zip completo da V3 recebido e inspecionado por inteiro; GitHub Pages ativado pelo Paulo; auditoria de conteúdo/didática/UX/gamificação conduzida (AUDITORIA_CONTEUDO_DIDATICA_V4.md); D-015 a D-019 decididas; automação de governança via CI (D-020) e fluxo de branch/PR/merge assumido integralmente pelo Claude (D-021); B-030 a B-036 fechados ou abertos conforme aplicável | Próxima sessão inicia Parte B do Sprint 1 (extração técnica) |
+| 3 | 07/09/2026 | Sprint 1 Parte B concluído: extração de conteúdo, build.py, QA automatizado, teste E2E em navegador real (20/20), CI estendido com qa-tecnico, site completo gerado e mergeado | Sprint 2 (design system e protótipo); Paulo testa em dispositivo real assim que Pages publicar |

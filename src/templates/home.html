@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hub-shell home-shell">
+  <h1>Plataforma Subsea Rafaela</h1>
+  <p class="hub-intro">Engenharia submarina aplicada à gestão de projetos offshore. Versão em desenvolvimento (V4.0, Sprint 1) — este esqueleto ainda não tem o design final (Sprint 2) nem a gamificação (Sprint 8).</p>
+  <h2>Capítulos</h2>
+  <div class="chapter-list">
+    {% for c in chapters %}
+    <a class="chapter-card" href="capitulos/{{ c.id }}.html" data-chapter-link="{{ c.id }}">
+      <span class="chapter-card-no">{{ "%02d"|format(c.n) }}</span>
+      <span class="chapter-card-body">
+        <span class="chapter-card-title">{{ c.title }}</span>
+        <span class="chapter-card-subtitle">{{ c.subtitle }}</span>
+      </span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
