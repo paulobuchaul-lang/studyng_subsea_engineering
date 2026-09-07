@@ -7,27 +7,81 @@
 <title>{{ page_title }} | Plataforma Subsea Rafaela</title>
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="{{ asset_prefix }}assets/styles.css">
+<script src="{{ asset_prefix }}assets/icons.js"></script>
 </head>
 <body{% if chapter_id %} data-chapter-id="{{ chapter_id }}"{% endif %}>
-<header class="site-header">
-  <a class="site-brand" href="{{ asset_prefix }}index.html">Plataforma Subsea Rafaela</a>
-  <nav class="site-nav">
-    <a href="{{ asset_prefix }}index.html">Home</a>
-    <a href="{{ asset_prefix }}ementa.html">Ementa</a>
-    <a href="{{ asset_prefix }}treinamento.html">Treinamento</a>
-    <a href="{{ asset_prefix }}glossario.html">Glossário</a>
-    <a href="{{ asset_prefix }}prompts.html">Prompts</a>
-    <a href="{{ asset_prefix }}biblioteca.html">Biblioteca</a>
-    <a href="{{ asset_prefix }}progresso.html">Progresso</a>
-    <a href="{{ asset_prefix }}referencias.html">Referências</a>
-    <a href="{{ asset_prefix }}search.html">Buscar</a>
-  </nav>
+<header class="topbar-mobile">
+  <span class="brand-mark icon" data-icon="home"></span>
+  <span class="topbar-title">{{ page_title }}</span>
+  {% if chapter_id %}
+  <button class="icon-btn icon" data-icon="trilha" id="chapterSheetOpen" aria-label="Neste capítulo"></button>
+  {% endif %}
+  <button class="icon-btn icon theme-toggle-mobile" data-icon="tema" id="themeToggleMobile" aria-label="Alternar tema"></button>
+  <a class="icon-btn icon" data-icon="busca" href="{{ asset_prefix }}search.html" aria-label="Buscar"></a>
 </header>
-<main class="site-main">
-{% block content %}{% endblock %}
-</main>
+
+{% if chapter_id %}
+<div class="chapter-sheet-backdrop" id="chapterSheetBackdrop" hidden></div>
+<div class="chapter-sheet" id="chapterSheet" hidden>
+  <div class="chapter-sheet-handle"></div>
+  <div class="label" style="margin-bottom: 8px;">Neste capítulo</div>
+  <nav id="chapterSheetSections"></nav>
+  <button class="btn secondary" id="chapterSheetClose" style="margin-top:16px; width:100%; justify-content:center;">Fechar</button>
+</div>
+{% endif %}
+
+<div class="app-shell{% if chapter_id %} has-rail{% endif %}">
+  <aside class="sidebar-desktop">
+    <a class="brand" href="{{ asset_prefix }}index.html">
+      <span class="icon" data-icon="home"></span>
+      Plataforma Subsea Rafaela
+    </a>
+    <nav class="sidebar-nav" id="sidebarNav">
+      <a href="{{ asset_prefix }}index.html" data-nav="consultar"><span class="icon" data-icon="home"></span>Consultar</a>
+      <a href="{{ asset_prefix }}ementa.html" data-nav="trilha"><span class="icon" data-icon="trilha"></span>Trilha</a>
+      <a href="{{ asset_prefix }}search.html" data-nav="buscar"><span class="icon" data-icon="busca"></span>Buscar</a>
+      <a href="{{ asset_prefix }}prompts.html" data-nav="prompts"><span class="icon" data-icon="prompts"></span>Prompts</a>
+      <a href="{{ asset_prefix }}progresso.html" data-nav="eu"><span class="icon" data-icon="progresso"></span>Eu</a>
+      <hr>
+      <a href="{{ asset_prefix }}glossario.html"><span class="icon" data-icon="glossario"></span>Glossário</a>
+      <a href="{{ asset_prefix }}biblioteca.html"><span class="icon" data-icon="biblioteca"></span>Biblioteca</a>
+      <a href="{{ asset_prefix }}referencias.html"><span class="icon" data-icon="referencias"></span>Referências</a>
+      <a href="{{ asset_prefix }}treinamento.html"><span class="icon" data-icon="etapa"></span>Treinamento</a>
+    </nav>
+    <nav class="sidebar-chapters" id="sidebarChapters">
+      {% for c in chapters %}
+      <a href="{{ asset_prefix }}capitulos/{{ c.id }}.html" data-chapter-link="{{ c.id }}">
+        <span class="chapter-dot"></span>{{ "%02d"|format(c.n) }} · {{ c.title }}
+      </a>
+      {% endfor %}
+    </nav>
+    <button class="theme-toggle" id="themeToggle"><span class="icon" data-icon="tema"></span>Tema</button>
+  </aside>
+
+  <main class="site-main{% if not chapter_id %} wide{% endif %}">
+  {% block content %}{% endblock %}
+  </main>
+
+  {% if chapter_id %}
+  <aside class="chapter-rail">
+    <div class="label" style="margin-bottom: 8px;">Neste capítulo</div>
+    <nav id="railSections" style="display:flex; flex-direction:column; gap:6px; font-size:14px; margin-bottom: 24px;"></nav>
+    <div class="label" style="margin-bottom: 8px;">Profundidade</div>
+    <div id="railDepth"></div>
+  </aside>
+  {% endif %}
+</div>
+
+<nav class="tabbar-mobile" id="tabbarMobile">
+  <a href="{{ asset_prefix }}index.html" data-tab="consultar"><span class="icon" data-icon="home"></span>Consultar</a>
+  <a href="{{ asset_prefix }}ementa.html" data-tab="trilha"><span class="icon" data-icon="trilha"></span>Trilha</a>
+  <a href="{{ asset_prefix }}search.html" data-tab="buscar"><span class="icon" data-icon="busca"></span>Buscar</a>
+  <a href="{{ asset_prefix }}prompts.html" data-tab="prompts"><span class="icon" data-icon="prompts"></span>Prompts</a>
+  <a href="{{ asset_prefix }}progresso.html" data-tab="eu"><span class="icon" data-icon="progresso"></span>Eu</a>
+</nav>
+
 <footer class="site-footer">
-  <p>Conteúdo educacional, fontes públicas. Governança do projeto em <code>/governanca/</code>. V4.0 em desenvolvimento — esta é a fundação técnica do Sprint 1, sem o design final (Sprint 2).</p>
+  <p>Conteúdo educacional, fontes públicas. Governança do projeto em <code>/governanca/</code>. V4.0 em desenvolvimento (Sprint 2 — design system e protótipo).</p>
 </footer>
 <script>window.SUBSEA_GLOSSARIO = {{ glossario_json | safe }};</script>
 <script src="{{ asset_prefix }}assets/app.js"></script>

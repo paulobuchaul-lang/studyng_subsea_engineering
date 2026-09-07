@@ -113,8 +113,18 @@ def run_checks_for_viewport(browser, viewport_name, viewport, chapter_id="m17"):
 
     page.goto(f"http://localhost:{PORT}/index.html")
     page.wait_for_load_state("networkidle")
-    card_class = page.locator(f'.chapter-card[data-chapter-link="{chapter_id}"]').get_attribute("class")
-    check(f"[{viewport_name}] card do capitulo concluido marcado na Home", "done" in (card_class or ""), card_class)
+    # a Home mostra a Trilha como mapa compacto (trail-point), nao cartoes completos
+    card_class = page.locator(f'.trail-point[data-chapter-link="{chapter_id}"]').get_attribute("class")
+    check(f"[{viewport_name}] ponto do capitulo concluido marcado na Home", "done" in (card_class or ""), card_class)
+
+    if viewport_name == "mobile":
+        home_height = page.evaluate("document.documentElement.scrollHeight")
+        two_screens = viewport["height"] * 2
+        check(
+            f"[{viewport_name}] Home cabe em ~2 telas (checklist DESIGN_SYSTEM_V4 secao 9)",
+            home_height <= two_screens * 1.15,  # 15% de folga
+            f"{home_height}px vs {two_screens}px (2x{viewport['height']})",
+        )
 
     page.goto(f"http://localhost:{PORT}/glossario.html")
     page.wait_for_load_state("networkidle")
@@ -123,6 +133,46 @@ def run_checks_for_viewport(browser, viewport_name, viewport, chapter_id="m17"):
     time.sleep(0.2)
     total_after = page.locator(".glossario-item:visible").count()
     check(f"[{viewport_name}] filtro do glossario reduz resultados", 0 < total_after < total_before, f"{total_before} -> {total_after}")
+
+    # --- Sprint 2: design system ---
+    page.goto(f"http://localhost:{PORT}/capitulos/{chapter_id}.html")
+    page.wait_for_load_state("networkidle")
+
+    icon_svgs = page.locator("[data-icon] svg").count()
+    check(f"[{viewport_name}] icones SVG renderizados", icon_svgs > 5, f"{icon_svgs} icones com svg")
+
+    if viewport_name == "desktop":
+        check(f"[{viewport_name}] sidebar desktop visivel", page.is_visible(".sidebar-desktop"))
+        check(f"[{viewport_name}] tab bar mobile oculta", not page.is_visible(".tabbar-mobile"))
+    else:
+        check(f"[{viewport_name}] tab bar mobile visivel", page.is_visible(".tabbar-mobile"))
+        check(f"[{viewport_name}] sidebar desktop oculta", not page.is_visible(".sidebar-desktop"))
+
+    # abas do painel PM
+    page.click('[data-pm-tab="ask"]')
+    ask_visible = page.is_visible('[data-pm-box="ask"]')
+    attn_hidden = not page.is_visible('[data-pm-box="attn"]')
+    check(f"[{viewport_name}] abas do painel PM alternam conteudo", ask_visible and attn_hidden)
+
+    # mobile: "Neste capitulo" em bottom sheet, ir direto ao Painel PM em 2 toques
+    if viewport_name == "mobile":
+        page.click("#chapterSheetOpen")  # toque 1
+        sheet_visible = page.is_visible("#chapterSheet")
+        check(f"[{viewport_name}] bottom sheet 'Neste capitulo' abre", sheet_visible)
+        page.click('#chapterSheetSections a:has-text("Painel PM")')  # toque 2
+        pm_visible = page.is_visible('.chapter-section[data-section-title="Painel PM"]')
+        sheet_closed = not page.is_visible("#chapterSheet")
+        check(f"[{viewport_name}] 2 toques leva ao Painel PM e fecha o sheet", pm_visible and sheet_closed)
+
+    # tema escuro (botao diferente por viewport: sidebar no desktop, topbar no mobile)
+    toggle_id = "#themeToggle" if viewport_name == "desktop" else "#themeToggleMobile"
+    theme_toggle = page.locator(toggle_id)
+    if theme_toggle.count() > 0:
+        theme_toggle.click()
+        theme_attr = page.evaluate("document.documentElement.getAttribute('data-theme')")
+        check(f"[{viewport_name}] alternancia de tema aplica data-theme", theme_attr == "dark", theme_attr)
+        bg_color = page.evaluate("getComputedStyle(document.body).backgroundColor")
+        check(f"[{viewport_name}] fundo muda no tema escuro", "18, 27, 43" in bg_color or "11, 27, 43" in bg_color, bg_color)
 
     page.close()
 

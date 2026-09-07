@@ -71,6 +71,14 @@ Mas tem duas falhas estruturais que o achado do Paulo expôs:
 - Critério de manter em inglês vs. traduzir: mantém-se em inglês quando é o termo padrão usado em contratos, normas e reuniões reais do setor (ex.: "bend stiffener", "hang-off", "as-built") e a tradução geraria estranheza ou desalinhamento com o vocabulário que a Rafaela vai de fato ouvir; traduz-se ou usa-se o termo em português quando existe equivalente natural e corrente (ex.: "poço", não forçar "well"). Em qualquer um dos dois casos, a entrada do glossário é obrigatória se o termo não for de uso comum fora da indústria.
 - Correção técnica necessária no popover da V4: remover o teto fixo de 18 ocorrências (ou torná-lo por termo único, não por ocorrência — marcar todo termo distinto presente no glossário, não as primeiras 18 menções) e gerar, no build, um relatório de "termos citados sem entrada de glossário" por capítulo, para que a lacuna nunca mais fique invisível.
 
+### 3.9 Uso de inglês por inércia da fonte, não por critério — achado do Paulo, aperta D-019
+
+D-019 (seção 3.8 acima) já previa um critério para manter termos em inglês, mas a aplicação real durante a extração do Sprint 1 ficou frouxa: como o texto de origem (V3, herdeira de literatura técnica em inglês) já vinha em inglês, a extração preservou a forma em vez de traduzir por default. O Paulo trouxe evidência concreta: a tabela "Sequência didática de second-end pull-in" do capítulo 17 tem nomes de etapa inteiros em inglês ("Prepare host", "Transfer load", "Complete connection") e uma lista com "wire/rope path, fleet angle", "control philosophy, hydraulic power, fail-safe states", "maintenance, proof load, inspection" — isso não é o vocabulário que se ouve numa reunião em português na Petrobras. "Hydraulic power" nunca é dito assim; é "força hidráulica" ou "potência hidráulica". "Maintenance" e "inspection" nem são jargão técnico, são palavras comuns do dia a dia que foram deixadas em inglês sem motivo.
+
+Isso é diferente de "pull-in", que o próprio Paulo cita como sobrevivente legítimo: esse termo é dito em inglês mesmo dentro de uma frase em português, na prática real. O critério de D-019 ("mantém-se quando é padrão da indústria e a tradução geraria estranheza") não estava errado em princípio, mas foi aplicado sem essa checagem — bastava o termo aparecer em inglês na fonte para sobreviver.
+
+**Correção (D-025):** o teste passa a ser explícito e termo a termo — "a Rafaela ouviria isso em inglês numa reunião real, ou só está em inglês porque o texto-fonte não foi traduzido?" — com lista de sobreviventes legítimos e lista de termos a traduzir por default (ver D-025 em DECISOES.md). Isso vale para todo o conteúdo extraído no Sprint 1, não só para o m17 citado como exemplo — a extração inteira precisa ser revisada por esse critério durante a reescrita dos Sprints 4 a 6, com o m17 como primeiro capítulo a corrigir (B-040).
+
 ## 4. O que "excelente nível" significa, em termos verificáveis
 
 Proposta de rubrica por capítulo, para orientar a extração/reescrita nos Sprints 4 a 6 e servir de critério de aceite (a aprovar por você):
@@ -81,6 +89,7 @@ Proposta de rubrica por capítulo, para orientar a extração/reescrita nos Spri
 | Fragmentação dentro da camada (D-022) | Bloco monolítico de 300-400 palavras num parágrafo só | Cada camada quebrada em sub-blocos curtos com heading próprio (2-4 parágrafos de até ~80 palavras cada, ou listas/tabelas quando fizer mais sentido que prosa) — nunca uma parede de texto única, mesmo dentro da camada certa |
 | Quiz | 3 perguntas, distratores às vezes triviais ou binários | 3 a 4 perguntas, todos os distratores como concepção equivocada plausível, feedback individual por opção (D-008) |
 | Glossário (termos do capítulo) | "Why" genérico | "Why" específico ao papel do termo naquele capítulo/projeto |
+| Uso de inglês (D-025) | Inglês por inércia da fonte (ex.: "transfer load", "hydraulic power", nomes de etapa de tabela inteiros em inglês) | Português por default; inglês só em termos com uso oral real comprovado (pull-in, riser, jumper, ROV etc.), sempre com entrada de glossário |
 | Fatos datados/Brasil | Sem data de verificação | Toda alegação de contrato, valor ou caso nomeado leva "verificado em [data]" |
 | Tecnologia emergente | Só no capítulo 22 | "Para onde isso está indo" como bloco próprio em todo capítulo onde exista tecnologia emergente relevante (ao menos 10 a 12 dos 24, por natureza do tema) |
 

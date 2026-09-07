@@ -7,228 +7,276 @@
 <title>Home | Plataforma Subsea Rafaela</title>
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="assets/styles.css">
+<script src="assets/icons.js"></script>
 </head>
 <body>
-<header class="site-header">
-  <a class="site-brand" href="index.html">Plataforma Subsea Rafaela</a>
-  <nav class="site-nav">
-    <a href="index.html">Home</a>
-    <a href="ementa.html">Ementa</a>
-    <a href="treinamento.html">Treinamento</a>
-    <a href="glossario.html">Glossário</a>
-    <a href="prompts.html">Prompts</a>
-    <a href="biblioteca.html">Biblioteca</a>
-    <a href="progresso.html">Progresso</a>
-    <a href="referencias.html">Referências</a>
-    <a href="search.html">Buscar</a>
-  </nav>
+<header class="topbar-mobile">
+  <span class="brand-mark icon" data-icon="home"></span>
+  <span class="topbar-title">Home</span>
+  
+  <button class="icon-btn icon theme-toggle-mobile" data-icon="tema" id="themeToggleMobile" aria-label="Alternar tema"></button>
+  <a class="icon-btn icon" data-icon="busca" href="search.html" aria-label="Buscar"></a>
 </header>
-<main class="site-main">
 
+
+
+<div class="app-shell">
+  <aside class="sidebar-desktop">
+    <a class="brand" href="index.html">
+      <span class="icon" data-icon="home"></span>
+      Plataforma Subsea Rafaela
+    </a>
+    <nav class="sidebar-nav" id="sidebarNav">
+      <a href="index.html" data-nav="consultar"><span class="icon" data-icon="home"></span>Consultar</a>
+      <a href="ementa.html" data-nav="trilha"><span class="icon" data-icon="trilha"></span>Trilha</a>
+      <a href="search.html" data-nav="buscar"><span class="icon" data-icon="busca"></span>Buscar</a>
+      <a href="prompts.html" data-nav="prompts"><span class="icon" data-icon="prompts"></span>Prompts</a>
+      <a href="progresso.html" data-nav="eu"><span class="icon" data-icon="progresso"></span>Eu</a>
+      <hr>
+      <a href="glossario.html"><span class="icon" data-icon="glossario"></span>Glossário</a>
+      <a href="biblioteca.html"><span class="icon" data-icon="biblioteca"></span>Biblioteca</a>
+      <a href="referencias.html"><span class="icon" data-icon="referencias"></span>Referências</a>
+      <a href="treinamento.html"><span class="icon" data-icon="etapa"></span>Treinamento</a>
+    </nav>
+    <nav class="sidebar-chapters" id="sidebarChapters">
+      
+      <a href="capitulos/m01.html" data-chapter-link="m01">
+        <span class="chapter-dot"></span>01 · Mapa mental da engenharia submarina
+      </a>
+      
+      <a href="capitulos/m02.html" data-chapter-link="m02">
+        <span class="chapter-dot"></span>02 · Desenvolvimento de campo e arquitetura submarina
+      </a>
+      
+      <a href="capitulos/m03.html" data-chapter-link="m03">
+        <span class="chapter-dot"></span>03 · Ambiente marinho, metocean e movimentos
+      </a>
+      
+      <a href="capitulos/m04.html" data-chapter-link="m04">
+        <span class="chapter-dot"></span>04 · Unidades flutuantes, amarração e posicionamento dinâmico
+      </a>
+      
+      <a href="capitulos/m05.html" data-chapter-link="m05">
+        <span class="chapter-dot"></span>05 · Poço submarino, wellhead e árvore de natal
+      </a>
+      
+      <a href="capitulos/m06.html" data-chapter-link="m06">
+        <span class="chapter-dot"></span>06 · Manifolds, jumpers e estruturas submarinas
+      </a>
+      
+      <a href="capitulos/m07.html" data-chapter-link="m07">
+        <span class="chapter-dot"></span>07 · SURF: flowlines, risers e umbilicals
+      </a>
+      
+      <a href="capitulos/m08.html" data-chapter-link="m08">
+        <span class="chapter-dot"></span>08 · Pipelines e flowlines rígidos
+      </a>
+      
+      <a href="capitulos/m09.html" data-chapter-link="m09">
+        <span class="chapter-dot"></span>09 · Risers: configurações, cargas e fadiga
+      </a>
+      
+      <a href="capitulos/m10.html" data-chapter-link="m10">
+        <span class="chapter-dot"></span>10 · Riser flexível: construção, acessórios e integridade
+      </a>
+      
+      <a href="capitulos/m11.html" data-chapter-link="m11">
+        <span class="chapter-dot"></span>11 · Umbilicals e sistemas de controle
+      </a>
+      
+      <a href="capitulos/m12.html" data-chapter-link="m12">
+        <span class="chapter-dot"></span>12 · Flow assurance
+      </a>
+      
+      <a href="capitulos/m13.html" data-chapter-link="m13">
+        <span class="chapter-dot"></span>13 · Materiais, corrosão e proteção
+      </a>
+      
+      <a href="capitulos/m14.html" data-chapter-link="m14">
+        <span class="chapter-dot"></span>14 · Geotecnia submarina, rota e fundações
+      </a>
+      
+      <a href="capitulos/m15.html" data-chapter-link="m15">
+        <span class="chapter-dot"></span>15 · Embarcações, lay systems, ROV e survey
+      </a>
+      
+      <a href="capitulos/m16.html" data-chapter-link="m16">
+        <span class="chapter-dot"></span>16 · Engenharia de instalação e operações marítimas
+      </a>
+      
+      <a href="capitulos/m17.html" data-chapter-link="m17">
+        <span class="chapter-dot"></span>17 · Pull-in de risers: sistema, sequência e interfaces
+      </a>
+      
+      <a href="capitulos/m18.html" data-chapter-link="m18">
+        <span class="chapter-dot"></span>18 · Pré-comissionamento, commissioning e start-up
+      </a>
+      
+      <a href="capitulos/m19.html" data-chapter-link="m19">
+        <span class="chapter-dot"></span>19 · IMR, manutenção, intervenção, reparo e life-of-field
+      </a>
+      
+      <a href="capitulos/m20.html" data-chapter-link="m20">
+        <span class="chapter-dot"></span>20 · Risco, confiabilidade e governança técnica do projeto
+      </a>
+      
+      <a href="capitulos/m21.html" data-chapter-link="m21">
+        <span class="chapter-dot"></span>21 · Desinstalação e descomissionamento de sistemas submarinos
+      </a>
+      
+      <a href="capitulos/m22.html" data-chapter-link="m22">
+        <span class="chapter-dot"></span>22 · Tecnologias emergentes e rumo da engenharia submarina
+      </a>
+      
+      <a href="capitulos/m23.html" data-chapter-link="m23">
+        <span class="chapter-dot"></span>23 · Gestão de interfaces técnicas, documentos e configuração
+      </a>
+      
+      <a href="capitulos/m24.html" data-chapter-link="m24">
+        <span class="chapter-dot"></span>24 · FAT, EFAT, SIT, SAT e readiness de integração
+      </a>
+      
+    </nav>
+    <button class="theme-toggle" id="themeToggle"><span class="icon" data-icon="tema"></span>Tema</button>
+  </aside>
+
+  <main class="site-main wide">
+  
 <section class="hub-shell home-shell">
-  <h1>Plataforma Subsea Rafaela</h1>
-  <p class="hub-intro">Engenharia submarina aplicada à gestão de projetos offshore. Versão em desenvolvimento (V4.0, Sprint 1) — este esqueleto ainda não tem o design final (Sprint 2) nem a gamificação (Sprint 8).</p>
-  <h2>Capítulos</h2>
-  <div class="chapter-list">
-    
-    <a class="chapter-card" href="capitulos/m01.html" data-chapter-link="m01">
-      <span class="chapter-card-no">01</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Mapa mental da engenharia submarina</span>
-        <span class="chapter-card-subtitle">Enxergar o campo como um sistema de sistemas, não como equipamentos isolados.</span>
+  <div class="home-greeting">
+    <h1>Bem-vinda de volta</h1>
+    <p class="hub-intro">Engenharia submarina aplicada à gestão de projetos offshore. Protótipo do Sprint 2 — design aplicado, conteúdo ainda em extração/reescrita (Sprints 4 a 6).</p>
+  </div>
+
+  <div class="home-section" id="continueSection" hidden>
+    <h2>Continuar</h2>
+    <a class="card continue-card" id="continueCard" href="#">
+      <span class="icon" data-icon="proximo"></span>
+      <span>
+        <strong id="continueTitle"></strong><br>
+        <small>Continuar de onde parou</small>
       </span>
     </a>
-    
-    <a class="chapter-card" href="capitulos/m02.html" data-chapter-link="m02">
-      <span class="chapter-card-no">02</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Desenvolvimento de campo e arquitetura submarina</span>
-        <span class="chapter-card-subtitle">Por que o campo tem a arquitetura que tem — e quais trade-offs governam o projeto.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m03.html" data-chapter-link="m03">
-      <span class="chapter-card-no">03</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Ambiente marinho, metocean e movimentos</span>
-        <span class="chapter-card-subtitle">As cargas ambientais entram em quase todas as decisões, mesmo quando ninguém está falando de “oceano”.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m04.html" data-chapter-link="m04">
-      <span class="chapter-card-no">04</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Unidades flutuantes, amarração e posicionamento dinâmico</span>
-        <span class="chapter-card-subtitle">O host e os vessels são parte do sistema mecânico.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m05.html" data-chapter-link="m05">
-      <span class="chapter-card-no">05</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Poço submarino, wellhead e árvore de natal</span>
-        <span class="chapter-card-subtitle">Entender o caminho do fluido e as barreiras sem virar especialista em completação.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m06.html" data-chapter-link="m06">
-      <span class="chapter-card-no">06</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Manifolds, jumpers e estruturas submarinas</span>
-        <span class="chapter-card-subtitle">A lógica de coleta, isolamento e conexão no seabed.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m07.html" data-chapter-link="m07">
-      <span class="chapter-card-no">07</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">SURF: flowlines, risers e umbilicals</span>
-        <span class="chapter-card-subtitle">O pacote que fisicamente conecta o campo submarino ao host.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m08.html" data-chapter-link="m08">
-      <span class="chapter-card-no">08</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Pipelines e flowlines rígidos</span>
-        <span class="chapter-card-subtitle">Pressão, colapso, estabilidade, spans, buckling e instalação.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m09.html" data-chapter-link="m09">
-      <span class="chapter-card-no">09</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Risers: configurações, cargas e fadiga</span>
-        <span class="chapter-card-subtitle">Por que uma “linha vertical” é, na prática, uma estrutura dinâmica.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m10.html" data-chapter-link="m10">
-      <span class="chapter-card-no">10</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Riser flexível: construção, acessórios e integridade</span>
-        <span class="chapter-card-subtitle">A camada externa esconde um sistema mecânico sofisticado.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m11.html" data-chapter-link="m11">
-      <span class="chapter-card-no">11</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Umbilicals e sistemas de controle</span>
-        <span class="chapter-card-subtitle">O “sistema nervoso” que faz o campo obedecer e responder.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m12.html" data-chapter-link="m12">
-      <span class="chapter-card-no">12</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Flow assurance</span>
-        <span class="chapter-card-subtitle">Garantir que produção real atravesse a arquitetura em todos os estados operacionais.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m13.html" data-chapter-link="m13">
-      <span class="chapter-card-no">13</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Materiais, corrosão e proteção</span>
-        <span class="chapter-card-subtitle">A escolha de material está ligada ao fluido, fabricação, instalação e vida de campo.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m14.html" data-chapter-link="m14">
-      <span class="chapter-card-no">14</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Geotecnia submarina, rota e fundações</span>
-        <span class="chapter-card-subtitle">O seabed é um componente estrutural do sistema.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m15.html" data-chapter-link="m15">
-      <span class="chapter-card-no">15</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Embarcações, lay systems, ROV e survey</span>
-        <span class="chapter-card-subtitle">A campanha offshore é uma fábrica móvel com recursos escassos.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m16.html" data-chapter-link="m16">
-      <span class="chapter-card-no">16</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Engenharia de instalação e operações marítimas</span>
-        <span class="chapter-card-subtitle">O projeto temporário pode ser mais crítico que a condição final.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m17.html" data-chapter-link="m17">
-      <span class="chapter-card-no">17</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Pull-in de risers: sistema, sequência e interfaces</span>
-        <span class="chapter-card-subtitle">O caso central do seu projeto, agora colocado dentro do contexto completo.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m18.html" data-chapter-link="m18">
-      <span class="chapter-card-no">18</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Pré-comissionamento, commissioning e start-up</span>
-        <span class="chapter-card-subtitle">Provar integridade, limpeza, funcionalidade e prontidão antes de introduzir produção.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m19.html" data-chapter-link="m19">
-      <span class="chapter-card-no">19</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">IMR, manutenção, intervenção, reparo e life-of-field</span>
-        <span class="chapter-card-subtitle">Projetar já pensando em como detectar, avaliar, manter, intervir, substituir e recuperar.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m20.html" data-chapter-link="m20">
-      <span class="chapter-card-no">20</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Risco, confiabilidade e governança técnica do projeto</span>
-        <span class="chapter-card-subtitle">Transformar complexidade em decisões rastreáveis.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m21.html" data-chapter-link="m21">
-      <span class="chapter-card-no">21</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Desinstalação e descomissionamento de sistemas submarinos</span>
-        <span class="chapter-card-subtitle">Como encerrar um sistema com segurança quando condição, inventário e incerteza já não são os mesmos da instalação.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m22.html" data-chapter-link="m22">
-      <span class="chapter-card-no">22</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Tecnologias emergentes e rumo da engenharia submarina</span>
-        <span class="chapter-card-subtitle">Um radar para reconhecer o que já é comercial, o que está escalando e o que ainda depende de qualificação.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m23.html" data-chapter-link="m23">
-      <span class="chapter-card-no">23</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">Gestão de interfaces técnicas, documentos e configuração</span>
-        <span class="chapter-card-subtitle">Onde a engenharia de vários fornecedores vira um único sistema — ou vira retrabalho.</span>
-      </span>
-    </a>
-    
-    <a class="chapter-card" href="capitulos/m24.html" data-chapter-link="m24">
-      <span class="chapter-card-no">24</span>
-      <span class="chapter-card-body">
-        <span class="chapter-card-title">FAT, EFAT, SIT, SAT e readiness de integração</span>
-        <span class="chapter-card-subtitle">Testar não é “ver funcionar”: é produzir evidência de que requisitos e interfaces estão satisfeitos na configuração correta.</span>
-      </span>
-    </a>
-    
+  </div>
+
+  <div class="home-section">
+    <h2>Hoje eu preciso...</h2>
+    <div class="situations-grid">
+      <a class="card situation-card" href="search.html">
+        <span class="icon" data-icon="pergunta"></span>
+        <strong>Entender um tema para uma reunião</strong>
+        <small>Buscar por assunto, equipamento ou sigla</small>
+      </a>
+      <a class="card situation-card" href="capitulos/m05.html">
+        <span class="icon" data-icon="diagrama"></span>
+        <strong>Entender um equipamento</strong>
+        <small>Poço submarino, wellhead e árvore de natal</small>
+      </a>
+      <a class="card situation-card" href="prompts.html">
+        <span class="icon" data-icon="documento"></span>
+        <strong>Analisar um documento</strong>
+        <small>Prompts prontos para especificação, contrato, drawing</small>
+      </a>
+      <a class="card situation-card" href="capitulos/m17.html">
+        <span class="icon" data-icon="etapa"></span>
+        <strong>Acompanhar uma operação</strong>
+        <small>Pull-in de risers: sistema, sequência e interfaces</small>
+      </a>
+      <a class="card situation-card" href="capitulos/m19.html">
+        <span class="icon" data-icon="atencao"></span>
+        <strong>Tratar IMR / intervenção</strong>
+        <small>Inspeção, manutenção, intervenção, reparo</small>
+      </a>
+      <a class="card situation-card" href="capitulos/m21.html">
+        <span class="icon" data-icon="exportar"></span>
+        <strong>Retirada / descomissionamento</strong>
+        <small>Desinstalação e descomissionamento de sistemas</small>
+      </a>
+    </div>
+  </div>
+
+  <div class="home-section">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
+      <h2>Trilha</h2>
+      <a href="ementa.html" class="text-small">Ver ementa completa →</a>
+    </div>
+    <p class="text-small">O agrupamento em seis fases nomeadas ainda depende de decisão de conteúdo (BACKLOG B-026); por ora o medidor mostra progresso geral.</p>
+    <div class="depth-meter" style="margin-bottom: 16px;">
+      <div class="depth-meter-track" id="homeDepthTrack">
+        <div class="depth-meter-zone"></div><div class="depth-meter-zone"></div><div class="depth-meter-zone"></div>
+        <div class="depth-meter-zone"></div><div class="depth-meter-zone"></div><div class="depth-meter-zone"></div>
+      </div>
+      <div class="depth-meter-label" id="homeDepthLabel"></div>
+    </div>
+    <div class="trail-map">
+      
+      <a class="trail-point" href="capitulos/m01.html" data-chapter-link="m01" title="Mapa mental da engenharia submarina">01</a>
+      
+      <a class="trail-point" href="capitulos/m02.html" data-chapter-link="m02" title="Desenvolvimento de campo e arquitetura submarina">02</a>
+      
+      <a class="trail-point" href="capitulos/m03.html" data-chapter-link="m03" title="Ambiente marinho, metocean e movimentos">03</a>
+      
+      <a class="trail-point" href="capitulos/m04.html" data-chapter-link="m04" title="Unidades flutuantes, amarração e posicionamento dinâmico">04</a>
+      
+      <a class="trail-point" href="capitulos/m05.html" data-chapter-link="m05" title="Poço submarino, wellhead e árvore de natal">05</a>
+      
+      <a class="trail-point" href="capitulos/m06.html" data-chapter-link="m06" title="Manifolds, jumpers e estruturas submarinas">06</a>
+      
+      <a class="trail-point" href="capitulos/m07.html" data-chapter-link="m07" title="SURF: flowlines, risers e umbilicals">07</a>
+      
+      <a class="trail-point" href="capitulos/m08.html" data-chapter-link="m08" title="Pipelines e flowlines rígidos">08</a>
+      
+      <a class="trail-point" href="capitulos/m09.html" data-chapter-link="m09" title="Risers: configurações, cargas e fadiga">09</a>
+      
+      <a class="trail-point" href="capitulos/m10.html" data-chapter-link="m10" title="Riser flexível: construção, acessórios e integridade">10</a>
+      
+      <a class="trail-point" href="capitulos/m11.html" data-chapter-link="m11" title="Umbilicals e sistemas de controle">11</a>
+      
+      <a class="trail-point" href="capitulos/m12.html" data-chapter-link="m12" title="Flow assurance">12</a>
+      
+      <a class="trail-point" href="capitulos/m13.html" data-chapter-link="m13" title="Materiais, corrosão e proteção">13</a>
+      
+      <a class="trail-point" href="capitulos/m14.html" data-chapter-link="m14" title="Geotecnia submarina, rota e fundações">14</a>
+      
+      <a class="trail-point" href="capitulos/m15.html" data-chapter-link="m15" title="Embarcações, lay systems, ROV e survey">15</a>
+      
+      <a class="trail-point" href="capitulos/m16.html" data-chapter-link="m16" title="Engenharia de instalação e operações marítimas">16</a>
+      
+      <a class="trail-point" href="capitulos/m17.html" data-chapter-link="m17" title="Pull-in de risers: sistema, sequência e interfaces">17</a>
+      
+      <a class="trail-point" href="capitulos/m18.html" data-chapter-link="m18" title="Pré-comissionamento, commissioning e start-up">18</a>
+      
+      <a class="trail-point" href="capitulos/m19.html" data-chapter-link="m19" title="IMR, manutenção, intervenção, reparo e life-of-field">19</a>
+      
+      <a class="trail-point" href="capitulos/m20.html" data-chapter-link="m20" title="Risco, confiabilidade e governança técnica do projeto">20</a>
+      
+      <a class="trail-point" href="capitulos/m21.html" data-chapter-link="m21" title="Desinstalação e descomissionamento de sistemas submarinos">21</a>
+      
+      <a class="trail-point" href="capitulos/m22.html" data-chapter-link="m22" title="Tecnologias emergentes e rumo da engenharia submarina">22</a>
+      
+      <a class="trail-point" href="capitulos/m23.html" data-chapter-link="m23" title="Gestão de interfaces técnicas, documentos e configuração">23</a>
+      
+      <a class="trail-point" href="capitulos/m24.html" data-chapter-link="m24" title="FAT, EFAT, SIT, SAT e readiness de integração">24</a>
+      
+    </div>
   </div>
 </section>
 
-</main>
+  </main>
+
+  
+</div>
+
+<nav class="tabbar-mobile" id="tabbarMobile">
+  <a href="index.html" data-tab="consultar"><span class="icon" data-icon="home"></span>Consultar</a>
+  <a href="ementa.html" data-tab="trilha"><span class="icon" data-icon="trilha"></span>Trilha</a>
+  <a href="search.html" data-tab="buscar"><span class="icon" data-icon="busca"></span>Buscar</a>
+  <a href="prompts.html" data-tab="prompts"><span class="icon" data-icon="prompts"></span>Prompts</a>
+  <a href="progresso.html" data-tab="eu"><span class="icon" data-icon="progresso"></span>Eu</a>
+</nav>
+
 <footer class="site-footer">
-  <p>Conteúdo educacional, fontes públicas. Governança do projeto em <code>/governanca/</code>. V4.0 em desenvolvimento — esta é a fundação técnica do Sprint 1, sem o design final (Sprint 2).</p>
+  <p>Conteúdo educacional, fontes públicas. Governança do projeto em <code>/governanca/</code>. V4.0 em desenvolvimento (Sprint 2 — design system e protótipo).</p>
 </footer>
 <script>window.SUBSEA_GLOSSARIO = [{"term": "A&R", "full": "Abandonment & Recovery", "definition": "Sistema/operação para abandonar temporariamente e recuperar uma linha durante instalação.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-a-r", "category": "sigla"}, {"term": "AHC", "full": "Active Heave Compensation", "definition": "Compensação ativa de heave em winches/cranes para reduzir movimento vertical relativo.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-ahc", "category": "sigla"}, {"term": "AHTS", "full": "Anchor Handling Tug Supply", "definition": "Embarcação de apoio, reboque e anchor handling.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-ahts", "category": "sigla"}, {"term": "ANM", "full": "Árvore de Natal Molhada", "definition": "Equipamento submarino instalado no poço para controlar produção/injeção e suas interfaces.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-anm", "category": "sigla"}, {"term": "Annulus", "full": "Anular", "definition": "Espaço anular; em flexíveis, região entre barreira interna e capa externa; em poços, espaço entre strings.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-annulus", "category": "termo"}, {"term": "ASOG", "full": "Activity Specific Operating Guidelines", "definition": "Matriz operacional de DP com estados/limites para uma atividade específica.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-asog", "category": "sigla"}, {"term": "Bellmouth", "full": "Bellmouth", "definition": "Guia de entrada em forma alargada usado em I/J-tubes e riser interfaces.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-bellmouth", "category": "termo"}, {"term": "Bend restrictor", "full": "Restritor de curvatura", "definition": "Dispositivo articulado que limita curvatura mínima.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-bend-restrictor", "category": "termo"}, {"term": "Bend stiffener", "full": "Enrijecedor de curvatura", "definition": "Componente geralmente polimérico que aumenta gradualmente rigidez na terminação.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-bend-stiffener", "category": "termo"}, {"term": "BOP", "full": "Blowout Preventer", "definition": "Conjunto de segurança de controle de poço durante perfuração/intervenção; não é a árvore de produção.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-bop", "category": "sigla"}, {"term": "Buckling", "full": "Flambagem", "definition": "Instabilidade estrutural local/global sob compressão, flexão e pressão.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-buckling", "category": "termo"}, {"term": "CAM", "full": "Critical Activity Mode", "definition": "Configuração de DP preparada para preservar redundância durante atividade crítica.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-cam", "category": "sigla"}, {"term": "Carousel", "full": "Carrossel", "definition": "Armazenamento rotativo de flexíveis/umbilicals/cables em embarcação ou base.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-carousel", "category": "termo"}, {"term": "Cathodic protection", "full": "Proteção catódica", "definition": "Controle de corrosão externa por anodos galvânicos ou corrente impressa.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-cathodic-protection", "category": "termo"}, {"term": "Choke", "full": "Choke", "definition": "Válvula/restrição de controle de vazão e pressão.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-choke", "category": "termo"}, {"term": "Code break", "full": "Quebra de código", "definition": "Fronteira onde muda o código/norma de projeto aplicável.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-code-break", "category": "termo"}, {"term": "CoG", "full": "Center of Gravity", "definition": "Centro de gravidade, crítico para lifting e transporte.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-cog", "category": "termo"}, {"term": "Configuration baseline", "full": "Baseline de configuração", "definition": "Conjunto controlado de versões de hardware, software, documentos e parâmetros aceito em um gate.", "why": "Sem baseline você pode “aprovar” teste de uma configuração e instalar outra.", "id": "gloss-configuration-baseline", "category": "sigla"}, {"term": "CPT", "full": "Cone Penetration Test", "definition": "Ensaio geotécnico in situ para caracterizar solo.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-cpt", "category": "sigla"}, {"term": "CRA", "full": "Corrosion Resistant Alloy", "definition": "Liga resistente à corrosão, como inox/níquel em aplicações específicas.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-cra", "category": "sigla"}, {"term": "CSV", "full": "Construction Support Vessel", "definition": "Embarcação de construção/subsea support.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-csv", "category": "sigla"}, {"term": "DAF", "full": "Dynamic Amplification Factor", "definition": "Fator que representa amplificação dinâmica de carga em certos métodos.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-daf", "category": "sigla"}, {"term": "Decommissioning", "full": "Descomissionamento", "definition": "Planejamento e execução do encerramento definitivo de sistemas, incluindo limpeza, desconexão, retirada/destinação e registros.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-decommissioning", "category": "termo"}, {"term": "DP", "full": "Dynamic Positioning", "definition": "Controle automático de posição e heading por sensores, potência e propulsores.", "why": "Porque perda de posição pode alterar carga, clearance e segurança de uma operação submarina.", "id": "gloss-dp", "category": "sigla"}, {"term": "DSV", "full": "Diving Support Vessel", "definition": "Embarcação de suporte a mergulho.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-dsv", "category": "sigla"}, {"term": "EFAT", "full": "Extended / Electrical / Electronic FAT — nomenclatura dependente do projeto", "definition": "Termo usado em alguns projetos para testes de fábrica ampliados ou de integração elétrica/eletrônica.", "why": "Não assuma significado universal; leia o contrato/procedure e o boundary do teste.", "id": "gloss-efat", "category": "sigla"}, {"term": "End fitting", "full": "Terminal de flexível", "definition": "Componente que termina camadas do flexible pipe e transfere carga/pressão.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-end-fitting", "category": "termo"}, {"term": "EPCI", "full": "Engineering, Procurement, Construction and Installation", "definition": "Modelo de escopo integrado que inclui engenharia, suprimentos, fabricação/construção e instalação.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-epci", "category": "sigla"}, {"term": "EPRD", "full": "Engineering, Procurement, Removal and Disposal / escopo contratual conforme projeto", "definition": "Sigla usada em certos contratos/portfólios para engenharia, suprimentos, retirada e destinação; confirme definição contratual.", "why": "É um bom exemplo de sigla cujo significado exato deve vir do contrato, não da memória.", "id": "gloss-eprd", "category": "sigla"}, {"term": "EPU", "full": "Electrical Power Unit", "definition": "Unidade de potência elétrica em arquitetura de controle submarino.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-epu", "category": "sigla"}, {"term": "ESD", "full": "Emergency Shutdown", "definition": "Shutdown de emergência.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-esd", "category": "sigla"}, {"term": "FAT", "full": "Factory Acceptance Test", "definition": "Teste de aceitação em fábrica.", "why": "Porque prova parte dos requisitos antes do equipamento chegar ao site — mas não todas as interfaces.", "id": "gloss-fat", "category": "sigla"}, {"term": "Flowline", "full": "Linha de escoamento", "definition": "Linha no seabed que conecta poços/estruturas a riser/export system.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-flowline", "category": "termo"}, {"term": "Flying lead", "full": "Flying lead", "definition": "Conexão flexível curta, elétrica/hidráulica, instalada subsea.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-flying-lead", "category": "termo"}, {"term": "FMEA", "full": "Failure Modes and Effects Analysis", "definition": "Análise de modos de falha e efeitos.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-fmea", "category": "sigla"}, {"term": "FMECA", "full": "Failure Modes, Effects and Criticality Analysis", "definition": "FMEA com avaliação de criticidade.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-fmeca", "category": "sigla"}, {"term": "FPSO", "full": "Floating Production Storage and Offloading", "definition": "Unidade flutuante de produção, armazenamento e transferência.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-fpso", "category": "sigla"}, {"term": "FPU", "full": "Floating Production Unit", "definition": "Termo geral para unidade flutuante de produção.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-fpu", "category": "sigla"}, {"term": "Free span", "full": "Vão livre", "definition": "Trecho de pipeline sem suporte contínuo do seabed.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-free-span", "category": "termo"}, {"term": "FSHR", "full": "Free Standing Hybrid Riser", "definition": "Riser híbrido com seção autoportante/tower e conexão flexível ao host.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-fshr", "category": "sigla"}, {"term": "Hang-off", "full": "Hang-off", "definition": "Interface que suporta/transfere carga do riser/umbilical ao host.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-hang-off", "category": "termo"}, {"term": "HAZID", "full": "Hazard Identification", "definition": "Estudo estruturado de identificação de perigos.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-hazid", "category": "sigla"}, {"term": "HAZOP", "full": "Hazard and Operability Study", "definition": "Estudo de desvios de processo/operabilidade por guidewords.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-hazop", "category": "sigla"}, {"term": "Heading", "full": "Rumo/orientação", "definition": "Orientação angular do vessel/host.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-heading", "category": "termo"}, {"term": "HFP", "full": "Hybrid Flexible Pipe", "definition": "Conceito de flexible pipe híbrido com soluções de materiais para desafios específicos, como SCC-CO₂.", "why": "É exemplo de tecnologia em qualificação; exige olhar para service envelope e evidência, não apenas “nova geração”.", "id": "gloss-hfp", "category": "sigla"}, {"term": "HPU", "full": "Hydraulic Power Unit", "definition": "Unidade de potência hidráulica.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-hpu", "category": "sigla"}, {"term": "Hs", "full": "Significant Wave Height", "definition": "Altura significativa de onda.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-hs", "category": "termo"}, {"term": "Hydrate", "full": "Hidrato", "definition": "Sólido cristalino água+gás que pode bloquear linhas sob certas P/T.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-hydrate", "category": "termo"}, {"term": "I-tube", "full": "I-tube", "definition": "Tubo/guia estrutural na unidade por onde riser/umbilical pode ser pull-in.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-i-tube", "category": "termo"}, {"term": "ILT", "full": "In-Line Tee", "definition": "Tê integrado à linha principal para derivação.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-ilt", "category": "sigla"}, {"term": "IMR", "full": "Inspection, Maintenance and Repair", "definition": "Inspeção, manutenção e reparo subsea.", "why": "Ajuda você a separar detecção, avaliação e intervenção e a planejar vessel/tooling antes da urgência.", "id": "gloss-imr", "category": "sigla"}, {"term": "INS", "full": "Inertial Navigation System", "definition": "Sistema inercial de navegação/posicionamento.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-ins", "category": "sigla"}, {"term": "ITP", "full": "Inspection and Test Plan", "definition": "Plano de inspeção e testes com acceptance/witness/hold points.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-itp", "category": "sigla"}, {"term": "J-lay", "full": "J-lay", "definition": "Método de instalação de linha rígida com saída quase vertical.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-j-lay", "category": "termo"}, {"term": "J-tube", "full": "J-tube", "definition": "Guia curvo em plataforma/estrutura para entrada/saída de linha.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-j-tube", "category": "termo"}, {"term": "Jumper", "full": "Jumper", "definition": "Conexão curta entre equipamentos/linhas subsea.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-jumper", "category": "termo"}, {"term": "KP", "full": "Kilometre Point", "definition": "Coordenada longitudinal de rota de pipeline.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-kp", "category": "sigla"}, {"term": "LARS", "full": "Launch and Recovery System", "definition": "Sistema de lançamento/recuperação de ROV/equipamento.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-lars", "category": "sigla"}, {"term": "Layback", "full": "Layback", "definition": "Distância horizontal entre referência do vessel e ponto submarino/touchdown.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-layback", "category": "termo"}, {"term": "Lazy wave", "full": "Lazy wave", "definition": "Configuração com buoyancy distribuída que cria uma onda na linha.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-lazy-wave", "category": "termo"}, {"term": "LBL", "full": "Long Baseline", "definition": "Sistema acústico de posicionamento submarino.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-lbl", "category": "sigla"}, {"term": "Line pull", "full": "Line pull", "definition": "Força de tração entregue por winch/jack na linha; precisa ser claramente definida quanto à posição.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-line-pull", "category": "termo"}, {"term": "Load path", "full": "Caminho de carga", "definition": "Sequência física de componentes e estruturas pela qual uma força/reação é transmitida até ser equilibrada.", "why": "Porque capacidade de um único equipamento não prova a segurança do sistema; as reações precisam fechar até a estrutura.", "id": "gloss-load-path", "category": "termo"}, {"term": "MBES", "full": "Multibeam Echosounder", "definition": "Sonar multifeixe para batimetria.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-mbes", "category": "sigla"}, {"term": "MBL", "full": "Minimum Breaking Load", "definition": "Carga mínima de ruptura declarada; não é WLL.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-mbl", "category": "sigla"}, {"term": "MBR", "full": "Minimum Bend Radius", "definition": "Raio mínimo de curvatura admissível para uma linha/flexível em condição definida.", "why": "Porque curvatura excessiva pode danificar ou invalidar uma linha/flexível.", "id": "gloss-mbr", "category": "sigla"}, {"term": "MCS", "full": "Master Control Station", "definition": "Estação principal de controle topside.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-mcs", "category": "sigla"}, {"term": "MDR", "full": "Manufacturing Data Record", "definition": "Dossiê de fabricação/qualidade.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-mdr", "category": "sigla"}, {"term": "MEG", "full": "Monoethylene Glycol", "definition": "Químico usado, entre outras funções, na gestão de hidratos.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-meg", "category": "sigla"}, {"term": "Messenger line", "full": "Linha mensageira", "definition": "Linha leve usada para estabelecer caminho e puxar cabo/wire principal.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-messenger-line", "category": "termo"}, {"term": "Metocean", "full": "Meteorology + Oceanography", "definition": "Dados de vento, ondas, corrente, níveis e estatística ambiental.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-metocean", "category": "termo"}, {"term": "MOC", "full": "Management of Change", "definition": "Processo formal de gestão de mudança.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-moc", "category": "sigla"}, {"term": "Mooring", "full": "Amarração", "definition": "Sistema de linhas/âncoras que restringe posição da unidade.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-mooring", "category": "termo"}, {"term": "MRU", "full": "Motion Reference Unit", "definition": "Sensor de movimento/atitude do vessel.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-mru", "category": "sigla"}, {"term": "MWS", "full": "Marine Warranty Survey", "definition": "Verificação independente de marine operations conforme escopo contratual.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-mws", "category": "sigla"}, {"term": "NCR", "full": "Non-Conformance Report", "definition": "Registro formal de não conformidade.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-ncr", "category": "sigla"}, {"term": "NDT/NDE", "full": "Non-Destructive Testing/Examination", "definition": "Ensaios não destrutivos.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-ndt-nde", "category": "sigla"}, {"term": "OCC", "full": "Onshore Control Center", "definition": "Centro em terra para suporte/operação remota de atividades offshore/ROV conforme arquitetura.", "why": "Muda telecom, cyber, roles, handover e contingency.", "id": "gloss-occ", "category": "sigla"}, {"term": "PLEM", "full": "Pipeline End Manifold", "definition": "Terminação de pipeline com função de manifold.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-plem", "category": "sigla"}, {"term": "PLET", "full": "Pipeline End Termination", "definition": "Estrutura de terminação de pipeline/flowline.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-plet", "category": "sigla"}, {"term": "PLSV", "full": "Pipe-Laying Support Vessel", "definition": "Embarcação de lançamento/apoio de linhas submarinas.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-plsv", "category": "sigla"}, {"term": "Porch", "full": "Riser porch", "definition": "Estrutura no host que suporta/conecta riser em certas arquiteturas.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-porch", "category": "termo"}, {"term": "Pre-commissioning", "full": "Pré-comissionamento", "definition": "Atividades de limpeza, teste, preservação e preparação antes do commissioning.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-pre-commissioning", "category": "termo"}, {"term": "Pull-in head", "full": "Cabeça de pull-in", "definition": "Interface temporária/permanente usada para aplicar tração ao riser/umbilical.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-pull-in-head", "category": "termo"}, {"term": "RAO", "full": "Response Amplitude Operator", "definition": "Relação frequência-direção entre excitação de onda e resposta de estrutura/vessel.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-rao", "category": "sigla"}, {"term": "Reel-lay", "full": "Reel-lay", "definition": "Instalação de rigid pipe pré-fabricado enrolado em reel.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-reel-lay", "category": "termo"}, {"term": "Riser", "full": "Riser", "definition": "Linha dinâmica/estrutural que conecta seabed ao host.", "why": "Porque é uma interface dinâmica crítica entre seabed e host, normalmente governada por cargas/fadiga e instalação.", "id": "gloss-riser", "category": "termo"}, {"term": "ROV", "full": "Remotely Operated Vehicle", "definition": "Veículo submarino operado remotamente.", "why": "Porque acesso, tooling e visibilidade podem definir se uma operação é executável.", "id": "gloss-rov", "category": "sigla"}, {"term": "S-lay", "full": "S-lay", "definition": "Método de instalação de rigid pipeline com stinger e forma global em S.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-s-lay", "category": "termo"}, {"term": "SAT", "full": "Site Acceptance Test", "definition": "Teste de aceitação após instalação no site.", "why": "Porque verifica efeitos da instalação e a configuração no site.", "id": "gloss-sat", "category": "sigla"}, {"term": "SCC-CO₂", "full": "Stress Corrosion Cracking associado a CO₂", "definition": "Mecanismo de trincamento assistido por ambiente/tensão relevante a certas armaduras metálicas em condições específicas.", "why": "Pode governar integridade e até o método de recovery de flexíveis; não deve ser generalizado para todo riser.", "id": "gloss-scc-co2", "category": "sigla"}, {"term": "SCM", "full": "Subsea Control Module", "definition": "Módulo de controle montado em XT/manifold/equipamento submarino.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-scm", "category": "sigla"}, {"term": "SCR", "full": "Steel Catenary Riser", "definition": "Riser de aço em catenária.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-scr", "category": "sigla"}, {"term": "SDU", "full": "Subsea Distribution Unit", "definition": "Unidade submarina de distribuição de controle/energia/fluidos.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-sdu", "category": "sigla"}, {"term": "Seafastening", "full": "Fixação de transporte", "definition": "Estruturas/amarrações que mantêm carga segura no vessel durante trânsito.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-seafastening", "category": "termo"}, {"term": "Sheave", "full": "Polia", "definition": "Elemento que guia cabo/rope e muda direção de força.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-sheave", "category": "termo"}, {"term": "SIMOPS", "full": "Simultaneous Operations", "definition": "Operações simultâneas com análise de interferências e riscos.", "why": "Porque atividades seguras isoladamente podem ser incompatíveis quando executadas juntas.", "id": "gloss-simops", "category": "sigla"}, {"term": "SIT", "full": "System Integration Test", "definition": "Teste integrado de subsistemas antes do site quando possível.", "why": "Porque expõe incompatibilidades que FATs isolados não veem.", "id": "gloss-sit", "category": "sigla"}, {"term": "Slugging", "full": "Slugging", "definition": "Regime multifásico com grandes pacotes alternados de líquido/gás.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-slugging", "category": "termo"}, {"term": "SLWR", "full": "Steel Lazy Wave Riser", "definition": "Riser rígido de aço em configuração lazy wave.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-slwr", "category": "sigla"}, {"term": "Spool", "full": "Spool piece", "definition": "Trecho de piping/linha usado para conexão entre interfaces.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-spool", "category": "termo"}, {"term": "Spread mooring", "full": "Amarração distribuída", "definition": "Linhas de amarração distribuídas ao redor do host.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-spread-mooring", "category": "termo"}, {"term": "SPS", "full": "Subsea Production System", "definition": "Sistema de produção submarina: trees, manifolds, controls, connectors etc.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-sps", "category": "sigla"}, {"term": "SURF", "full": "Subsea Umbilicals, Risers and Flowlines", "definition": "Pacote de umbilicals, risers e flowlines.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-surf", "category": "sigla"}, {"term": "SWL", "full": "Safe Working Load", "definition": "Carga de trabalho segura conforme definição aplicável ao equipamento.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-swl", "category": "sigla"}, {"term": "TAM", "full": "Task Appropriate Mode", "definition": "Modo/configuração de DP apropriado à tarefa em determinada condição.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-tam", "category": "sigla"}, {"term": "TCP", "full": "Thermoplastic Composite Pipe", "definition": "Tubo compósito termoplástico com reforço estrutural, usado em aplicações offshore específicas.", "why": "Pode alterar peso, corrosão, instalação e qualification; maturidade depende do serviço.", "id": "gloss-tcp", "category": "sigla"}, {"term": "Tensioner", "full": "Tensionador", "definition": "Equipamento de lay system que aplica/controle tensão na linha.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-tensioner", "category": "termo"}, {"term": "Tie-back", "full": "Tie-back", "definition": "Conexão de novo poço/campo a infraestrutura existente.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-tie-back", "category": "termo"}, {"term": "TMS", "full": "Tether Management System", "definition": "Sistema que gerencia tether do ROV, frequentemente ligado ao LARS.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-tms", "category": "sigla"}, {"term": "Top angle", "full": "Ângulo de topo", "definition": "Ângulo do riser junto à interface superior.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-top-angle", "category": "termo"}, {"term": "Touchdown point", "full": "Ponto de toque", "definition": "Ponto onde a linha/riser encontra o seabed.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-touchdown-point", "category": "termo"}, {"term": "Touchdown zone", "full": "Zona de toque", "definition": "Região variável de contato com seabed ao redor do touchdown.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-touchdown-zone", "category": "termo"}, {"term": "TQ", "full": "Technical Query", "definition": "Consulta técnica formal que requer resposta rastreável.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-tq", "category": "sigla"}, {"term": "TTR", "full": "Top Tensioned Riser", "definition": "Riser vertical mantido com tensão no topo.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-ttr", "category": "sigla"}, {"term": "Turret", "full": "Turret", "definition": "Sistema de amarração/transferência que pode permitir rotação da FPSO.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-turret", "category": "termo"}, {"term": "USBL", "full": "Ultra-Short Baseline", "definition": "Posicionamento acústico submarino relativo ao transdutor do vessel.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-usbl", "category": "sigla"}, {"term": "UTA", "full": "Umbilical Termination Assembly", "definition": "Terminação submarina do umbilical.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-uta", "category": "sigla"}, {"term": "VDRL", "full": "Vendor Document Requirement List", "definition": "Lista contratual de documentos requeridos do fornecedor.", "why": "Porque atraso/maturidade do vendor data pode bloquear fabricação, testes e instalação.", "id": "gloss-vdrl", "category": "sigla"}, {"term": "VIV", "full": "Vortex-Induced Vibration", "definition": "Vibração induzida pelo desprendimento de vórtices em fluxo.", "why": "Porque vibração por vórtices pode dominar fadiga de linhas/risers.", "id": "gloss-viv", "category": "sigla"}, {"term": "Weather window", "full": "Janela meteorológica", "definition": "Período previsto em que critérios ambientais de operação são atendidos.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-weather-window", "category": "termo"}, {"term": "Wellhead", "full": "Cabeça de poço", "definition": "Interface estrutural/de pressão no topo do poço subsea.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-wellhead", "category": "termo"}, {"term": "Wire rope", "full": "Cabo de aço", "definition": "Elemento de tração usado em winches/rigging.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-wire-rope", "category": "termo"}, {"term": "WLL", "full": "Working Load Limit", "definition": "Limite de carga de trabalho declarado para item de rigging/equipamento.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-wll", "category": "sigla"}, {"term": "WROV", "full": "Work-class ROV", "definition": "ROV de trabalho com potência, manipuladores e tooling para intervenção submarina.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-wrov", "category": "sigla"}, {"term": "XT", "full": "Christmas Tree / árvore de natal", "definition": "Conjunto subsea de válvulas/interfaces para controlar o poço em produção/injeção.", "why": "Porque reconhecer este termo ajuda você a conectar linguagem técnica a interface, risco, documento ou decisão de projeto.", "id": "gloss-xt", "category": "sigla"}];</script>
 <script src="assets/app.js"></script>
