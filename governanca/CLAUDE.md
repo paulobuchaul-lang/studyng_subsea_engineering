@@ -1,5 +1,5 @@
 PLATAFORMA SUBSEA RAFAELA — INSTRUÇÃO PERMANENTE DO PROJETO
-Versão 2 — 06/09/2026. A Parte 0 é nova. As seções 1 a 30 são as originais do Paulo, preservadas na íntegra.
+Versão 3 — 07/09/2026. A Parte 0 (protocolo de sessão) foi ampliada com a seção 0.10 (garantia de atualização contínua via CI). As seções 1 a 30 são as originais do Paulo, preservadas na íntegra.
 
 ===============================================================
 PARTE 0 — PROTOCOLO DE SESSÃO E FONTES DE VERDADE
@@ -61,6 +61,15 @@ O site é público (D-004a, opção A) ou protegido por login (opção B). Em qu
 0.9 STATUS DA V3
 
 A V3 e sua documentação (ARQUITETURA_MESTRE_V3, MATRIZ, QA, AUDITORIA) são insumo histórico, não fonte de verdade (D-013). Em divergência entre V3 e este CLAUDE.md, prevalece este documento. Aproveitar o conteúdo técnico da V3 sempre que tiver valor; descartar forma, shell e código sem necessidade de justificativa individual. O que não pode regredir é conteúdo e função, listados em DIAGNOSTICO_V3.md seção 6.
+
+0.10 GARANTIA DE ATUALIZAÇÃO CONTÍNUA (D-020)
+
+A disciplina de manter ESTADO_ATUAL, CHANGELOG, BACKLOG e DECISOES atualizados (seções 0.6 e 24) não depende só de lembrança humana ou do Claude: o repositório tem mecanismos automáticos que travam isso.
+
+- `.github/workflows/qa-governanca.yml` roda em todo push e pull request, em qualquer branch. Falha o build se: (a) faltar algum dos dez documentos obrigatórios de `/governanca/`; (b) houver link interno quebrado entre os arquivos de governança; (c) o push/PR alterar `src/`, `capitulos/` ou `assets/` sem também alterar `governanca/CHANGELOG.md` ou `governanca/ESTADO_ATUAL.md` no mesmo push. Isso torna "esquecer de atualizar a governança" um build vermelho, não um lapso silencioso.
+- `.github/PULL_REQUEST_TEMPLATE.md` traz o checklist de governança (CHANGELOG, ESTADO_ATUAL, DECISOES, BACKLOG, rubrica de conteúdo quando aplicável) direto na descrição de todo PR aberto.
+- Branch protection na branch `main` (Settings → Branches, ação manual do Paulo, documentada em GUIA_PUBLICACAO.md) deve exigir que o check `qa-governanca` passe antes de qualquer merge. Sem isso ativado, o CI roda e sinaliza, mas não impede o merge.
+- Toda sessão de trabalho no repositório, sessão do Claude ou upload manual do Paulo, deve deixar o CI verde antes de considerar a entrega concluída. CI vermelho é sinal de governança desatualizada, não de erro cosmético a ignorar.
 
 ===============================================================
 PARTE 1 — REQUISITOS PERMANENTES (seções 1 a 30, texto original do Paulo)

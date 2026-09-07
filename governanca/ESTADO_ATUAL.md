@@ -3,7 +3,7 @@
 > Este é o PRIMEIRO arquivo a ler em qualquer sessão. Ele responde "onde estamos, o que foi decidido, o que vem agora".
 > Atualizado ao FINAL de cada sessão. Se a data abaixo for antiga, desconfie e pergunte.
 
-**Última atualização:** 07/09/2026 (Sessão 2 — zip completo da V3 recebido + auditoria de conteúdo/didática/UX/gamificação)
+**Última atualização:** 07/09/2026 (Sessão 2 — zip completo da V3 recebido, auditoria de conteúdo/didática/UX/gamificação, e automação de governança via CI)
 **Versão publicada:** nenhuma ainda com conteúdo real. GitHub Pages foi ativado pelo Paulo, mas a raiz do repositório só tem a estrutura da Sessão 1 (governança + esqueleto vazio) — não há site de produto no ar.
 **Versão em desenvolvimento:** V4.0 (redesign + hospedagem + pipeline de conteúdo)
 **URL do site publicado:** GitHub Pages ativo (URL a confirmar/registrar na próxima sessão); ainda sem conteúdo de produto.
@@ -20,6 +20,7 @@
 6. Decisão tomada (D-006): direção de design de DESIGN_SYSTEM_V4.md aprovada para virar protótipo no Sprint 2.
 7. Decisão tomada (D-015): antes de qualquer extração técnica, uma auditoria de conteúdo/didática/UX de aprendizagem/gamificação foi conduzida com o material completo da V3. Achados e rubrica de "excelente nível" em AUDITORIA_CONTEUDO_DIDATICA_V4.md; itens B-030 a B-034 abertos no backlog. Decisões de escopo confirmadas: D-016 (profundidade completa nas camadas), D-017 (verificação factual em V4.1), D-018 (glossário reescrito incremental por capítulo).
 7a. Decisão tomada (D-019, a pedido do Paulo): todo termo técnico não-trivial em inglês usado num capítulo precisa de entrada no glossário. Medição real mostrou 53 de 60 termos amostrados sem entrada. O popover de termo (a segunda forma do glossário, em "balão" sobre a palavra) existe e funciona hoje via `assets/app.js`, mas só reconhece termos cadastrados e trunca em 18 por capítulo — correção registrada em B-035.
+7b. Decisão tomada (D-020, a pedido do Paulo): a governança agora tem reforço automático, não só disciplina. CI (`qa-governanca.yml`) valida em todo push/PR os 10 documentos de governança, links internos e se CHANGELOG/ESTADO_ATUAL acompanham mudanças de conteúdo/código. PR template com checklist de governança. Falta o Paulo ativar branch protection na `main` (B-036) para o check bloquear merges de fato.
 8. A Biblioteca Visual será refeita com estratégia de licenciamento (D-007): imagens hotlinkadas de fornecedores não carregam e serão substituídas por fontes licenciáveis ou cartões de fonte bem desenhados.
 9. A dinâmica de continuidade entre sessões passa a ser: ler ESTADO_ATUAL → buscar arquivos correntes no repositório → executar o sprint do ROADMAP → entregar release + governança atualizada. Protocolo em CLAUDE.md, Parte 0.
 10. A regra "adicionar ou melhorar sem regredir" vale para conteúdo e funções, não para forma (D-013), e agora também não para profundidade rasa: capítulos migrados precisam atender à rubrica da auditoria, não só preservar o texto que já existia.
@@ -38,7 +39,8 @@
 
 ## O que o Paulo precisa fazer antes da próxima sessão
 
-- [ ] Nada bloqueante. Quando o site tiver conteúdo real publicado, testar no celular e no notebook e registrar aqui (D-009).
+- [ ] Ativar branch protection na `main` exigindo o check `qa-governanca` (Settings → Branches; passo a passo em GUIA_PUBLICACAO.md seção 5a; B-036). Não bloqueia a próxima sessão, mas sem isso o CI só avisa, não impede merge.
+- [ ] Quando o site tiver conteúdo real publicado, testar no celular e no notebook e registrar aqui (D-009).
 
 ## Riscos abertos
 

@@ -45,6 +45,19 @@ O Claude entrega um .zip com a versão nova. Você:
 
 Arquivos removidos numa versão nova não somem sozinhos pelo upload. Quando um sprint remover arquivos, o CHANGELOG dirá quais; você os apaga pelo próprio GitHub (abrir o arquivo → ícone de lixeira → confirmar).
 
+## 5a. Proteger a branch main (fazer uma vez)
+
+O repositório já roda uma checagem automática (GitHub Actions) a cada mudança: confere se os documentos de governança existem, se não há link quebrado entre eles, e se toda mudança de conteúdo ou código veio acompanhada de atualização do CHANGELOG ou do ESTADO_ATUAL. Para essa checagem realmente impedir que algo incompleto entre na `main`, falta um ajuste único e manual, feito por você:
+
+1. No repositório, ir em **Settings → Branches**.
+2. Em "Branch protection rules", clicar em **Add rule** (ou **Add branch protection rule**).
+3. Em "Branch name pattern", digitar `main`.
+4. Marcar **Require status checks to pass before merging** e selecionar o check `qa-governanca` (aparece na lista depois que ele rodar pelo menos uma vez).
+5. Marcar também **Require a pull request before merging**, se você quiser revisar antes de qualquer mudança entrar na `main` (opcional; sem isso, você continua podendo subir arquivo direto pela `main` via Upload files, mas perde a proteção do check).
+6. Salvar.
+
+Sem esse passo, o CI roda e avisa (fica visível na aba **Actions** do repositório), mas não bloqueia nada sozinho.
+
 ## 6. Backup no Google Drive
 
 Pasta sugerida: `Subsea Rafaela / Releases / V3.0`, `V4.0-sprint1`, etc. Guardar em cada uma o .zip entregue pelo Claude. Pasta `Subsea Rafaela / Governança` com a cópia corrente dos .md. O GitHub já guarda o histórico de todas as versões; o Drive é redundância.

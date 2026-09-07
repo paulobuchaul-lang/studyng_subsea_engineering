@@ -1,5 +1,7 @@
 # Plataforma Subsea Rafaela
 
+![QA da governança](https://github.com/paulobuchaul-lang/studyng_subsea_engineering/actions/workflows/qa-governanca.yml/badge.svg)
+
 Plataforma digital de aprendizagem em Engenharia Submarina aplicada à gestão de projetos offshore, desenvolvida para uso pessoal de estudo e consulta técnica.
 
 O produto funciona simultaneamente como curso estruturado, referência técnica de consulta imediata, ferramenta de apoio ao trabalho diário, biblioteca visual de equipamentos e operações, biblioteca de prompts profissionais para uso de LLMs e ambiente de aprendizagem gamificado. Todo o conteúdo é educacional e baseado em fontes públicas; nenhuma informação confidencial de contrato ou de empresa é publicada.
@@ -30,6 +32,10 @@ Este repositório segue um protocolo de continuidade entre sessões descrito em 
 5. `governanca/DESIGN_SYSTEM_V4.md` — tokens e componentes visuais.
 6. `governanca/DIAGNOSTICO_V3.md` e `governanca/CHANGELOG.md` — histórico e o que não pode regredir.
 7. `governanca/GUIA_PUBLICACAO.md` — como publicar e atualizar o site.
+
+## Como este repositório se mantém atualizado
+
+Toda mudança em conteúdo ou código passa por um CI (`.github/workflows/qa-governanca.yml`) que falha se a governança não acompanhar a mudança — ver `governanca/CLAUDE.md` seção 0.10 e `governanca/DECISOES.md` D-020. Pull requests trazem um checklist de governança obrigatório (`.github/PULL_REQUEST_TEMPLATE.md`). Isso não substitui a leitura de `governanca/ESTADO_ATUAL.md` no início de cada sessão — apenas garante que ele não fique defasado silenciosamente.
 
 ## Licença de conteúdo
 
